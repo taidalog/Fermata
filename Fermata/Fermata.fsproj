@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Library.fs" />
+    <Compile Include="RadixConversion.fs" />
   </ItemGroup>
 
 </Project>
