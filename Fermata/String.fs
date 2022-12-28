@@ -10,6 +10,12 @@ module String =
     let tail str =
         str |> Seq.tail |> Seq.map string |> String.concat ""
     
+    let tryTail str =
+        str
+        |> Seq.tryTail
+        |> Option.map (Seq.map string)
+        |> Option.map (String.concat "")
+    
     let last str =
         str |> Seq.last |> string
     
