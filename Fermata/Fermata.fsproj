@@ -18,6 +18,7 @@
     <Compile Include="Bool.fs" />
     <Compile Include="RadixConversion.fs" />
     <Compile Include="Regex.fs" />
+    <Compile Include="Result.fs" />
     <Compile Include="String.fs" />
     <Compile Include="Tuple.fs" />
   </ItemGroup>
