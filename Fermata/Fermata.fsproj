@@ -14,6 +14,7 @@
   <ItemGroup>
     <Compile Include="Bool.fs" />
     <Compile Include="RadixConversion.fs" />
+    <Compile Include="String.fs" />
     <Compile Include="Tuple.fs" />
   </ItemGroup>
 
