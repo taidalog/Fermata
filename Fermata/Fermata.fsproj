@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Compile Include="RadixConversion.fs" />
+    <Compile Include="Tuple.fs" />
   </ItemGroup>
 
 </Project>
