@@ -2,6 +2,7 @@ namespace Fermata
 
 open System.Text.RegularExpressions
 
+[<RequireQualifiedAccess>]
 module Regex =
     let match' pattern input : Match =
         Regex.Match(input, pattern)

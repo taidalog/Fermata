@@ -1,5 +1,6 @@
 namespace Fermata
 
+[<RequireQualifiedAccess>]
 module Bool =
     let toInt b =
         match b with

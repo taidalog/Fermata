@@ -1,5 +1,6 @@
 namespace Fermata
 
+[<RequireQualifiedAccess>]
 module Seq =
     let tryTail source =
         match source |> Seq.isEmpty with

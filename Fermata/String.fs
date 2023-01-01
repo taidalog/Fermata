@@ -1,5 +1,6 @@
 namespace Fermata
 
+[<RequireQualifiedAccess>]
 module String =
     let head str =
         str |> Seq.head |> string

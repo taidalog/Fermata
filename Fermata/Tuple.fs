@@ -1,5 +1,6 @@
 namespace Fermata
 
+[<RequireQualifiedAccess>]
 module Tuple =
     let map mapping (x, y) =
         mapping x, mapping y

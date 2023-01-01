@@ -1,5 +1,6 @@
 namespace Fermata
 
+[<RequireQualifiedAccess>]
 module Array =
     let tryTail array =
         match array with
