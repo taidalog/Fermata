@@ -1,5 +1,9 @@
 # Fermata
+
 F# miscellaneous library
+
+Version 0.0.1
+
 
 ## Modules
 
