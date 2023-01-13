@@ -10,6 +10,8 @@
     <Description>F# miscellaneous library</Description>
     <PackageProjectUrl>https://github.com/taidalog/Fermata</PackageProjectUrl>
     <PackageTags>F# FSharp miscellaneous library functional programming</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +24,7 @@
     <Compile Include="Result.fs" />
     <Compile Include="String.fs" />
     <Compile Include="Tuple.fs" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
