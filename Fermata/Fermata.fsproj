@@ -15,7 +15,6 @@
     <Copyright>Copyright (c) 2022-2023 taidalog</Copyright>
     <RepositoryUrl>https://github.com/taidalog/Fermata.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <OtherFlags>--allsigs</OtherFlags>
   </PropertyGroup>
 
   <ItemGroup>
