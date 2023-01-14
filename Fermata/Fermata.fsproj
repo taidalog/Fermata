@@ -19,14 +19,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Array.fsi" />
     <Compile Include="Array.fs" />
+    <Compile Include="List.fsi" />
     <Compile Include="List.fs" />
+    <Compile Include="Seq.fsi" />
     <Compile Include="Seq.fs" />
+    <Compile Include="Bool.fsi" />
     <Compile Include="Bool.fs" />
+    <Compile Include="RadixConversion.fsi" />
     <Compile Include="RadixConversion.fs" />
+    <Compile Include="Regex.fsi" />
     <Compile Include="Regex.fs" />
+    <Compile Include="Result.fsi" />
     <Compile Include="Result.fs" />
+    <Compile Include="String.fsi" />
     <Compile Include="String.fs" />
+    <Compile Include="Tuple.fsi" />
     <Compile Include="Tuple.fs" />
     <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
