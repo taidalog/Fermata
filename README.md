@@ -27,6 +27,23 @@ Version 0.0.2
     Contains helper functions for working with values of tuples.
 
 
+## Installation
+
+.NET CLI,
+
+```
+dotnet add package Fermata --version 0.0.2
+```
+
+F# Intaractive,
+
+```
+#r "nuget: Fermata, 0.0.2"
+```
+
+For more information, please see [Fermata on NuGet Gallery](https://www.nuget.org/packages/Fermata).
+
+
 ## Links
 
 - [Repository on GitHub](https://github.com/taidalog/Fermata)
