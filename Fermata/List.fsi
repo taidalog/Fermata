@@ -28,3 +28,9 @@ namespace Fermata
         /// </example>
         val tryTail: list: 'T list -> 'T list option
 
+        val countWith: projection: ('T -> bool) -> list: 'T list -> int
+
+        val trySkip: count: int -> list: 'T list -> 'T list option
+
+        val filterIndex: projection: ('T -> bool) -> list: 'T list -> int list
+
