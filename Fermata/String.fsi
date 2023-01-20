@@ -8,6 +8,13 @@ namespace Fermata
         /// <param name="str">The input string.</param>
         /// 
         /// <returns>The first character of the string.</returns>
+        /// 
+        /// <example id="head-1">
+        /// <code lang="fsharp">
+        /// "Cheshire Cat" |> String.head
+        /// </code>
+        /// Evaluates to <c>"C"</c>
+        /// </example>
         val head: str: string -> string
         
         /// <summary>Returns the first character of the string, or
@@ -17,6 +24,20 @@ namespace Fermata
         /// 
         /// <returns>The first character of the string, or
         /// <c>None</c> if the string is empty.</returns>
+        /// 
+        /// <example id="tryhead-1">
+        /// <code lang="fsharp">
+        /// "Cheshire Cat" |> String.tryHead
+        /// </code>
+        /// Evaluates to <c>Some "C"</c>
+        /// </example>
+        /// 
+        /// <example id="tryhead-2">
+        /// <code lang="fsharp">
+        /// "" |> String.tryHead
+        /// </code>
+        /// Evaluates to <c>None</c>
+        /// </example>
         val tryHead: str: string -> string option
         
         /// <summary>Returns the string without the first character.</summary>
@@ -24,6 +45,13 @@ namespace Fermata
         /// <param name="str">The input string.</param>
         /// 
         /// <returns>The string without the first character.</returns>
+        /// 
+        /// <example id="tail-1">
+        /// <code lang="fsharp">
+        /// "cat" |> String.tail
+        /// </code>
+        /// Evaluates to <c>"at"</c>
+        /// </example>
         val tail: str: string -> string
         
         /// <summary>Returns the string without the first character, or 
@@ -33,6 +61,27 @@ namespace Fermata
         /// 
         /// <returns>The string without the first character, or 
         /// <c>None</c> if the input string is empty.</returns>
+        /// 
+        /// <example id="trytail-1">
+        /// <code lang="fsharp">
+        /// "cat" |> String.tryTail
+        /// </code>
+        /// Evaluates to <c>Some "at"</c>
+        /// </example>
+        /// 
+        /// <example id="trytail-2">
+        /// <code lang="fsharp">
+        /// "" |> String.tryTail
+        /// </code>
+        /// Evaluates to <c>None</c>
+        /// </example>
+        /// 
+        /// <example id="trytail-3">
+        /// <code lang="fsharp">
+        /// "c" |> String.tryTail
+        /// </code>
+        /// Evaluates to <c>Some ""</c>
+        /// </example>
         val tryTail: str: string -> string option
         
         /// <summary>Returns the last character of the string.</summary>
@@ -40,6 +89,13 @@ namespace Fermata
         /// <param name="str">The input string.</param>
         /// 
         /// <returns>The last character of the string.</returns>
+        /// 
+        /// <example id="last-1">
+        /// <code lang="fsharp">
+        /// "The" |> String.last
+        /// </code>
+        /// Evaluates to <c>"e"</c>
+        /// </example>
         val last: str: string -> string
         
         /// <summary>Returns the last character of the string, or
@@ -49,6 +105,20 @@ namespace Fermata
         /// 
         /// <returns>The last character of the string, or
         /// <c>None</c> if the input string is empty.</returns>
+        /// 
+        /// <example id="trylast-1">
+        /// <code lang="fsharp">
+        /// "The" |> String.tryLast
+        /// </code>
+        /// Evaluates to <c>Some "e"</c>
+        /// </example>
+        /// 
+        /// <example id="trylast-2">
+        /// <code lang="fsharp">
+        /// "" |> String.tryLast
+        /// </code>
+        /// Evaluates to <c>None</c>
+        /// </example>
         val tryLast: str: string -> string option
         
         /// <summary>Returns the longest string.</summary>
@@ -56,6 +126,20 @@ namespace Fermata
         /// <param name="strList">The input string list.</param>
         /// 
         /// <returns>The longest string.</returns>
+        /// 
+        /// <example id="max-1">
+        /// <code lang="fsharp">
+        /// ["The"; "quick"; "brown"; "fox"; "jumped"] |> String.max
+        /// </code>
+        /// Evaluates to <c>"jumped"</c>
+        /// </example>
+        /// 
+        /// <example id="max-2">
+        /// <code lang="fsharp">
+        /// ["The"; "quick"; "brown"] |> String.max
+        /// </code>
+        /// Evaluates to <c>"quick"</c>
+        /// </example>
         val max: strList: string list -> string
         
         /// <summary>Returns the shortest string.</summary>
@@ -63,6 +147,27 @@ namespace Fermata
         /// <param name="strList">The input string list.</param>
         /// 
         /// <returns>The shortest string.</returns>
+        /// 
+        /// <example id="min-1">
+        /// <code lang="fsharp">
+        /// ["The"; "quick"; "brown"] |> String.min
+        /// </code>
+        /// Evaluates to <c>"The"</c>
+        /// </example>
+        /// 
+        /// <example id="min-2">
+        /// <code lang="fsharp">
+        /// ["The"; "quick"; "brown"; "fox"; "jumped"] |> String.min
+        /// </code>
+        /// Evaluates to <c>"The"</c>
+        /// </example>
+        /// 
+        /// <example id="min-3">
+        /// <code lang="fsharp">
+        /// ["The"; "quick"; "brown"; "fox"; ""] |> String.min
+        /// </code>
+        /// Evaluates to <c>""</c>
+        /// </example>
         val min: strList: string list -> string
         
         /// <summary>Returns a new string, 
@@ -102,26 +207,73 @@ namespace Fermata
         /// </example>
         val mid: start: int -> len: int -> str: string -> string
         
-        /// <summary></summary>
-        /// <param name="oldString"></param>
-        /// <param name="newString"></param>
+        /// <summary>Returns a new string in which all <paramref name="oldString"/> are replaced with <paramref name="newString"/>.
+        /// A wrapper function for <c>System.String.Replace(String, String)</c>.</summary>
+        /// 
+        /// <param name="oldString">The string to be replaced.</param>
+        /// 
+        /// <param name="newString">The string to replace <paramref name="oldString"/>.</param>
+        /// 
         /// <param name="str">The input string.</param>
+        /// 
         /// <returns>The result string.</returns>
+        /// 
+        /// <example id="replace-1">
+        /// <code lang="fsharp">
+        /// "The quick brown fox jumps..."
+        /// |> String.replace "quick" "lazy"
+        /// </code>
+        /// Evaluates to <c>"The lazy brown fox jumps..."</c>
+        /// </example>
         val replace:
           oldString: string -> newString: string -> str: string -> string
         
-        /// <summary></summary>
-        /// <param name="oldString"></param>
-        /// <param name="newString"></param>
+        /// <summary>Returns a new string in which all <paramref name="oldString"/> are replaced with <paramref name="newString"/>, or
+        /// returns <c>None</c> if <paramref name="oldString"/> is the empty string ("").
+        /// A wrapper function for <c>System.String.Replace(String, String)</c>.</summary>
+        /// 
+        /// <param name="oldString">The string to be replaced.</param>
+        /// 
+        /// <param name="newString">The string to replace <paramref name="oldString"/>.</param>
+        /// 
         /// <param name="str">The input string.</param>
-        /// <returns></returns>
+        /// 
+        /// <returns>The result string, or
+        /// <c>None</c> if <paramref name="oldString"/> is the empty string ("").</returns>
+        /// 
+        /// <example id="tryreplace-1">
+        /// <code lang="fsharp">
+        /// "The quick brown fox jumps..."
+        /// |> String.tryReplace "quick" "lazy"
+        /// </code>
+        /// Evaluates to <c>Some "The lazy brown fox jumps..."</c>
+        /// </example>
+        /// 
+        /// <example id="tryreplace-2">
+        /// <code lang="fsharp">
+        /// "The quick brown fox jumps..."
+        /// |> String.tryReplace "" "lazy"
+        /// </code>
+        /// Evaluates to <c>None</c>
+        /// </example>
+        /// 
+        /// <example id="tryreplace-2">
+        /// <code lang="fsharp">
+        /// "" |> String.tryReplace "quick" "lazy"
+        /// </code>
+        /// Evaluates to <c>Some ""</c>
+        /// </example>
         val tryReplace:
           oldString: string -> newString: string -> str: string -> string option
         
-        /// <summary></summary>
+        /// <summary>A wrapper function for <c>System.String.PadLeft(Int32, Char)</c>.</summary>
+        /// 
         /// <param name="totalWidth">The length of the resulting string.</param>
+        /// 
         /// <param name="paddingChar">A padding character.</param>
+        /// 
         /// <param name="str">The input string.</param>
+        /// 
         /// <returns>The result string.</returns>
         /// 
         /// <example id="padleft-1">
@@ -140,10 +292,15 @@ namespace Fermata
         val padLeft:
           totalWidth: int -> paddingChar: char -> str: string -> string
         
-        /// <summary></summary>
+        /// 
+        /// <summary>A wrapper function for <c>System.String.PadRight(Int32, Char)</c>.</summary>
+        /// 
         /// <param name="totalWidth">The length of the resulting string.</param>
+        /// 
         /// <param name="paddingChar">A padding character.</param>
+        /// 
         /// <param name="str">The input string.</param>
+        /// 
         /// <returns>The result string.</returns>
         /// 
         /// <example id="padright-1">
@@ -169,7 +326,8 @@ namespace Fermata
         val padRight:
           totalWidth: int -> paddingChar: char -> str: string -> string
         
-        /// <summary>Returns all leading and trailing white-space characters from the input string.</summary>
+        /// <summary>Returns all leading and trailing white-space characters from the input string.
+        /// A wrapper function for <c>System.String.Trim(String)</c>.</summary>
         /// 
         /// <param name="str">The input string.</param>
         /// 
@@ -183,7 +341,8 @@ namespace Fermata
         /// </example>
         val trim: str: string -> string
         
-        /// <summary>Returns all trailing white-space characters from the input string.</summary>
+        /// <summary>Returns all trailing white-space characters from the input string.
+        /// A wrapper function for <c>System.String.TrimEnd(String)</c>.</summary>
         /// 
         /// <param name="str">The input string.</param>
         /// 
@@ -197,7 +356,8 @@ namespace Fermata
         /// </example>
         val trimEnd: str: string -> string
         
-        /// <summary>Returns all leading white-space characters from the input string.</summary>
+        /// <summary>Returns all leading white-space characters from the input string.
+        /// A wrapper function for <c>System.String.TrimStart(String)</c>.</summary>
         /// 
         /// <param name="str">The input string.</param>
         /// 
