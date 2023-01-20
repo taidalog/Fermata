@@ -7,9 +7,9 @@ module Array =
         | [||] -> None
         | _ -> Array.tail array |> Some
 
-    let countWith (projection : 'T -> bool) (array : 'T[]) : int =
+    let countWith (predicate : 'T -> bool) (array : 'T[]) : int =
         array
-        |> Array.filter projection
+        |> Array.filter predicate
         |> Array.length
     
     let trySkip (count : int) (array : 'T[]) : 'T[] option =
@@ -18,8 +18,8 @@ module Array =
         else
             array |> Array.skip count |> Some
     
-    let filterIndex (projection : 'T -> bool) (array : 'T[]) : int[] =
+    let filterIndex (predicate : 'T -> bool) (array : 'T[]) : int[] =
         array
         |> Array.indexed
-        |> Array.filter (fun (_, x) -> projection x)
+        |> Array.filter (fun (_, x) -> predicate x)
         |> Array.map (fun (i, _) -> i)

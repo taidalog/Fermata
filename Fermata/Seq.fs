@@ -7,9 +7,9 @@ module Seq =
         | true -> None
         | false -> Seq.tail source |> Some
 
-    let countWith (projection : 'T -> bool) (source : seq<'T>) : int =
+    let countWith (predicate : 'T -> bool) (source : seq<'T>) : int =
         source
-        |> Seq.filter projection
+        |> Seq.filter predicate
         |> Seq.length
     
     let trySkip (count : int) (source : seq<'T>) : seq<'T> option =
@@ -18,8 +18,8 @@ module Seq =
         else
             source |> Seq.skip count |> Some
     
-    let filterIndex (projection : 'T -> bool) (source : seq<'T>) : seq<int> =
+    let filterIndex (predicate : 'T -> bool) (source : seq<'T>) : seq<int> =
         source
         |> Seq.indexed
-        |> Seq.filter (fun (_, x) -> projection x)
+        |> Seq.filter (fun (_, x) -> predicate x)
         |> Seq.map (fun (i, _) -> i)
