@@ -27,6 +27,12 @@ Version 0.0.2
     Contains helper functions for working with values of tuples.
 
 
+## Links
+
+- [Repository on GitHub](https://github.com/taidalog/Fermata)
+- [NuGet Gallery](https://www.nuget.org/packages/Fermata)
+
+
 ## License
 
 This product is licensed under the [MIT license](https://github.com/taidalog/Fermata/blob/main/LICENSE).
