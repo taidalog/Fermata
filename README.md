@@ -2,7 +2,7 @@
 
 F# miscellaneous library
 
-Version 0.0.2
+Version 0.0.3
 
 
 ## Modules
@@ -32,13 +32,13 @@ Version 0.0.2
 .NET CLI,
 
 ```
-dotnet add package Fermata --version 0.0.2
+dotnet add package Fermata --version 0.0.3
 ```
 
 F# Intaractive,
 
 ```
-#r "nuget: Fermata, 0.0.2"
+#r "nuget: Fermata, 0.0.3"
 ```
 
 For more information, please see [Fermata on NuGet Gallery](https://www.nuget.org/packages/Fermata).
