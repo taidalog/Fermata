@@ -2,7 +2,13 @@
 
 F# miscellaneous library
 
-Version 0.0.3
+Version 0.1.0
+
+
+## Features
+
+- Provides functions for working with values of basic types in F#.
+- Works in a Fable project.
 
 
 ## Modules
@@ -32,16 +38,21 @@ Version 0.0.3
 .NET CLI,
 
 ```
-dotnet add package Fermata --version 0.0.3
+dotnet add package Fermata --version 0.1.0
 ```
 
 F# Intaractive,
 
 ```
-#r "nuget: Fermata, 0.0.3"
+#r "nuget: Fermata, 0.1.0"
 ```
 
 For more information, please see [Fermata on NuGet Gallery](https://www.nuget.org/packages/Fermata).
+
+
+## Notes
+
+- Don't forget `npm start` before using Fermata in a Fable project. I forgot!
 
 
 ## Links
