@@ -44,7 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="*.fsproj; *.fs; *.js" PackagePath="fable\" />
+    <Content Include="*.fsproj; *.fs; *.fsi; *.js" PackagePath="fable\" />
   </ItemGroup>
 
 </Project>
