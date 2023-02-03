@@ -26,6 +26,8 @@
     <Compile Include="Seq.fs" />
     <Compile Include="Bool.fsi" />
     <Compile Include="Bool.fs" />
+    <Compile Include="Math.fsi" />
+    <Compile Include="Math.fs" />
     <Compile Include="RadixConversion.fsi" />
     <Compile Include="RadixConversion.fs" />
     <Compile Include="Regex.fsi" />
