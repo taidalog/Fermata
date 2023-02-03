@@ -371,3 +371,50 @@ namespace Fermata
         /// </example>
         val trimStart: str: string -> string
 
+        /// <summary>Returns a new string with the characters in reverse order.</summary>
+        /// 
+        /// <param name="str">The input string.</param>
+        /// 
+        /// <returns>The reversed string.</returns>
+        /// 
+        /// <example id="rev-1">
+        /// <code lang="fsharp">
+        /// "ABC" |> String.rev
+        /// </code>
+        /// Evaluates to <c>"CBA"</c>
+        /// </example>
+        val rev: str: string -> string
+
+        /// <summary>Divides the input string into chunks of length at most <paramref name="chunkSize"/>.</summary>
+        /// 
+        /// <param name="chunkSize">The maximum length of each chunk.</param>
+        /// 
+        /// <param name="str">The input string.</param>
+        /// 
+        /// <returns>The sequence of the string divided into chunks.</returns>
+        /// 
+        /// <example id="chunkbysize-1">
+        /// <code lang="fsharp">
+        /// "abcdefghijk" |> String.chunkBySize 4
+        /// </code>
+        /// Evaluates to a sequence yielding the same results as <c>seq {"abcd"; "efgh"; "ijk"}</c>
+        /// </example>
+        val chunkBySize: chunkSize: int -> str: string -> seq<string>
+        
+        /// <summary>Divides the input string into chunks of length at most <paramref name="chunkSize"/>.
+        /// The first chunk will be shorter than <paramref name="chunkSize"/> if the length of the string can not be divided by <paramref name="chunkSize"/>.</summary>
+        /// 
+        /// <param name="chunkSize">The maximun length of each chunk.</param>
+        /// 
+        /// <param name="str">The input string.</param>
+        /// 
+        /// <returns>The sequence of the string divided into chunks.</returns>
+        /// 
+        /// <example id="chunkbysize-right-1">
+        /// <code lang="fsharp">
+        /// "abcdefghijk" |> String.chunkBySizeRight 4
+        /// </code>
+        /// Evaluates to a sequence yielding the same results as <c>seq {"abc"; "defg"; "hijk"}</c>
+        /// </example>
+        val chunkBySizeRight: chunkSize: int -> str: string -> seq<string>
+

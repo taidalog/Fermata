@@ -58,3 +58,22 @@ module String =
     
     let trimStart (str : string) : string =
         str.TrimStart()
+    
+    let rev (str : string) : string =
+        str
+        |> Seq.rev
+        |> Seq.map string
+        |> String.concat ""
+    
+    let chunkBySize (chunkSize : int) (str : string) : seq<string> =
+        str
+        |> Seq.chunkBySize chunkSize
+        |> Seq.map (Array.map string)
+        |> Seq.map (String.concat "")
+
+    let chunkBySizeRight (chunkSize : int) (str : string) : seq<string> =
+        str
+        |> rev
+        |> chunkBySize chunkSize
+        |> Seq.rev
+        |> Seq.map rev
