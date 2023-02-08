@@ -7,9 +7,9 @@
     <Version>0.1.1</Version>
     <Authors>taidalog</Authors>
     <Company />
-    <Description>F# miscellaneous library</Description>
+    <Description>An F# helper library for working with values of basic types in F#. Compatible with Fable.</Description>
     <PackageProjectUrl>https://github.com/taidalog/Fermata</PackageProjectUrl>
-    <PackageTags>F#; FSharp; fable; miscellaneous; library; functional; programming</PackageTags>
+    <PackageTags>F#; FSharp; fable; miscellaneous; helper; library; functional; programming</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Copyright>Copyright (c) 2022-2023 taidalog</Copyright>

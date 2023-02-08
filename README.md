@@ -1,6 +1,6 @@
 # Fermata
 
-F# miscellaneous library
+An F# helper library for working with values of basic types in F#. Compatible with Fable.
 
 Version 0.1.1
 
