@@ -32,6 +32,8 @@ Version 0.2.0
 - Tuple  
     Contains helper functions for working with values of tuples.
 
+For more information, see each signature file (`.fsi`).
+
 
 ## Installation
 
@@ -53,6 +55,16 @@ For more information, please see [Fermata on NuGet Gallery](https://www.nuget.or
 ## Notes
 
 - Don't forget `npm start` before using Fermata in a Fable project. I forgot!
+
+
+## Known Issue
+
+- 
+
+
+## Release Notes
+
+[Releases on GitHub](https://github.com/taidalog/Fermata/releases)
 
 
 ## Links
