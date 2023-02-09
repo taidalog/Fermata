@@ -2,7 +2,7 @@
 
 An F# helper library for working with values of basic types in F#. Compatible with Fable.
 
-Version 0.1.1
+Version 0.2.0
 
 
 ## Features
@@ -38,13 +38,13 @@ Version 0.1.1
 .NET CLI,
 
 ```
-dotnet add package Fermata --version 0.1.1
+dotnet add package Fermata --version 0.2.0
 ```
 
 F# Intaractive,
 
 ```
-#r "nuget: Fermata, 0.1.1"
+#r "nuget: Fermata, 0.2.0"
 ```
 
 For more information, please see [Fermata on NuGet Gallery](https://www.nuget.org/packages/Fermata).
