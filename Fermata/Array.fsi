@@ -106,3 +106,21 @@ namespace Fermata
         /// </example>
         val filterIndex: predicate: ('T -> bool) -> array: 'T array -> int array
 
+        /// <summary>Returns a new array that contains the common elements to the two input arrays.</summary>
+        /// 
+        /// <param name="array1">The first input array.</param>
+        /// 
+        /// <param name="array2">The second input array.</param>
+        /// 
+        /// <returns>The array of elements common to the two input arrays.</returns>
+        /// 
+        /// <example id="intersection-1">
+        /// <code lang="fsharp">
+        /// let array1 = [|0; 1; 2; 3; 4|]
+        /// let array2 = [|0; 2; 4; 6; 8|]
+        /// Array.intersection array1 array2
+        /// </code>
+        /// Evaluates to <c>[|0; 2; 4|]</c>
+        /// </example>
+        val intersection: array1 : 'T array -> array2 : 'T array -> 'T array
+

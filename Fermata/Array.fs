@@ -23,3 +23,6 @@ module Array =
         |> Array.indexed
         |> Array.filter (fun (_, x) -> predicate x)
         |> Array.map (fun (i, _) -> i)
+    
+    let intersection (array1 : 'T[]) (array2 : 'T[]) : 'T[] =
+        Array.filter (fun x -> Array.contains x array2) array1

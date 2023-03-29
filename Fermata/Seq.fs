@@ -23,3 +23,6 @@ module Seq =
         |> Seq.indexed
         |> Seq.filter (fun (_, x) -> predicate x)
         |> Seq.map (fun (i, _) -> i)
+    
+    let intersection (source1 : seq<'T>) (source2 : seq<'T>) : seq<'T> =
+        Seq.filter (fun x -> Seq.contains x source2) source1

@@ -23,3 +23,6 @@ module List =
         |> List.indexed
         |> List.filter (fun (_, x) -> predicate x)
         |> List.map (fun (i, _) -> i)
+    
+    let intersection (list1: 'T list) (list2: 'T list) : 'T list =
+        List.filter (fun x -> List.contains x list2) list1
