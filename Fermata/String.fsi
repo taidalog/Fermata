@@ -418,3 +418,19 @@ namespace Fermata
         /// </example>
         val chunkBySizeRight: chunkSize: int -> str: string -> seq<string>
 
+        /// <summary>Returns a new list of substrings of the input string, split by a specified character.</summary>
+        /// 
+        /// <param name="separator">The character to split the input string by.</param>
+        /// 
+        /// <param name="str">The input string.</param>
+        /// 
+        /// <returns>The list of split substrings.</returns>
+        /// 
+        /// <example id="split-1">
+        /// <code lang="fsharp">
+        /// "127.0.0.1" |> String.split '.'
+        /// </code>
+        /// Evaluates to <c>["127"; "0"; "0"; "1"]</c>
+        /// </example>
+        val split: separator: char -> str: string -> string list
+

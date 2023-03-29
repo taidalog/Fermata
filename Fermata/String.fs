@@ -77,3 +77,7 @@ module String =
         |> chunkBySize chunkSize
         |> Seq.rev
         |> Seq.map rev
+    
+    let split (separator : char) (str : string) : string list =
+        str.Split([|separator|]) |> Array.toList
+    
