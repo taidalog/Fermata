@@ -18,6 +18,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Errors.fs" />
+    <Compile Include="Validators.fsi" />
+    <Compile Include="Validators.fs" />
     <Compile Include="Array.fsi" />
     <Compile Include="Array.fs" />
     <Compile Include="List.fsi" />
