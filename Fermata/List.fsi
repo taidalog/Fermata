@@ -122,5 +122,5 @@ namespace Fermata
         /// </code>
         /// Evaluates to <c>[0; 2; 4]</c>
         /// </example>
-        val intersection: list1: 'T list -> list2: 'T list -> 'T list
+        val intersection: list1: 'T list -> list2: 'T list -> 'T list when 'T: equality
 
