@@ -1,8 +1,8 @@
 namespace Fermata
 
 module Errors =
-    type Errors =
-        | NullOrEmpty
-        | EmptyString
-        | WrongFormat
-        | OutOfRange
+    type Errors<'T> =
+        | NullOrEmpty of 'T
+        | EmptyString of 'T
+        | WrongFormat of 'T
+        | OutOfRange of 'T

@@ -4,22 +4,22 @@ open System
 open System.Text.RegularExpressions
 
 module Validators =
-    let validateNotNullOrEmpty (input: string) : Result<string,Fermata.Errors.Errors> =
+    let validateNotNullOrEmpty (input: string) : Result<string,Fermata.Errors.Errors<string>> =
         match String.IsNullOrEmpty input with
-        | true -> Error Errors.NullOrEmpty
+        | true -> Error (Errors.NullOrEmpty input)
         | false -> Ok input
     
-    let validateNotEmptyString (input: string) : Result<string,Fermata.Errors.Errors> =
+    let validateNotEmptyString (input: string) : Result<string,Fermata.Errors.Errors<string>> =
         match input with
-        | "" -> Error Errors.EmptyString
+        | "" -> Error (Errors.EmptyString input)
         | _ -> Ok input
     
-    let validateFormat (format: string) (input: string) : Result<string,Fermata.Errors.Errors> =
-        match Regex.IsMatch(input, format) with
+    let validateFormat (pattern: string) (input: string) : Result<string,Fermata.Errors.Errors<string>> =
+        match Regex.IsMatch(input, pattern) with
         | true -> Ok input
-        | false -> Error Errors.WrongFormat
+        | false -> Error (Errors.WrongFormat input)
     
-    let validateRange (min: 'T) (max: 'T) (input: 'T) : Result<'T,Fermata.Errors.Errors> =
+    let validateRange (min: 'T) (max: 'T) (input: 'T) : Result<'T,Fermata.Errors.Errors<'T>> =
         match input >= min && input <= max with
         | true -> Ok input
-        | false -> Error Errors.OutOfRange
+        | false -> Error (Errors.OutOfRange input)
