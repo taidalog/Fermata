@@ -11,22 +11,22 @@ namespace Fermata
             /// 
             /// <returns>True if the input string can be parsed as a decimal number, otherwise false.</returns>
             /// 
-            /// <example id="decvalidate-1">
+            /// <example id="decisvalid-1">
             /// <code lang="fsharp">
             /// let input = "42"
-            /// input |> Dec.validate
+            /// input |> Dec.isValid
             /// </code>
             /// Evaluates to <c>true</c>
             /// </example>
             /// 
-            /// <example id="decvalidate-2">
+            /// <example id="decisvalid-2">
             /// <code lang="fsharp">
             /// let input = "FF"
-            /// input |> Dec.validate
+            /// input |> Dec.isValid
             /// </code>
             /// Evaluates to <c>false</c>
             /// </example>
-            val validate: input: string -> bool
+            val isValid: input: string -> bool
             
             /// <summary>Returns the equivalent binary representation of the input int value.</summary>
             /// 
@@ -117,22 +117,22 @@ namespace Fermata
             /// 
             /// <returns>True if the input string can be parsed as a binary number, otherwise false.</returns>
             /// 
-            /// <example id="binvalidate-1">
+            /// <example id="binisvalid-1">
             /// <code lang="fsharp">
             /// let input = "101010"
-            /// input |> Bin.validate
+            /// input |> Bin.isValid
             /// </code>
             /// Evaluates to <c>true</c>
             /// </example>
             /// 
-            /// <example id="binvalidate-2">
+            /// <example id="binisvalid-2">
             /// <code lang="fsharp">
             /// let input = "FF"
-            /// input |> Bin.validate
+            /// input |> Bin.isValid
             /// </code>
             /// Evaluates to <c>false</c>
             /// </example>
-            val validate: input: string -> bool
+            val isValid: input: string -> bool
             
             /// <summary>Returns the equivalent decimal representation of the input string representation of a binary number.</summary>
             /// 
@@ -183,22 +183,22 @@ namespace Fermata
             /// 
             /// <returns>True if the input string can be parsed as a hexadecimal number, otherwise false.</returns>
             /// 
-            /// <example id="hexvalidate-1">
+            /// <example id="hexisvalid-1">
             /// <code lang="fsharp">
             /// let input = "FF"
-            /// input |> Hex.validate
+            /// input |> Hex.isValid
             /// </code>
             /// Evaluates to <c>true</c>
             /// </example>
             /// 
-            /// <example id="hexvalidate-2">
+            /// <example id="hexisvalid-2">
             /// <code lang="fsharp">
             /// let input = "XX"
-            /// input |> Hex.validate
+            /// input |> Hex.isValid
             /// </code>
             /// Evaluates to <c>false</c>
             /// </example>
-            val validate: input: string -> bool
+            val isValid: input: string -> bool
             
             /// <summary>Returns the equivalent decimal representation of the input string representation of a hexadecimal number.</summary>
             /// 
