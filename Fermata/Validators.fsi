@@ -31,7 +31,7 @@ namespace Fermata
         /// </code>
         /// Evaluates to <c>Error (NullOrEmpty "")</c>
         /// </example>
-        val validateNotNullOrEmpty: input: string -> Result<string,Fermata.Errors.Errors<string>>
+        val validateNotNullOrEmpty: input: string -> Result<string,Fermata.Errors.Errors>
 
         /// <summary>Returns Ok if the input is not an empty string, otherwise Error.</summary>
         /// 
@@ -54,7 +54,7 @@ namespace Fermata
         /// </code>
         /// Evaluates to <c>Error (EmptyString "")</c>
         /// </example>
-        val validateNotEmptyString: input: string -> Result<string,Fermata.Errors.Errors<string>>
+        val validateNotEmptyString: input: string -> Result<string,Fermata.Errors.Errors>
         
         /// <summary>Returns Ok if the input is not an empty string, otherwise Error.</summary>
         /// 
@@ -78,7 +78,7 @@ namespace Fermata
         /// </code>
         /// Evaluates to <c>Error (WrongFormat "4a")</c>
         /// </example>
-        val validateFormat: pattern: string -> input: string-> Result<string,Fermata.Errors.Errors<string>>
+        val validateFormat: pattern: string -> input: string-> Result<string,Fermata.Errors.Errors>
         
         /// <summary>Returns Ok if the input is within the range, otherwise Error.</summary>
         /// 
@@ -119,5 +119,5 @@ namespace Fermata
         /// </code>
         /// Evaluates to <c>Error (OutOfRange 'A')</c>
         /// </example>
-        val validateRange: min: 'T -> max: 'T -> input: 'T -> Result<'T,Fermata.Errors.Errors<'T>> when 'T: comparison
+        val validateRange: min: 'T -> max: 'T -> input: 'T -> Result<'T,Fermata.Errors.Errors> when 'T: comparison
 
