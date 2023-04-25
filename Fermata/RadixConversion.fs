@@ -1,11 +1,21 @@
 ﻿namespace Fermata
 
+open Validators
+
 module RadixConversion =
 
     [<RequireQualifiedAccess>]
     module Dec =
+        let validate (input : string) : Result<int,Fermata.Errors.Errors> =
+            Ok input
+            |> Result.bind validateNotEmptyString
+            |> Result.bind (validateFormat "^[0-9]+$")
+            |> Result.map int
+        
         let isValid (input : string) : bool =
-            System.Text.RegularExpressions.Regex.IsMatch(input, "^[0-9]+$")
+            input
+            |> validate
+            |> (function | Ok _ -> true | Error _ -> false)
         
         let toBin (input : int) : string =
             System.Convert.ToString(input, 2)
@@ -26,8 +36,15 @@ module RadixConversion =
 
     [<RequireQualifiedAccess>]
     module Bin =
+        let validate (input : string) : Result<string,Fermata.Errors.Errors> =
+            Ok input
+            |> Result.bind validateNotEmptyString
+            |> Result.bind (validateFormat "^[01]+$")
+        
         let isValid (input : string) : bool =
-            System.Text.RegularExpressions.Regex.IsMatch(input, "^[01]+$")
+            input
+            |> validate
+            |> (function | Ok _ -> true | Error _ -> false)
         
         let toDec (input : string) : int =
             System.Convert.ToInt32(input, 2)
@@ -40,8 +57,15 @@ module RadixConversion =
 
     [<RequireQualifiedAccess>]
     module Hex =
+        let validate (input : string) : Result<string,Fermata.Errors.Errors> =
+            Ok input
+            |> Result.bind validateNotEmptyString
+            |> Result.bind (validateFormat "^[0-9A-Fa-f]+$")
+        
         let isValid (input : string) : bool =
-            System.Text.RegularExpressions.Regex.IsMatch(input, "^[0-9A-Fa-f]+$")
+            input
+            |> validate
+            |> (function | Ok _ -> true | Error _ -> false)
         
         let toDec (input : string) : int =
             System.Convert.ToInt32(input, 16)

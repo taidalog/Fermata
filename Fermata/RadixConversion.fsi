@@ -5,6 +5,29 @@ namespace Fermata
         [<RequireQualifiedAccess>]
         module Dec =
             
+            /// <summary>Returns Ok if the input string can be parsed as a decimal number, otherwise Error.</summary>
+            /// 
+            /// <param name="input">The input string.</param>
+            /// 
+            /// <returns>Ok if the input string can be parsed as a decimal number, otherwise Error.</returns>
+            /// 
+            /// <example id="decvalidate-1">
+            /// <code lang="fsharp">
+            /// let input = "42"
+            /// input |> Dec.validate
+            /// </code>
+            /// Evaluates to <c>Ok 42</c>
+            /// </example>
+            /// 
+            /// <example id="decvalidate-2">
+            /// <code lang="fsharp">
+            /// let input = "FF"
+            /// input |> Dec.validate
+            /// </code>
+            /// Evaluates to <c>Error (WrongFormat "FF")</c>
+            /// </example>
+            val validate: input: string -> Result<int,Fermata.Errors.Errors>
+
             /// <summary>Returns true if the input string can be parsed as a decimal number, otherwise false.</summary>
             /// 
             /// <param name="input">The input string.</param>
@@ -111,6 +134,29 @@ namespace Fermata
         [<RequireQualifiedAccess>]
         module Bin =
             
+            /// <summary>Returns Ok if the input string can be parsed as a binary number, otherwise Error.</summary>
+            /// 
+            /// <param name="input">The input string.</param>
+            /// 
+            /// <returns>Ok if the input string can be parsed as a binary number, otherwise Error.</returns>
+            /// 
+            /// <example id="binvalidate-1">
+            /// <code lang="fsharp">
+            /// let input = "101010"
+            /// input |> Bin.validate
+            /// </code>
+            /// Evaluates to <c>Ok "101010"</c>
+            /// </example>
+            /// 
+            /// <example id="binvalidate-2">
+            /// <code lang="fsharp">
+            /// let input = "FF"
+            /// input |> Bin.validate
+            /// </code>
+            /// Evaluates to <c>Error (WrongFormat "FF")</c>
+            /// </example>
+            val validate: input: string -> Result<string,Fermata.Errors.Errors>
+
             /// <summary>Returns true if the input string can be parsed as a binary number, otherwise false.</summary>
             /// 
             /// <param name="input">The input string.</param>
@@ -177,6 +223,29 @@ namespace Fermata
         [<RequireQualifiedAccess>]
         module Hex =
             
+            /// <summary>Returns Ok if the input string can be parsed as a hexadecimal number, otherwise Error.</summary>
+            /// 
+            /// <param name="input">The input string.</param>
+            /// 
+            /// <returns>Ok if the input string can be parsed as a hexadecimal number, otherwise Error.</returns>
+            /// 
+            /// <example id="hexvalidate-1">
+            /// <code lang="fsharp">
+            /// let input = "FF"
+            /// input |> Hex.validate
+            /// </code>
+            /// Evaluates to <c>Ok 42</c>
+            /// </example>
+            /// 
+            /// <example id="hexvalidate-2">
+            /// <code lang="fsharp">
+            /// let input = "XX"
+            /// input |> Hex.validate
+            /// </code>
+            /// Evaluates to <c>Error (WrongFormat "XX")</c>
+            /// </example>
+            val validate: input: string -> Result<string,Fermata.Errors.Errors>
+
             /// <summary>Returns true if the input string can be parsed as a hexadecimal number, otherwise false.</summary>
             /// 
             /// <param name="input">The input string.</param>
