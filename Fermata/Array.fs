@@ -26,3 +26,7 @@ module Array =
     
     let intersection (array1 : 'T[]) (array2 : 'T[]) : 'T[] =
         Array.filter (fun x -> Array.contains x array2) array1
+    
+    let splitWith (predicate : 'T -> bool) (array : 'T[]) : 'T[] * 'T[] =
+        array |> Array.takeWhile (predicate >> not),
+        array |> Array.skipWhile (predicate >> not)

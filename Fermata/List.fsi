@@ -124,3 +124,36 @@ namespace Fermata
         /// </example>
         val intersection: list1: 'T list -> list2: 'T list -> 'T list when 'T: equality
 
+        /// <summary>Splits the list into two lists before the first element for which the given predicate returns True.</summary>
+        /// 
+        /// <param name="predicate">The function to test the input elements.</param>
+        /// 
+        /// <param name="list">The input list.</param>
+        /// 
+        /// <returns>The result two lists.</returns>
+        /// 
+        /// <example id="splitwith-1">
+        /// <code lang="fsharp">
+        /// let list = [0; 2; 4; 6; 8]
+        /// list |> List.splitWith (fun x -> x > 5)
+        /// </code>
+        /// Evaluates to <c>([0; 2; 4], [6; 8])</c>
+        /// </example>
+        /// 
+        /// <example id="splitwith-2">
+        /// <code lang="fsharp">
+        /// let list = [0; 2; 5; 6; 8]
+        /// list |> List.splitWith (fun x -> x % 2 = 1)
+        /// </code>
+        /// Evaluates to <c>([0; 2], [5; 6; 8])</c>
+        /// </example>
+        /// 
+        /// <example id="splitwith-3">
+        /// <code lang="fsharp">
+        /// let list = [0; 2; 5; 6; 8]
+        /// list |> List.splitWith (fun x -> x % 2 = 2)
+        /// </code>
+        /// Evaluates to <c>([0; 2; 5; 6; 8], [])</c>
+        /// </example>
+        val splitWith: predicate: ('T -> bool) -> list: 'T list -> 'T list * 'T list
+

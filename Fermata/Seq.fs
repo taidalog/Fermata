@@ -26,3 +26,7 @@ module Seq =
     
     let intersection (source1 : seq<'T>) (source2 : seq<'T>) : seq<'T> =
         Seq.filter (fun x -> Seq.contains x source2) source1
+    
+    let splitWith (predicate : 'T -> bool) (source : seq<'T>) : seq<'T> * seq<'T> =
+        source |> Seq.takeWhile (predicate >> not),
+        source |> Seq.skipWhile (predicate >> not)

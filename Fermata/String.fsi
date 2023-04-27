@@ -434,3 +434,36 @@ namespace Fermata
         /// </example>
         val split: separator: char -> str: string -> string list
 
+        /// <summary>Splits the string into two strings before the first character for which the given predicate returns True.</summary>
+        /// 
+        /// <param name="predicate">The function to test the characters of the input string.</param>
+        /// 
+        /// <param name="str">The input string.</param>
+        /// 
+        /// <returns>The result two strings.</returns>
+        /// 
+        /// <example id="splitwith-1">
+        /// <code lang="fsharp">
+        /// let str = "00001010"
+        /// str |> String.splitWith (fun c -> c = '1')
+        /// </code>
+        /// Evaluates to <c>("0000", "1010")</c>
+        /// </example>
+        /// 
+        /// <example id="splitwith-2">
+        /// <code lang="fsharp">
+        /// let str = "taidalog"
+        /// str |> String.splitWith ((=) 'l')
+        /// </code>
+        /// Evaluates to <c>("taida", "log")</c>
+        /// </example>
+        /// 
+        /// <example id="splitwith-3">
+        /// <code lang="fsharp">
+        /// let str = "taidalog"
+        /// str |> String.splitWith ((=) 'z')
+        /// </code>
+        /// Evaluates to <c>("taidalog", "")</c>
+        /// </example>
+        val splitWith: predicate: (char -> bool) -> str: string -> string * string
+

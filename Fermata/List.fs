@@ -26,3 +26,7 @@ module List =
     
     let intersection (list1: 'T list) (list2: 'T list) : 'T list =
         List.filter (fun x -> List.contains x list2) list1
+    
+    let splitWith (predicate : 'T -> bool) (list : 'T list) : 'T list * 'T list =
+        list |> List.takeWhile (predicate >> not),
+        list |> List.skipWhile (predicate >> not)

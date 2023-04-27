@@ -13,3 +13,5 @@ namespace Fermata
 
         val intersection: source1: seq<'T> -> source2: seq<'T> -> seq<'T> when 'T: equality
 
+        val splitWith: predicate: ('T -> bool) -> source: seq<'T> -> seq<'T> * seq<'T>
+
