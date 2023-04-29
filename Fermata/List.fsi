@@ -155,5 +155,44 @@ namespace Fermata
         /// </code>
         /// Evaluates to <c>([0; 2; 5; 6; 8], [])</c>
         /// </example>
-        val splitWith: predicate: ('T -> bool) -> list: 'T list -> 'T list * 'T list
+        val splitWith: predicate: ('T -> bool) -> list: 'T list -> ('T list * 'T list)
+
+        /// <summary>Returns a new list to which the specified value is prepended to be of the specified length.</summary>
+        /// 
+        /// <param name="length">The length of the resulting list.</param>
+        /// 
+        /// <param name="padding">The value to prepend to the list.</param>
+        /// 
+        /// <param name="list">The input list.</param>
+        /// 
+        /// <returns>The resulting list.</returns>
+        /// 
+        /// <example id="padleft-1">
+        /// <code lang="fsharp">
+        /// let list = ['2'; '4'; '6'; '8']
+        /// list |> List.padLeft 8 '0'
+        /// </code>
+        /// Evaluates to <c>['0'; '0'; '0'; '0'; '2'; '4'; '6'; '8']</c>
+        /// </example>
+        val padLeft: length: int -> padding: 'T -> list: 'T list -> 'T list
+
+        /// <summary>Returns a new list to which the specified value is appended to be of the specified length.</summary>
+        /// 
+        /// <param name="length">The length of the resulting list.</param>
+        /// 
+        /// <param name="padding">The value to append to the list.</param>
+        /// 
+        /// <param name="list">The input list.</param>
+        /// 
+        /// <returns>The resulting list.</returns>
+        /// 
+        /// <example id="padright-1">
+        /// <code lang="fsharp">
+        /// let list = ['2'; '4'; '6'; '8']
+        /// list |> List.padRight 8 '0'
+        /// </code>
+        /// Evaluates to <c>['2'; '4'; '6'; '8'; '0'; '0'; '0'; '0']</c>
+        /// </example>
+        val padRight: length: int -> padding: 'T -> list: 'T list -> 'T list
+
 

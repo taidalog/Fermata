@@ -30,3 +30,21 @@ module Array =
     let splitWith (predicate : 'T -> bool) (array : 'T[]) : 'T[] * 'T[] =
         array |> Array.takeWhile (predicate >> not),
         array |> Array.skipWhile (predicate >> not)
+    
+    let padLeft (length: int) (padding: 'T) (array: 'T[]) : 'T[] =
+        let length' = length - Array.length array
+        if length' < 1 then
+            array
+        else
+            Array.append
+                (Array.replicate length' padding)
+                array
+    
+    let padRight (length: int) (padding: 'T) (array: 'T[]) : 'T[] =
+        let length' = length - Array.length array
+        if length' < 1 then
+            array
+        else
+            Array.append
+                array
+                (Array.replicate length' padding)

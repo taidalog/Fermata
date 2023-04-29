@@ -30,3 +30,21 @@ module List =
     let splitWith (predicate : 'T -> bool) (list : 'T list) : 'T list * 'T list =
         list |> List.takeWhile (predicate >> not),
         list |> List.skipWhile (predicate >> not)
+    
+    let padLeft (length: int) (padding: 'T) (list: 'T list) : 'T list =
+        let length' = length - List.length list
+        if length' < 1 then
+            list
+        else
+            List.append
+                (List.replicate length' padding)
+                list
+    
+    let padRight (length: int) (padding: 'T) (list: 'T list) : 'T list =
+        let length' = length - List.length list
+        if length' < 1 then
+            list
+        else
+            List.append
+                list
+                (List.replicate length' padding)

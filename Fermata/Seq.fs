@@ -30,3 +30,21 @@ module Seq =
     let splitWith (predicate : 'T -> bool) (source : seq<'T>) : seq<'T> * seq<'T> =
         source |> Seq.takeWhile (predicate >> not),
         source |> Seq.skipWhile (predicate >> not)
+    
+    let padLeft (length: int) (padding: 'T) (source: seq<'T>) : seq<'T> =
+        let length' = length - Seq.length source
+        if length' < 1 then
+            source
+        else
+            Seq.append
+                (Seq.replicate length' padding)
+                source
+    
+    let padRight (length: int) (padding: 'T) (source: seq<'T>) : seq<'T> =
+        let length' = length - Seq.length source
+        if length' < 1 then
+            source
+        else
+            Seq.append
+                source
+                (Seq.replicate length' padding)

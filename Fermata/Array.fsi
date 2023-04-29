@@ -155,5 +155,43 @@ namespace Fermata
         /// </code>
         /// Evaluates to <c>([|0; 2; 5; 6; 8|], [||]|])</c>
         /// </example>
-        val splitWith: predicate: ('T -> bool) -> array: 'T[] -> 'T[] * 'T[]
+        val splitWith: predicate: ('T -> bool) -> array: 'T[] -> ('T[] * 'T[])
+
+        /// <summary>Returns a new array to which the specified value is prepended to be of the specified length.</summary>
+        /// 
+        /// <param name="length">The length of the resulting array.</param>
+        /// 
+        /// <param name="padding">The value to prepend to the array.</param>
+        /// 
+        /// <param name="array">The input array.</param>
+        /// 
+        /// <returns>The resulting array.</returns>
+        /// 
+        /// <example id="padleft-1">
+        /// <code lang="fsharp">
+        /// let array = [|'2'; '4'; '6'; '8'|]
+        /// array |> Array.padLeft 8 '0'
+        /// </code>
+        /// Evaluates to <c>[|'0'; '0'; '0'; '0'; '2'; '4'; '6'; '8'|]</c>
+        /// </example>
+        val padLeft: length: int -> padding: 'T -> array: 'T[] -> 'T[]
+
+        /// <summary>Returns a new array to which the specified value is appended to be of the specified length.</summary>
+        /// 
+        /// <param name="length">The length of the resulting array.</param>
+        /// 
+        /// <param name="padding">The value to append to the array.</param>
+        /// 
+        /// <param name="array">The input array.</param>
+        /// 
+        /// <returns>The resulting array.</returns>
+        /// 
+        /// <example id="padright-1">
+        /// <code lang="fsharp">
+        /// let array = [|'2'; '4'; '6'; '8'|]
+        /// array |> Array.padRight 8 '0'
+        /// </code>
+        /// Evaluates to <c>[|'2'; '4'; '6'; '8'; '0'; '0'; '0'; '0'|]</c>
+        /// </example>
+        val padRight: length: int -> padding: 'T -> array: 'T[] -> 'T[]
 
