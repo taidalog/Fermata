@@ -31,6 +31,8 @@ Version 0.4.0
     Contains helper functions for working with values of type string.
 - Tuple  
     Contains helper functions for working with values of tuples.
+- Validators  
+    Contains helper functions for validation which return values of type Result.
 
 For more information, see each signature file (`.fsi`).
 
