@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fermata", "Fermata\Fermata.fsproj", "{5FC628AB-602A-4573-A82C-DD118CD2E7B6}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fermata.Tests", "Fermata.Tests\Fermata.Tests.fsproj", "{3A21812E-5A5C-4B27-810E-97F28F662FEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{5FC628AB-602A-4573-A82C-DD118CD2E7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FC628AB-602A-4573-A82C-DD118CD2E7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FC628AB-602A-4573-A82C-DD118CD2E7B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A21812E-5A5C-4B27-810E-97F28F662FEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A21812E-5A5C-4B27-810E-97F28F662FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A21812E-5A5C-4B27-810E-97F28F662FEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A21812E-5A5C-4B27-810E-97F28F662FEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
