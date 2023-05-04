@@ -25,8 +25,8 @@ module Boundary =
         else
             LanguagePrimitives.GenericZero<'a>
     
-    let inline between (earlier: ^a) (later: ^a) (value: ^a) : bool =
-        value >= earlier && value <= later
+    let inline between (lower: ^a) (upper: ^a) (value: ^a) : bool =
+        value >= lower && value <= upper
     
     let inline within (center: ^a) (distance: ^a) (value: ^a) : bool =
         between (center - distance) (center + distance) value
