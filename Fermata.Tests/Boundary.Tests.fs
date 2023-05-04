@@ -29,8 +29,6 @@ let ``Test Boundary.clamp`` () =
         80, clamp 0 100 80
         100, clamp 0 100 120
         0, clamp 0 100 -80
-        0, clamp 0 100 -80
-        0, clamp 0 100 -80
     ]
     |> List.iter (fun (expected, actual) -> Assert.Equal(expected, actual))
 
@@ -38,8 +36,11 @@ let ``Test Boundary.clamp`` () =
         80., clamp 0. 100. 80.
         100., clamp 0. 100. 120.
         0., clamp 0. 100. -80.
-        0., clamp 0. 100. -80.
-        0., clamp 0. 100. -80.
+    ]
+    |> List.iter (fun (expected, actual) -> Assert.Equal(expected, actual))
+    
+    [
+        80L, clamp 0L 100L 80L
     ]
     |> List.iter (fun (expected, actual) -> Assert.Equal(expected, actual))
 
@@ -108,18 +109,18 @@ let ``Test Boundary.rebound`` () =
     [
         80, rebound 0 100 80
         80, rebound 0 100 120
-        80, rebound 0 100 -80
-        80, rebound 0 100 -80
-        80, rebound 0 100 -80
+        70, rebound 0 100 -70
+        60, rebound 50 100 -160
+        160, rebound -100 200 240
     ]
     |> List.iter (fun (expected, actual) -> Assert.Equal(expected, actual))
     
     [
         80., rebound 0. 100. 80.
         80., rebound 0. 100. 120.
-        80., rebound 0. 100. -80.
-        80., rebound 0. 100. -80.
-        80., rebound 0. 100. -80.
+        70., rebound 0. 100. -70.
+        60., rebound 50. 100. -160.
+        160., rebound -100. 200. 240.
     ]
     |> List.iter (fun (expected, actual) -> Assert.Equal(expected, actual))
 
