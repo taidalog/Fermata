@@ -1,11 +1,11 @@
 namespace Fermata
 
 module Boundary =
-    let inline clampGap (min: ^a) (max: ^a) (value: ^a) : (^a * ^a) =
-        if value < min then
-            (min, value - min)
-        else if max < value then
-            (max, value - max)
+    let inline clampGap (lower: ^a) (upper: ^a) (value: ^a) : (^a * ^a) =
+        if value < lower then
+            (lower, value - lower)
+        else if upper < value then
+            (upper, value - upper)
         else
             (value, LanguagePrimitives.GenericZero<'a>)
     

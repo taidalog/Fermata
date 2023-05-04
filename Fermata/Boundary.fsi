@@ -4,23 +4,23 @@ namespace Fermata
         
         /// <summary>
         /// Returns a tuple of <paramref name="value"/> clamped to the inclusive range of 
-        /// <paramref name="min"/> and <paramref name="max"/>, 
-        /// and the gap between <paramref name="value"/> and <paramref name="min"/> or <paramref name="max"/>.
+        /// <paramref name="lower"/> and <paramref name="upper"/>, 
+        /// and the gap between <paramref name="value"/> and <paramref name="lower"/> or <paramref name="upper"/>.
         /// </summary>
         /// 
-        /// <param name="min">The lower bound of the result.</param>
+        /// <param name="lower">The lower bound of the result.</param>
         /// 
-        /// <param name="max">The upper bound of the result.</param>
+        /// <param name="upper">The upper bound of the result.</param>
         /// 
         /// <param name="value">The input value.</param>
         /// 
         /// <typeparam name="'a"></typeparam>
         /// 
         /// <returns>
-        /// (<paramref name="min"/>, <paramref name="value"/> - <paramref name="min"/>)
-        /// if <paramref name="value"/> is less than <paramref name="min"/>,
-        /// (<paramref name="max"/>, <paramref name="value"/> - <paramref name="max"/>)
-        /// if <paramref name="value"/> is greater than <paramref name="max"/>,
+        /// (<paramref name="lower"/>, <paramref name="value"/> - <paramref name="lower"/>)
+        /// if <paramref name="value"/> is less than <paramref name="lower"/>,
+        /// (<paramref name="upper"/>, <paramref name="value"/> - <paramref name="upper"/>)
+        /// if <paramref name="value"/> is greater than <paramref name="upper"/>,
         /// (<paramref name="value"/>, 0) otherwise (0 is of the type of <paramref name="value"/>)
         /// </returns>
         /// 
@@ -45,7 +45,7 @@ namespace Fermata
         /// Evaluates to <c>(-100L, -20L)</c>
         /// </example>
         val inline clampGap:
-          min: ^a -> max: ^a -> value: ^a -> ^a * ^a
+          lower: ^a -> upper: ^a -> value: ^a -> ^a * ^a
             when ^a: comparison and ^a: (static member (-) : ^a * ^a -> ^a) and
                  ^a: (static member Zero: ^a)
         
