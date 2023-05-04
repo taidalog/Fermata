@@ -48,3 +48,28 @@ namespace Fermata
           min: ^a -> max: ^a -> value: ^a -> ^a * ^a
             when ^a: comparison and ^a: (static member (-) : ^a * ^a -> ^a) and
                  ^a: (static member Zero: ^a)
+        
+        val inline clamp: lower: ^a -> upper: ^a -> value: ^a -> ^a
+          when ^a: comparison
+        
+        val inline gap: lower: ^a -> upper: ^a -> value: ^a -> ^a
+          when ^a: comparison and ^a: (static member (-) : ^a * ^a -> ^a) and
+               ^a: (static member Zero: ^a)
+        
+        val inline between: earlier: ^a -> later: ^a -> value: ^a -> bool
+          when ^a: comparison
+        
+        val inline within: center: ^a -> distance: ^a -> value: ^a -> bool
+          when ^a: (static member (-) : ^a * ^a -> ^a) and
+               ^a: (static member (+) : ^a * ^a -> ^a) and
+               ^a: comparison
+        
+        val inline rebound: lower: ^a -> upper: ^a -> value: ^a -> ^a
+          when ^a: comparison and ^a: (static member Zero : ^a) and
+               ^a: (static member (-) : ^a * ^a -> ^a)
+        
+        val inline warp: lower: ^a -> upper: ^a -> value: ^a -> ^a
+          when ^a: comparison and ^a: (static member (-) : ^a * ^a -> ^a) and
+               ^a: (static member Zero : ^a) and
+               ^a: (static member (+) : ^a * ^a -> ^a)
+
