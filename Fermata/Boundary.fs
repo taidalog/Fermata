@@ -1,6 +1,6 @@
 namespace Fermata
 
-module Math =
+module Boundary =
     let inline clampGap (min : ^a) (max:  ^a) (value:  ^a) : (^a * ^a)  =
         if value < min then
             (min, value - min)
