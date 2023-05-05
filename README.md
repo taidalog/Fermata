@@ -17,6 +17,8 @@ Version 0.5.0
     Contains helper functions for working with values of type array.
 - Bool  
     Contains helper functions for working with values of type bool.
+- Bound  
+    Contains helper functions for working with values of number types such as int or float, and lower and upper bounds.
 - List  
     Contains helper functions for working with values of type list.
 - RadixConversion  
