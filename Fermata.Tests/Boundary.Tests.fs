@@ -1,7 +1,7 @@
 module Boundary.Tests
 
 open Xunit
-open Fermata.Boundary
+open Fermata.Bound
 
 [<Fact>]
 let ``Test Boundary.clampGap`` () =
