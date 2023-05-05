@@ -1,6 +1,6 @@
 namespace Fermata
     
-    module Boundary =
+    module Bound =
         
         /// <summary>
         /// Returns a tuple of <paramref name="value"/> clamped to the inclusive range of 
