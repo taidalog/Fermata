@@ -122,6 +122,14 @@ module Array =
     /// </code>
     /// Evaluates to <c>[| (3, 20); (4, 120) |]</c>
     /// </example>
+    ///
+    /// <example id="filteri-2">
+    /// <code lang="fsharp">
+    /// let inputs = [| 42; 16; 8; 20; 120; 4 |]
+    /// inputs |> Array.filteri (fun x -> x % 2 = 1)
+    /// </code>
+    /// Evaluates to <c>[||]</c>
+    /// </example>
     val filteri: predicate: ('T -> bool) -> array: 'T array -> (int * 'T) array
 
     /// <summary>Returns a new array that contains the common elements to the two input arrays.</summary>
