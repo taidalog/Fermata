@@ -11,7 +11,7 @@ module Seq =
 
     val filterIndex: predicate: ('T -> bool) -> source: seq<'T> -> seq<int>
 
-    val intersection: source1: seq<'T> -> source2: seq<'T> -> seq<'T> when 'T: equality
+    val intersect: source1: seq<'T> -> source2: seq<'T> -> seq<'T> when 'T: equality
 
     val splitWith: predicate: ('T -> bool) -> source: seq<'T> -> (seq<'T> * seq<'T>)
 

@@ -114,15 +114,15 @@ module Array =
     ///
     /// <returns>The array of elements common to the two input arrays.</returns>
     ///
-    /// <example id="intersection-1">
+    /// <example id="intersect-1">
     /// <code lang="fsharp">
     /// let array1 = [|0; 1; 2; 3; 4|]
     /// let array2 = [|0; 2; 4; 6; 8|]
-    /// Array.intersection array1 array2
+    /// Array.intersect array1 array2
     /// </code>
     /// Evaluates to <c>[|0; 2; 4|]</c>
     /// </example>
-    val intersection: array1: 'T array -> array2: 'T array -> 'T array when 'T: equality
+    val intersect: array1: 'T array -> array2: 'T array -> 'T array when 'T: equality
 
     /// <summary>Splits the array into two arrays before the first element for which the given predicate returns True.</summary>
     ///

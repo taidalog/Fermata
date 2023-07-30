@@ -114,15 +114,15 @@ module List =
     ///
     /// <returns>The list of elements common to the two input lists.</returns>
     ///
-    /// <example id="intersection-1">
+    /// <example id="intersect-1">
     /// <code lang="fsharp">
     /// let list1 = [0; 1; 2; 3; 4]
     /// let list2 = [0; 2; 4; 6; 8]
-    /// List.intersection list1 list2
+    /// List.intersect list1 list2
     /// </code>
     /// Evaluates to <c>[0; 2; 4]</c>
     /// </example>
-    val intersection: list1: 'T list -> list2: 'T list -> 'T list when 'T: equality
+    val intersect: list1: 'T list -> list2: 'T list -> 'T list when 'T: equality
 
     /// <summary>Splits the list into two lists before the first element for which the given predicate returns True.</summary>
     ///
