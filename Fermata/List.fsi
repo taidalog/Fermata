@@ -106,6 +106,24 @@ module List =
     /// </example>
     val filterIndex: predicate: ('T -> bool) -> list: 'T list -> int list
 
+    /// <summary>Returns a list of pairs of integer indexes (from 0) and the elements
+    /// for which the given predicate returns true.</summary>
+    ///
+    /// <param name="predicate">The function to test the input elements.</param>
+    ///
+    /// <param name="list">The input list.</param>
+    ///
+    /// <returns>A list of pairs of indexes and the elements that satisfy the predicate.</returns>
+    ///
+    /// <example id="filteri-1">
+    /// <code lang="fsharp">
+    /// let inputs = [ 42; 16; 8; 20; 120; 4 ]
+    /// inputs |> List.filteri (fun x -> x % 10 = 0)
+    /// </code>
+    /// Evaluates to <c>[ (3, 20); (4, 120) ]</c>
+    /// </example>
+    val filteri: predicate: ('T -> bool) -> list: 'T list -> (int * 'T) list
+
     /// <summary>Returns a new list that contains the common elements to the two input lists.</summary>
     ///
     /// <param name="list1">The first input list.</param>

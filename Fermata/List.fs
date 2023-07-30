@@ -22,6 +22,9 @@ module List =
         |> List.filter (fun (_, x) -> predicate x)
         |> List.map (fun (i, _) -> i)
 
+    let filteri (predicate: 'T -> bool) (list: 'T list) : (int * 'T) list =
+        list |> List.mapi (fun i x -> (i, x)) |> List.filter (fun (_, x) -> predicate x)
+
     let intersect (list1: 'T list) (list2: 'T list) : 'T list =
         List.filter (fun x -> List.contains x list2) list1
 

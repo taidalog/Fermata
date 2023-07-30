@@ -22,6 +22,11 @@ module Array =
         |> Array.filter (fun (_, x) -> predicate x)
         |> Array.map (fun (i, _) -> i)
 
+    let filteri (predicate: 'T -> bool) (array: 'T[]) : (int * 'T)[] =
+        array
+        |> Array.mapi (fun i x -> (i, x))
+        |> Array.filter (fun (_, x) -> predicate x)
+
     let intersect (array1: 'T[]) (array2: 'T[]) : 'T[] =
         Array.filter (fun x -> Array.contains x array2) array1
 
