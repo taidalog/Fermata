@@ -1,21 +1,20 @@
 namespace Fermata
-    
-    [<RequireQualifiedAccess>]
-    module Seq =
-        
-        val tryTail: source: seq<'T> -> seq<'T> option
 
-        val countWith: predicate: ('T -> bool) -> source: seq<'T> -> int
+[<RequireQualifiedAccess>]
+module Seq =
 
-        val trySkip: count: int -> source: seq<'T> -> seq<'T> option
+    val tryTail: source: seq<'T> -> seq<'T> option
 
-        val filterIndex: predicate: ('T -> bool) -> source: seq<'T> -> seq<int>
+    val countWith: predicate: ('T -> bool) -> source: seq<'T> -> int
 
-        val intersection: source1: seq<'T> -> source2: seq<'T> -> seq<'T> when 'T: equality
+    val trySkip: count: int -> source: seq<'T> -> seq<'T> option
 
-        val splitWith: predicate: ('T -> bool) -> source: seq<'T> -> (seq<'T> * seq<'T>)
+    val filterIndex: predicate: ('T -> bool) -> source: seq<'T> -> seq<int>
 
-        val padLeft: length: int -> padding: 'T -> source: seq<'T> -> seq<'T>
+    val intersection: source1: seq<'T> -> source2: seq<'T> -> seq<'T> when 'T: equality
 
-        val padRight: length: int -> padding: 'T -> source: seq<'T> -> seq<'T>
+    val splitWith: predicate: ('T -> bool) -> source: seq<'T> -> (seq<'T> * seq<'T>)
 
+    val padLeft: length: int -> padding: 'T -> source: seq<'T> -> seq<'T>
+
+    val padRight: length: int -> padding: 'T -> source: seq<'T> -> seq<'T>
