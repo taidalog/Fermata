@@ -24,7 +24,7 @@ module RadixConversion =
         /// let input = "FF"
         /// input |> Dec.validate
         /// </code>
-        /// Evaluates to <c>Error (WrongFormat "FF")</c>
+        /// Evaluates to <c>Error(Exceptions.Format "The input string 'FF' was not in a correct format.")</c>
         /// </example>
         val validate: input: string -> Result<int, exn>
 
@@ -117,7 +117,7 @@ module RadixConversion =
         /// <example id="trytohex-1">
         /// <code lang="fsharp">
         /// let input = "42"
-        /// input |> Dec.tryToBin
+        /// input |> Dec.tryToHex
         /// </code>
         /// Evaluates to <c>Some "2a"</c>
         /// </example>
@@ -125,7 +125,7 @@ module RadixConversion =
         /// <example id="trytohex-2">
         /// <code lang="fsharp">
         /// let input = "FF"
-        /// input |> Dec.tryToBin
+        /// input |> Dec.tryToHex
         /// </code>
         /// Evaluates to <c>None</c>
         /// </example>
@@ -153,7 +153,7 @@ module RadixConversion =
         /// let input = "FF"
         /// input |> Bin.validate
         /// </code>
-        /// Evaluates to <c>Error (WrongFormat "FF")</c>
+        /// Evaluates to <c>Error(Exceptions.Format "The input string 'FF' was not in a correct format.")</c>
         /// </example>
         val validate: input: string -> Result<string, exn>
 
@@ -242,7 +242,7 @@ module RadixConversion =
         /// let input = "XX"
         /// input |> Hex.validate
         /// </code>
-        /// Evaluates to <c>Error (WrongFormat "XX")</c>
+        /// Evaluates to <c>Error(Exceptions.Format "The input string 'XX' was not in a correct format.")</c>
         /// </example>
         val validate: input: string -> Result<string, exn>
 
