@@ -213,9 +213,16 @@ module Bound =
     ///
     /// <example id="rebound-3">
     /// <code lang="fsharp">
-    /// 240L |> rebound -100L 200L
+    /// 120 |> rebound -50 50
     /// </code>
-    /// Evaluates to <c>160L</c>
+    /// Evaluates to <c>-20</c>
+    /// </example>
+    ///
+    /// <example id="rebound-4">
+    /// <code lang="fsharp">
+    /// -260L |> rebound -50L 50L
+    /// </code>
+    /// Evaluates to <c>-40L</c>
     /// </example>
     val inline rebound:
         lower: ^a -> upper: ^a -> value: ^a -> ^a
@@ -252,9 +259,16 @@ module Bound =
     ///
     /// <example id="warp-3">
     /// <code lang="fsharp">
-    /// 240L |> warp -100L 200L
+    /// 120 |> warp -50 50
     /// </code>
-    /// Evaluates to <c>-60L</c>
+    /// Evaluates to <c>20</c>
+    /// </example>
+    ///
+    /// <example id="rebound-4">
+    /// <code lang="fsharp">
+    /// -260L |> warp -50L 50L
+    /// </code>
+    /// Evaluates to <c>40L</c>
     /// </example>
     val inline warp:
         lower: ^a -> upper: ^a -> value: ^a -> ^a
