@@ -17,6 +17,7 @@
     <Compile Include="Regex.Tests.fs" />
     <Compile Include="Result.Tests.fs" />
     <Compile Include="String.Tests.fs" />
+    <Compile Include="Tuple.Tests.fs" />
     <Compile Include="Validators.Tests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
