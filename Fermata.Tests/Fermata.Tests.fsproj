@@ -13,6 +13,7 @@
     <Compile Include="Seq.Tests.fs" />
     <Compile Include="Boundary.Tests.fs" />
     <Compile Include="RadixConversion.Tests.fs" />
+    <Compile Include="Regex.Tests.fs" />
     <Compile Include="String.Tests.fs" />
     <Compile Include="Validators.Tests.fs" />
     <Compile Include="Program.fs" />
