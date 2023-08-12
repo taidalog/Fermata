@@ -26,21 +26,21 @@ module Bound =
     ///
     /// <example id="clampgap-1">
     /// <code lang="fsharp">
-    /// 100 |> Math.clampGap 60 140
+    /// 80 |> clampGap 0 100
     /// </code>
-    /// Evaluates to <c>(100, 0)</c>
+    /// Evaluates to <c>(80, 0)</c>
     /// </example>
     ///
     /// <example id="clampgap-2">
     /// <code lang="fsharp">
-    /// 220. |> Math.clampGap 60. 140.
+    /// 120. |> clampGap -30. 100.
     /// </code>
-    /// Evaluates to <c>(140.0, 80.0)</c>
+    /// Evaluates to <c>(100.0, 20.0)</c>
     /// </example>
     ///
     /// <example id="clampgap-3">
     /// <code lang="fsharp">
-    /// -120L |> Math.clampGap -100L -20L
+    /// -120L |> clampGap -100L -20L
     /// </code>
     /// Evaluates to <c>(-100L, -20L)</c>
     /// </example>
@@ -60,26 +60,23 @@ module Bound =
     ///
     /// <example id="clamp-1">
     /// <code lang="fsharp">
-    /// let value = 80
-    /// value |> clamp 0 100
+    /// 80 |> clamp 0 100
     /// </code>
     /// Evaluates to <c>80</c>
     /// </example>
     ///
     /// <example id="clamp-2">
     /// <code lang="fsharp">
-    /// let value = 120.
-    /// value |> clamp 0. 100.
+    /// 120. |> clamp -30. 100.
     /// </code>
     /// Evaluates to <c>100.</c>
     /// </example>
     ///
     /// <example id="clamp-3">
     /// <code lang="fsharp">
-    /// let value = -80L
-    /// value |> clamp 0L 100L
+    /// -120L |> clamp -100L -20L
     /// </code>
-    /// Evaluates to <c>0L</c>
+    /// Evaluates to <c>-100L</c>
     /// </example>
     val inline clamp: lower: ^a -> upper: ^a -> value: ^a -> ^a when ^a: comparison
 
@@ -97,26 +94,23 @@ module Bound =
     ///
     /// <example id="gap-1">
     /// <code lang="fsharp">
-    /// let value = 80
-    /// value |> gap 0 100
+    /// 80 |> gap 0 100
     /// </code>
     /// Evaluates to <c>0</c>
     /// </example>
     ///
     /// <example id="gap-2">
     /// <code lang="fsharp">
-    /// let value = 120.
-    /// value |> gap 0. 100.
+    /// 120. |> gap -30. 100.
     /// </code>
     /// Evaluates to <c>20.</c>
     /// </example>
     ///
     /// <example id="gap-3">
     /// <code lang="fsharp">
-    /// let value = -80L
-    /// value |> gap 0L 100L
+    /// -120L |> gap -100L -40L
     /// </code>
-    /// Evaluates to <c>-80L</c>
+    /// Evaluates to <c>-20L</c>
     /// </example>
     val inline gap:
         lower: ^a -> upper: ^a -> value: ^a -> ^a
@@ -134,18 +128,23 @@ module Bound =
     ///
     /// <example id="between-1">
     /// <code lang="fsharp">
-    /// let value = 2
-    /// value |> between 0 9
+    /// 80 |> between 0 100
     /// </code>
     /// Evaluates to <c>true</c>
     /// </example>
     ///
     /// <example id="between-2">
     /// <code lang="fsharp">
-    /// let value = 0.8
-    /// value |> between 5. 10.
+    /// 120. |> between -30. 100.
     /// </code>
     /// Evaluates to <c>false</c>
+    /// </example>
+    ///
+    /// <example id="between-3">
+    /// <code lang="fsharp">
+    /// -60L |> between -100L -40L
+    /// </code>
+    /// Evaluates to <c>true</c>
     /// </example>
     val inline between: lower: ^a -> upper: ^a -> value: ^a -> bool when ^a: comparison
 
@@ -161,24 +160,21 @@ module Bound =
     ///
     /// <example id="within-1">
     /// <code lang="fsharp">
-    /// let value = 2
-    /// value |> within 0 5
+    /// 80 |> within 0 100
     /// </code>
     /// Evaluates to <c>true</c>
     /// </example>
     ///
     /// <example id="within-2">
     /// <code lang="fsharp">
-    /// let value = 0.8
-    /// value |> within 5. 10.
+    /// 70. |> within 60. 10.
     /// </code>
     /// Evaluates to <c>true</c>
     /// </example>
     ///
     /// <example id="within-3">
     /// <code lang="fsharp">
-    /// let value = 3000L
-    /// value |> within 10000L 5000L
+    /// -21L |> within 20L 40L
     /// </code>
     /// Evaluates to <c>false</c>
     /// </example>
@@ -203,24 +199,21 @@ module Bound =
     ///
     /// <example id="rebound-1">
     /// <code lang="fsharp">
-    /// let value = 120
-    /// value |> rebound 0 100
+    /// 120 |> rebound 0 100
     /// </code>
     /// Evaluates to <c>80</c>
     /// </example>
     ///
     /// <example id="rebound-2">
     /// <code lang="fsharp">
-    /// let value = -70.
-    /// value |> rebound 0. 100.
+    /// -70. |> rebound 0. 100.
     /// </code>
     /// Evaluates to <c>70.</c>
     /// </example>
     ///
     /// <example id="rebound-3">
     /// <code lang="fsharp">
-    /// let value = 240L
-    /// value |> rebound -100L 200L
+    /// 240L |> rebound -100L 200L
     /// </code>
     /// Evaluates to <c>160L</c>
     /// </example>
@@ -245,24 +238,21 @@ module Bound =
     ///
     /// <example id="warp-1">
     /// <code lang="fsharp">
-    /// let value = 120
-    /// value |> warp 0 100
+    /// 120 |> warp 0 100
     /// </code>
     /// Evaluates to <c>20</c>
     /// </example>
     ///
     /// <example id="warp-2">
     /// <code lang="fsharp">
-    /// let value = -70.
-    /// value |> warp 0. 100.
+    /// -70. |> warp 0. 100.
     /// </code>
     /// Evaluates to <c>30.</c>
     /// </example>
     ///
     /// <example id="warp-3">
     /// <code lang="fsharp">
-    /// let value = 240L
-    /// value |> warp -100L 200L
+    /// 240L |> warp -100L 200L
     /// </code>
     /// Evaluates to <c>-60L</c>
     /// </example>
