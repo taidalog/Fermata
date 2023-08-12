@@ -12,6 +12,7 @@
     <Compile Include="List.Tests.fs" />
     <Compile Include="Seq.Tests.fs" />
     <Compile Include="Boundary.Tests.fs" />
+    <Compile Include="RadixConversion.Tests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
