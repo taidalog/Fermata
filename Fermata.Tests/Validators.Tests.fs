@@ -75,6 +75,6 @@ let ``Validators.validateRange 4`` () =
     let actual = 'A' |> validateRange '0' '9'
 
     let expected =
-        Error(Exceptions.OutOfRange "'A' is out of range. Value be within '0' and '9'")
+        Error(Exceptions.OutOfRange "'A' is out of range. Value must be within '0' and '9'")
 
     Assert.Equal(expected, actual)
