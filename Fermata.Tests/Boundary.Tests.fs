@@ -299,56 +299,32 @@ let ``Boundary.rebound 1`` () =
 
 [<Fact>]
 let ``Boundary.rebound 2`` () =
-    let actual = rebound 0 100 120
-    let expected = 80
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Boundary.rebound 3`` () =
-    let actual = rebound 0 100 -70
-    let expected = 70
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Boundary.rebound 4`` () =
-    let actual = rebound 50 100 -160
-    let expected = 60
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Boundary.rebound 5`` () =
-    let actual = rebound -100 200 240
-    let expected = 160
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Boundary.rebound 6`` () =
-    let actual = rebound 0. 100. 80.
-    let expected = 80.
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Boundary.rebound 7`` () =
     let actual = rebound 0. 100. 120.
     let expected = 80.
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Boundary.rebound 8`` () =
-    let actual = rebound 0. 100. -70.
-    let expected = 70.
+let ``Boundary.rebound 3`` () =
+    let actual = rebound 0L 100L -70L
+    let expected = 70L
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Boundary.rebound 9`` () =
-    let actual = rebound 50. 100. -160.
-    let expected = 60.
+let ``Boundary.rebound 4`` () =
+    let actual = rebound -50 50 120
+    let expected = -20
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Boundary.rebound 10`` () =
-    let actual = rebound -100. 200. 240.
-    let expected = 160.
+let ``Boundary.rebound 5`` () =
+    let actual = rebound -50. 50. 220.
+    let expected = 20.
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Boundary.rebound 6`` () =
+    let actual = rebound -50L 50L -260L
+    let expected = -40L
     Assert.Equal(expected, actual)
 
 [<Fact>]
@@ -359,54 +335,30 @@ let ``Boundary.warp 1`` () =
 
 [<Fact>]
 let ``Boundary.warp 2`` () =
-    let actual = warp 0 100 120
-    let expected = 20
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Boundary.warp 3`` () =
-    let actual = warp 0 100 -70
-    let expected = 30
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Boundary.warp 4`` () =
-    let actual = warp 50 100 -160
-    let expected = 90
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Boundary.warp 5`` () =
-    let actual = warp -100 200 240
-    let expected = -60
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Boundary.warp 6`` () =
-    let actual = warp 0. 100. 80.
-    let expected = 80.
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Boundary.warp 7`` () =
     let actual = warp 0. 100. 120.
     let expected = 20.
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Boundary.warp 8`` () =
-    let actual = warp 0. 100. -70.
-    let expected = 30.
+let ``Boundary.warp 3`` () =
+    let actual = warp 0L 100L -70L
+    let expected = 30L
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Boundary.warp 9`` () =
-    let actual = warp 50. 100. -160.
-    let expected = 90.
+let ``Boundary.warp 4`` () =
+    let actual = warp -50 50 120
+    let expected = 20
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Boundary.warp 10`` () =
-    let actual = warp -100. 200. 240.
-    let expected = -60.
+let ``Boundary.warp 5`` () =
+    let actual = warp -50. 50. 220.
+    let expected = 20.
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Boundary.warp 6`` () =
+    let actual = warp -50L 50L -260L
+    let expected = 40L
     Assert.Equal(expected, actual)
