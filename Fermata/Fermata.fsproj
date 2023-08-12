@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Compile Include="Errors.fs" />
+    <Compile Include="Exceptions.fs" />
     <Compile Include="Validators.fsi" />
     <Compile Include="Validators.fs" />
     <Compile Include="Array.fsi" />
