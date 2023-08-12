@@ -26,7 +26,7 @@ module RadixConversion =
         /// </code>
         /// Evaluates to <c>Error (WrongFormat "FF")</c>
         /// </example>
-        val validate: input: string -> Result<int, Fermata.Errors.Errors>
+        val validate: input: string -> Result<int, exn>
 
         /// <summary>Returns true if the input string can be parsed as a decimal number, otherwise false.</summary>
         ///
@@ -155,7 +155,7 @@ module RadixConversion =
         /// </code>
         /// Evaluates to <c>Error (WrongFormat "FF")</c>
         /// </example>
-        val validate: input: string -> Result<string, Fermata.Errors.Errors>
+        val validate: input: string -> Result<string, exn>
 
         /// <summary>Returns true if the input string can be parsed as a binary number, otherwise false.</summary>
         ///
@@ -244,7 +244,7 @@ module RadixConversion =
         /// </code>
         /// Evaluates to <c>Error (WrongFormat "XX")</c>
         /// </example>
-        val validate: input: string -> Result<string, Fermata.Errors.Errors>
+        val validate: input: string -> Result<string, exn>
 
         /// <summary>Returns true if the input string can be parsed as a hexadecimal number, otherwise false.</summary>
         ///

@@ -6,7 +6,7 @@ module RadixConversion =
 
     [<RequireQualifiedAccess>]
     module Dec =
-        let validate (input: string) : Result<int, Fermata.Errors.Errors> =
+        let validate (input: string) : Result<int, exn> =
             Ok input
             |> Result.bind validateNotEmptyString
             |> Result.bind (validateFormat "^[0-9]+$")
@@ -36,7 +36,7 @@ module RadixConversion =
 
     [<RequireQualifiedAccess>]
     module Bin =
-        let validate (input: string) : Result<string, Fermata.Errors.Errors> =
+        let validate (input: string) : Result<string, exn> =
             Ok input
             |> Result.bind validateNotEmptyString
             |> Result.bind (validateFormat "^[01]+$")
@@ -58,7 +58,7 @@ module RadixConversion =
 
     [<RequireQualifiedAccess>]
     module Hex =
-        let validate (input: string) : Result<string, Fermata.Errors.Errors> =
+        let validate (input: string) : Result<string, exn> =
             Ok input
             |> Result.bind validateNotEmptyString
             |> Result.bind (validateFormat "^[0-9A-Fa-f]+$")
