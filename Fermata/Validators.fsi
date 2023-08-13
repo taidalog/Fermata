@@ -21,7 +21,7 @@ module Validators =
     /// let input = null
     /// input |> validateNotNullOrEmpty
     /// </code>
-    /// Evaluates to <c>Error (NullOrEmpty null)</c>
+    /// Evaluates to <c>Error (ArgumentNull "Value cannot be null.")</c>
     /// </example>
     ///
     /// <example id="validatenotnullorempty-3">
@@ -29,7 +29,7 @@ module Validators =
     /// let input = ""
     /// input |> validateNotNullOrEmpty
     /// </code>
-    /// Evaluates to <c>Error (NullOrEmpty "")</c>
+    /// Evaluates to <c>Error (ArgumentNull "Value cannot be null.")</c>
     /// </example>
     val validateNotNullOrEmpty: input: string -> Result<string, exn>
 
@@ -52,7 +52,7 @@ module Validators =
     /// let input = ""
     /// input |> validateNotEmptyString
     /// </code>
-    /// Evaluates to <c>Error (EmptyString "")</c>
+    /// Evaluates to <c>Error (EmptyString "Value cannot be empty string.")</c>
     /// </example>
     val validateNotEmptyString: input: string -> Result<string, exn>
 
@@ -76,7 +76,7 @@ module Validators =
     /// let input = "4a"
     /// input |> validateFormat "^[0-9]+$"
     /// </code>
-    /// Evaluates to <c>Error (WrongFormat "4a")</c>
+    /// Evaluates to <c>Error (Format "The input string '4a' was not in a correct format.")</c>
     /// </example>
     val validateFormat: pattern: string -> input: string -> Result<string, exn>
 
@@ -101,7 +101,7 @@ module Validators =
     /// let input = 512
     /// input |> validateRange 0 255
     /// </code>
-    /// Evaluates to <c>Error (OutOfRange 512)</c>
+    /// Evaluates to <c>Error (OutOfRange "512 is out of range. Value must be within 0 and 255")</c>
     /// </example>
     ///
     /// <example id="validaterange-3">
@@ -117,7 +117,7 @@ module Validators =
     /// let input = 'A'
     /// input |> validateRange '0' '9'
     /// </code>
-    /// Evaluates to <c>Error (OutOfRange 'A')</c>
+    /// Evaluates to <c>Error (OutOfRange "'A' is out of range. Value must be within '0' and '9'")</c>
     /// </example>
     val validateRange: min: 'T -> max: 'T -> input: 'T -> Result<'T, exn> when 'T: comparison
 
