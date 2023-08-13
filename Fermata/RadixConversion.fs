@@ -6,11 +6,7 @@ module RadixConversion =
 
     [<RequireQualifiedAccess>]
     module Dec =
-        let validate (input: string) : Result<int, exn> =
-            Ok input
-            |> Result.bind validateNotEmptyString
-            |> Result.bind (validateFormat "^[0-9]+$")
-            |> Result.map int
+        let validate (input: string) : Result<int, exn> = input |> Int32.validate
 
         let isValid (input: string) : bool =
             input
