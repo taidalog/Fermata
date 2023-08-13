@@ -7,7 +7,7 @@ open Fermata.RadixConversion
 [<Fact>]
 let ``Dec.validate 1`` () =
     let actual = "42" |> Dec.validate
-    let expected = Ok 42
+    let expected = Ok(Dec 42)
     Assert.Equal(expected, actual)
 
 [<Fact>]
@@ -29,63 +29,23 @@ let ``Dec.validate 3`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Dec.isValid 1`` () =
-    let actual = "42" |> Dec.isValid
-    let expected = true
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Dec.isValid 2`` () =
-    let actual = "FF" |> Dec.isValid
-    let expected = false
-    Assert.Equal(expected, actual)
-
-[<Fact>]
 let ``Dec.toBin`` () =
-    let actual = 42 |> Dec.toBin
-    let expected = "101010"
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Dec.tryToBin 1`` () =
-    let input = "42"
-    let actual = input |> Dec.tryToBin
-    let expected = Some "101010"
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Dec.tryToBin 2`` () =
-    let input = "FF"
-    let actual = input |> Dec.tryToBin
-    let expected = None
+    let actual = Dec 42 |> Dec.toBin
+    let expected = Bin "101010"
     Assert.Equal(expected, actual)
 
 [<Fact>]
 let ``Dec.toHex 1`` () =
-    let input = 42
+    let input = Dec 42
     let actual = input |> Dec.toHex
-    let expected = "2a"
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Dec.tryToHex 1`` () =
-    let input = "42"
-    let actual = input |> Dec.tryToHex
-    let expected = Some "2a"
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Dec.tryToHex 2`` () =
-    let input = "FF"
-    let actual = input |> Dec.tryToHex
-    let expected = None
+    let expected = Hex "2a"
     Assert.Equal(expected, actual)
 
 [<Fact>]
 let ``Bin.validate 1`` () =
     let input = "101010"
     let actual = input |> Bin.validate
-    let expected = Ok "101010"
+    let expected = Ok(Bin "101010")
     Assert.Equal(expected, actual)
 
 [<Fact>]
@@ -109,45 +69,17 @@ let ``Bin.validate 3`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Bin.isValid 1`` () =
-    let input = "101010"
-    let actual = input |> Bin.isValid
-    let expected = true
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Bin.isValid 2`` () =
-    let input = "FF"
-    let actual = input |> Bin.isValid
-    let expected = false
-    Assert.Equal(expected, actual)
-
-[<Fact>]
 let ``Bin.toDec 1`` () =
-    let input = "101010"
+    let input = Bin "101010"
     let actual = input |> Bin.toDec
-    let expected = 42
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Bin.tryToDec 1`` () =
-    let input = "101010"
-    let actual = input |> Bin.tryToDec
-    let expected = Some 42
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Bin.tryToDec 2`` () =
-    let input = "FF"
-    let actual = input |> Bin.tryToDec
-    let expected = None
+    let expected = Dec 42
     Assert.Equal(expected, actual)
 
 [<Fact>]
 let ``Hex.validate 1`` () =
     let input = "FF"
     let actual = input |> Hex.validate
-    let expected = Ok "FF"
+    let expected = Ok(Hex "FF")
     Assert.Equal(expected, actual)
 
 [<Fact>]
@@ -171,36 +103,8 @@ let ``Hex.validate 3`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Hex.isValid 1`` () =
-    let input = "FF"
-    let actual = input |> Hex.isValid
-    let expected = true
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Hex.isValid 2`` () =
-    let input = "XX"
-    let actual = input |> Hex.isValid
-    let expected = false
-    Assert.Equal(expected, actual)
-
-[<Fact>]
 let ``Hex.toDec 1`` () =
-    let input = "FF"
+    let input = Hex "FF"
     let actual = input |> Hex.toDec
-    let expected = 255
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Hex.tryToDec 1`` () =
-    let input = "FF"
-    let actual = input |> Hex.tryToDec
-    let expected = Some 255
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Hex.tryToDec 2`` () =
-    let input = "XX"
-    let actual = input |> Hex.tryToDec
-    let expected = None
+    let expected = Dec 255
     Assert.Equal(expected, actual)

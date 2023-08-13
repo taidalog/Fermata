@@ -3,74 +3,41 @@
 open Validators
 
 module RadixConversion =
+    type Dec = Dec of int
+    type Bin = Bin of string
+    type Hex = Hex of string
 
     [<RequireQualifiedAccess>]
     module Dec =
-        let validate (input: string) : Result<int, exn> = input |> Int32.validate
+        let validate (input: string) : Result<Dec, exn> =
+            input |> Int32.validate |> Result.map Dec
 
-        let isValid (input: string) : bool =
-            input
-            |> validate
-            |> (function
-            | Ok _ -> true
-            | Error _ -> false)
+        let toBin (dec: Dec) : Bin =
+            dec |> fun (Dec d) -> System.Convert.ToString(d, 2) |> Bin
 
-        let toBin (input: int) : string = System.Convert.ToString(input, 2)
-
-        let tryToBin (input: string) : string option =
-            match input |> isValid with
-            | true -> input |> int |> toBin |> Some
-            | false -> None
-
-        let toHex (input: int) : string = System.Convert.ToString(input, 16)
-
-        let tryToHex (input: string) : string option =
-            match input |> isValid with
-            | true -> input |> int |> toHex |> Some
-            | false -> None
-
+        let toHex (dec: Dec) : Hex =
+            dec |> fun (Dec d) -> System.Convert.ToString(d, 16) |> Hex
 
     [<RequireQualifiedAccess>]
     module Bin =
-        let validate (input: string) : Result<string, exn> =
+        let validate (input: string) : Result<Bin, exn> =
             Ok input
             |> Result.bind validateNotEmptyString
             |> Result.bind (validateFormat "^[01]+$")
             |> Result.bind (validateMaxLength String.length 32)
+            |> Result.map Bin
 
-        let isValid (input: string) : bool =
-            input
-            |> validate
-            |> (function
-            | Ok _ -> true
-            | Error _ -> false)
-
-        let toDec (input: string) : int = System.Convert.ToInt32(input, 2)
-
-        let tryToDec (input: string) : int option =
-            match input |> isValid with
-            | true -> input |> toDec |> Some
-            | false -> None
-
+        let toDec (bin: Bin) : Dec =
+            bin |> fun (Bin b) -> System.Convert.ToInt32(b, 2) |> Dec
 
     [<RequireQualifiedAccess>]
     module Hex =
-        let validate (input: string) : Result<string, exn> =
+        let validate (input: string) : Result<Hex, exn> =
             Ok input
             |> Result.bind validateNotEmptyString
             |> Result.bind (validateFormat "^[0-9A-Fa-f]+$")
             |> Result.bind (validateMaxLength String.length 8)
+            |> Result.map Hex
 
-        let isValid (input: string) : bool =
-            input
-            |> validate
-            |> (function
-            | Ok _ -> true
-            | Error _ -> false)
-
-        let toDec (input: string) : int = System.Convert.ToInt32(input, 16)
-
-        let tryToDec (input: string) : int option =
-            match input |> isValid with
-            | true -> input |> toDec |> Some
-            | false -> None
+        let toDec (hex: Hex) : Dec =
+            hex |> fun (Hex h) -> System.Convert.ToInt32(h, 16) |> Dec
