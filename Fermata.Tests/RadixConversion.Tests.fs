@@ -20,6 +20,15 @@ let ``Dec.validate 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``Dec.validate 3`` () =
+    let actual = "2147483648" |> Dec.validate
+
+    let expected =
+        Error(Exceptions.Overflow "Value was either too large or too small for an Int32.")
+
+    Assert.Equal(expected, actual)
+
+[<Fact>]
 let ``Dec.isValid 1`` () =
     let actual = "42" |> Dec.isValid
     let expected = true
@@ -90,6 +99,16 @@ let ``Bin.validate 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``Bin.validate 3`` () =
+    let input = "100000000000000000000000000000000"
+    let actual = input |> Bin.validate
+
+    let expected =
+        Error(Exceptions.Overflow "Value is too long. Value must be shorter or equal to 32")
+
+    Assert.Equal(expected, actual)
+
+[<Fact>]
 let ``Bin.isValid 1`` () =
     let input = "101010"
     let actual = input |> Bin.isValid
@@ -138,6 +157,16 @@ let ``Hex.validate 2`` () =
 
     let expected =
         Error(Exceptions.Format "The input string 'XX' was not in a correct format.")
+
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Hex.validate 3`` () =
+    let input = "FFFFFFFFF"
+    let actual = input |> Hex.validate
+
+    let expected =
+        Error(Exceptions.Overflow "Value is too long. Value must be shorter or equal to 8")
 
     Assert.Equal(expected, actual)
 

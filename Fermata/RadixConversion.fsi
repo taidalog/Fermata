@@ -24,7 +24,15 @@ module RadixConversion =
         /// let input = "FF"
         /// input |> Dec.validate
         /// </code>
-        /// Evaluates to <c>Error(Exceptions.Format "The input string 'FF' was not in a correct format.")</c>
+        /// Evaluates to <c>Error (Exceptions.Format "The input string 'FF' was not in a correct format.")</c>
+        /// </example>
+        ///
+        /// <example id="decvalidate-3">
+        /// <code lang="fsharp">
+        /// let input = "2147483648"
+        /// input |> Dec.validate
+        /// </code>
+        /// Evaluates to <c>Error (Exceptions.Overflow "Value was either too large or too small for an Int32.")</c>
         /// </example>
         val validate: input: string -> Result<int, exn>
 
@@ -153,7 +161,15 @@ module RadixConversion =
         /// let input = "FF"
         /// input |> Bin.validate
         /// </code>
-        /// Evaluates to <c>Error(Exceptions.Format "The input string 'FF' was not in a correct format.")</c>
+        /// Evaluates to <c>Error (Exceptions.Format "The input string 'FF' was not in a correct format.")</c>
+        /// </example>
+        ///
+        /// <example id="binvalidate-3">
+        /// <code lang="fsharp">
+        /// let input = "100000000000000000000000000000000"
+        /// input |> Bin.validate
+        /// </code>
+        /// Evaluates to <c>Error (Exceptions.Overflow "Value is too long. Value must be shorter or equal to 32")</c>
         /// </example>
         val validate: input: string -> Result<string, exn>
 
@@ -242,7 +258,15 @@ module RadixConversion =
         /// let input = "XX"
         /// input |> Hex.validate
         /// </code>
-        /// Evaluates to <c>Error(Exceptions.Format "The input string 'XX' was not in a correct format.")</c>
+        /// Evaluates to <c>Error (Exceptions.Format "The input string 'XX' was not in a correct format.")</c>
+        /// </example>
+        ///
+        /// <example id="hexvalidate-3">
+        /// <code lang="fsharp">
+        /// let input = "FFFFFFFFF"
+        /// input |> Hex.validate
+        /// </code>
+        /// Evaluates to <c>Error (Exceptions.Overflow "Value is too long. Value must be shorter or equal to 8")</c>
         /// </example>
         val validate: input: string -> Result<string, exn>
 
