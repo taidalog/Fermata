@@ -23,3 +23,9 @@ module Validators =
         match input >= min && input <= max with
         | true -> Ok input
         | false -> Error(Exceptions.OutOfRange $"%A{input} is out of range. Value must be within %A{min} and %A{max}")
+
+    let validateMaxLength (measurer: 'T -> int) (max: int) (value: 'T) : Result<'T, exn> =
+        if measurer value > max then
+            Error(Exceptions.Overflow $"Value is too long. Value must be shorter or equal to %d{max}")
+        else
+            Ok value

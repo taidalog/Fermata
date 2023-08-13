@@ -120,3 +120,42 @@ module Validators =
     /// Evaluates to <c>Error (OutOfRange 'A')</c>
     /// </example>
     val validateRange: min: 'T -> max: 'T -> input: 'T -> Result<'T, exn> when 'T: comparison
+
+    /// <summary>Returns Ok if the length of the <paramref name="value"/> is shroter or equal to <paramref name="max"/>, otherwise Error.</summary>
+    ///
+    /// <param name="measurer">The function to get the length of the input value.</param>
+    ///
+    /// <param name="max">The max length.</param>
+    ///
+    /// <param name="value">The input value.</param>
+    ///
+    /// <returns>Ok if the length of the <paramref name="value"/> is shroter or equal to <paramref name="max"/>, otherwise Error.</returns>
+    ///
+    /// <example id="Validators.validateMaxLength-1">
+    /// <code lang="fsharp">
+    /// "101010" |> validateMaxLength String.length 32
+    /// </code>
+    /// Evaluates to <c>Ok "101010"</c>
+    /// </example>
+    ///
+    /// <example id="Validators.validateMaxLength-2">
+    /// <code lang="fsharp">
+    /// "100000000000000000000000000000000" |> validateMaxLength String.length 32
+    /// </code>
+    /// Evaluates to <c>Error (Exceptions.Overflow "Value is too long. Value must be shorter or equal to 32")</c>
+    /// </example>
+    ///
+    /// <example id="Validators.validateMaxLength-3">
+    /// <code lang="fsharp">
+    /// [ 0; 1; 2; 3; 4 ] |> validateMaxLength List.length 10
+    /// </code>
+    /// Evaluates to <c>Ok [ 0; 1; 2; 3; 4 ]</c>
+    /// </example>
+    ///
+    /// <example id="Validators.validateMaxLength-4">
+    /// <code lang="fsharp">
+    /// [ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10 ] |> validateMaxLength List.length 10
+    /// </code>
+    /// Evaluates to <c>Error (Exceptions.Overflow "Value is too long. Value must be shorter or equal to 10")</c>
+    /// </example>
+    val validateMaxLength: measurer: ('T -> int) -> max: int -> value: 'T -> Result<'T, exn>

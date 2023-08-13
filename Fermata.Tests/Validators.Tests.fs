@@ -78,3 +78,35 @@ let ``Validators.validateRange 4`` () =
         Error(Exceptions.OutOfRange "'A' is out of range. Value must be within '0' and '9'")
 
     Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Validators.validateMaxLength 1`` () =
+    let actual = "101010" |> validateMaxLength String.length 32
+    let expected = Ok "101010"
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Validators.validateMaxLength 2`` () =
+    let actual =
+        "100000000000000000000000000000000" |> validateMaxLength String.length 32
+
+    let expected =
+        Error(Exceptions.Overflow "Value is too long. Value must be shorter or equal to 32")
+
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Validators.validateMaxLength 3`` () =
+    let actual = [ 0; 1; 2; 3; 4 ] |> validateMaxLength List.length 10
+    let expected = Ok [ 0; 1; 2; 3; 4 ]
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Validators.validateMaxLength 4`` () =
+    let actual =
+        [ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10 ] |> validateMaxLength List.length 10
+
+    let expected =
+        Error(Exceptions.Overflow "Value is too long. Value must be shorter or equal to 10")
+
+    Assert.Equal(expected, actual)
