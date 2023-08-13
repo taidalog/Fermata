@@ -40,6 +40,7 @@ module RadixConversion =
             Ok input
             |> Result.bind validateNotEmptyString
             |> Result.bind (validateFormat "^[01]+$")
+            |> Result.bind (validateMaxLength String.length 32)
 
         let isValid (input: string) : bool =
             input
@@ -62,6 +63,7 @@ module RadixConversion =
             Ok input
             |> Result.bind validateNotEmptyString
             |> Result.bind (validateFormat "^[0-9A-Fa-f]+$")
+            |> Result.bind (validateMaxLength String.length 8)
 
         let isValid (input: string) : bool =
             input
