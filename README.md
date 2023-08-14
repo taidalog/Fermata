@@ -4,40 +4,37 @@ An F# helper library for working with values of basic types in F#. Compatible wi
 
 Version 0.5.0
 
-
 ## Features
 
 - Provides functions for working with values of basic types in F#.
 - Works in a Fable project.
 
-
 ## Modules
 
 - Array  
-    Contains helper functions for working with values of type array.
+   Contains helper functions for working with values of type array.
 - Bool  
-    Contains helper functions for working with values of type bool.
+   Contains helper functions for working with values of type bool.
 - Bound  
-    Contains helper functions for working with values of number types such as int or float, and lower and upper bounds.
+   Contains helper functions for working with values of number types such as int or float, and lower and upper bounds.
 - List  
-    Contains helper functions for working with values of type list.
+   Contains helper functions for working with values of type list.
 - RadixConversion  
-    Contains helper functions for radix conversion (.NET wrapper functions).
+   Contains helper functions for radix conversion (.NET wrapper functions).
 - Regex  
-    Contains wrapper functions for .Net System.Text.RegularExpressions.
+   Contains wrapper functions for .Net System.Text.RegularExpressions.
 - Result  
-    Contains helper functions for working with values of type Result.
+   Contains helper functions for working with values of type Result.
 - Seq  
-    Contains helper functions for working with values of type seq.
+   Contains helper functions for working with values of type seq.
 - String  
-    Contains helper functions for working with values of type string.
+   Contains helper functions for working with values of type string.
 - Tuple  
-    Contains helper functions for working with values of tuples.
+   Contains helper functions for working with values of tuples.
 - Validators  
-    Contains helper functions for validation which return values of type Result.
+   Contains helper functions for validation which return values of type Result.
 
 For more information, see each signature file (`.fsi`).
-
 
 ## Installation
 
@@ -55,27 +52,22 @@ F# Intaractive,
 
 For more information, please see [Fermata on NuGet Gallery](https://www.nuget.org/packages/Fermata).
 
-
 ## Notes
 
 - Don't forget `npm start` before using Fermata in a Fable project. I forgot!
 
-
 ## Known Issue
 
-- 
-
+-
 
 ## Release Notes
 
 [Releases on GitHub](https://github.com/taidalog/Fermata/releases)
 
-
 ## Links
 
 - [Repository on GitHub](https://github.com/taidalog/Fermata)
 - [NuGet Gallery](https://www.nuget.org/packages/Fermata)
-
 
 ## License
 
