@@ -54,7 +54,7 @@ module RadixConversion =
             else divideTill number quotient divisor acc'
 
         let ofInt (radix: int) (symbols: seq<char>) (number: int) : Result<Arb, exn> =
-            if radix = 1 then
+            if radix < 2 then
                 Error(Exceptions.Argument "Radix must be greater than 1.")
             else if Seq.isEmpty symbols then
                 Error(Exceptions.Argument "Symbols were not specified.")
@@ -69,7 +69,7 @@ module RadixConversion =
         let toInt (arb: Arb) : Result<int, exn> =
             let (Arb(radix, symbols, value)) = arb
 
-            if radix = 1 then
+            if radix < 2 then
                 Error(Exceptions.Argument "Radix must be greater than 1.")
             else if Seq.isEmpty symbols then
                 Error(Exceptions.Argument "Symbols were not specified.")
