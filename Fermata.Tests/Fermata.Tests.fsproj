@@ -12,7 +12,7 @@
     <Compile Include="List.Tests.fs" />
     <Compile Include="Seq.Tests.fs" />
     <Compile Include="Bool.Tests.fs" />
-    <Compile Include="Boundary.Tests.fs" />
+    <Compile Include="Bound.Tests.fs" />
     <Compile Include="Int32.Tests.fs" />
     <Compile Include="RadixConversion.Tests.fs" />
     <Compile Include="Regex.Tests.fs" />
