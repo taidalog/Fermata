@@ -5,6 +5,7 @@ module RadixConversion =
     type Dec = Dec of int
     type Bin = Bin of string
     type Hex = Hex of string
+    type Arb = Arb of radix: int * symbols: seq<char> * value: string
 
     [<RequireQualifiedAccess>]
     module Dec =
@@ -167,3 +168,116 @@ module RadixConversion =
         /// Evaluates to <c>Dec 255</c>
         /// </example>
         val toDec: hex: Hex -> Dec
+
+    [<RequireQualifiedAccess>]
+    module Arb =
+        /// <summary>Returns <c>(Ok Arb)</c> if the radix converstion succeeded, otherwise <c>Error</c>.
+        /// <c>Arb</c> is a single case discriminated union that conatins radix, symbols to represent a number with, and the result value.</summary>
+        ///
+        /// <param name="radix">The radix to convert the number with.</param>
+        ///
+        /// <param name="symbols">The symbols to represent a number with.</param>
+        ///
+        /// <param name="number">The input number to convert.</param>
+        ///
+        /// <returns><c>(Ok Arb)</c> if the radix converstion succeeded, otherwise <c>Error</c>.</returns>
+        ///
+        /// <example id="arbofint-1">
+        /// <code lang="fsharp">
+        /// Arb.ofInt 2 "01" 42
+        /// </code>
+        /// Evaluates to <c>Ok(Arb(2, "01", "101010"))</c>
+        /// </example>
+        ///
+        /// <example id="arbofint-2">
+        /// <code lang="fsharp">
+        /// Arb.ofInt 5 "01234" 42
+        /// </code>
+        /// Evaluates to <c>Ok(Arb(5, "01234", "132"))</c>
+        /// </example>
+        ///
+        /// <example id="arbofint-3">
+        /// <code lang="fsharp">
+        /// Arb.ofInt 5 "HMNPY" 42
+        /// </code>
+        /// Evaluates to <c>Ok(Arb(5, "HMNPY", "MPN"))</c>
+        /// </example>
+        ///
+        /// <example id="arbofint-4">
+        /// <code lang="fsharp">
+        /// Arb.ofInt 1 "0" 42
+        /// </code>
+        /// Evaluates to <c>Error(Exceptions.Argument "Radix must be greater than 1.")</c>
+        /// </example>
+        ///
+        /// <example id="arbofint-5">
+        /// <code lang="fsharp">
+        /// Arb.ofInt 16 "" 42
+        /// </code>
+        /// Evaluates to <c>Error(Exceptions.Argument "Symbols were not specified.")</c>
+        /// </example>
+        ///
+        /// <example id="arbofint-6">
+        /// <code lang="fsharp">
+        /// Arb.ofInt 16 "01" 42
+        /// </code>
+        /// Evaluates to <c>Error(Exceptions.Argument "The number of the symbols and the radix didn't match.")</c>
+        /// </example>
+        val ofInt: radix: int -> symbols: seq<char> -> number: int -> Result<Arb, exn>
+
+        /// <summary>Returns <c>(Ok int)</c> if the radix converstion succeeded, otherwise <c>Error</c>.
+        /// <c>Arb</c> is a single case discriminated union that conatins radix, symbols to represent a number, and the result value.</summary>
+        ///
+        /// <param name="arb">The input <c>Arb</c>.</param>
+        ///
+        /// <returns><c>(Ok int)</c> if the radix converstion succeeded, otherwise <c>Error</c>.</returns>
+        ///
+        /// <example id="arbtoint-1">
+        /// <code lang="fsharp">
+        /// Arb.toInt (Arb(2, "01", "101010"))
+        /// </code>
+        /// Evaluates to <c>Ok 42</c>
+        /// </example>
+        ///
+        /// <example id="arbtoint-2">
+        /// <code lang="fsharp">
+        /// Arb.toInt (Arb(5, "01234", "132"))
+        /// </code>
+        /// Evaluates to <c>Ok 42</c>
+        /// </example>
+        ///
+        /// <example id="arbtoint-3">
+        /// <code lang="fsharp">
+        /// Arb.toInt (Arb(5, "HMNPY", "MPN"))
+        /// </code>
+        /// Evaluates to <c>Ok 42</c>
+        /// </example>
+        ///
+        /// <example id="arbtoint-4">
+        /// <code lang="fsharp">
+        /// Arb.toInt (Arb(1, "0", "0"))
+        /// </code>
+        /// Evaluates to <c>Error(Exceptions.Argument "Radix must be greater than 1.")</c>
+        /// </example>
+        ///
+        /// <example id="arbtoint-5">
+        /// <code lang="fsharp">
+        /// Arb.toInt (Arb(16, "", "2a"))
+        /// </code>
+        /// Evaluates to <c>Error(Exceptions.Argument "Symbols were not specified.")</c>
+        /// </example>
+        ///
+        /// <example id="arbtoint-6">
+        /// <code lang="fsharp">
+        /// Arb.toInt (Arb(16, "01", "2a"))
+        /// </code>
+        /// Evaluates to <c>Error(Exceptions.Argument "The number of the symbols and the radix didn't match.")</c>
+        /// </example>
+        ///
+        /// <example id="arbtoint-7">
+        /// <code lang="fsharp">
+        /// Arb.toInt (Arb(16, "0123456789abcdef", "7ffffffff")) // over `Int32.MaxValue`.
+        /// </code>
+        /// Evaluates to <c>Error(Exceptions.Overflow "Arithmetic operation resulted in an overflow.")</c>
+        /// </example>
+        val toInt: arb: Arb -> Result<int, exn>

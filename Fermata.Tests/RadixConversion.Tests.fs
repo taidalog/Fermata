@@ -108,3 +108,91 @@ let ``Hex.toDec 1`` () =
     let actual = input |> Hex.toDec
     let expected = Dec 255
     Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.ofInt 1`` () =
+    let actual = Arb.ofInt 2 "01" 42
+    let expected = Ok(Arb(2, "01", "101010"))
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.ofInt 2`` () =
+    let actual = Arb.ofInt 5 "01234" 42
+    let expected = Ok(Arb(5, "01234", "132"))
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.ofInt 3`` () =
+    let actual = Arb.ofInt 5 "HMNPY" 42
+    let expected = Ok(Arb(5, "HMNPY", "MPN"))
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.ofInt 4`` () =
+    let actual = Arb.ofInt 1 "0" 42
+    let expected = Error(Exceptions.Argument "Radix must be greater than 1.")
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.ofInt 5`` () =
+    let actual = Arb.ofInt 16 "" 42
+    let expected = Error(Exceptions.Argument "Symbols were not specified.")
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.ofInt 6`` () =
+    let actual = Arb.ofInt 16 "01" 42
+
+    let expected =
+        Error(Exceptions.Argument "The number of the symbols and the radix didn't match.")
+
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.toInt 1`` () =
+    let actual = Arb.toInt (Arb(2, "01", "101010"))
+    let expected = Ok 42
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.toInt 2`` () =
+    let actual = Arb.toInt (Arb(5, "01234", "132"))
+    let expected = Ok 42
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.toInt 3`` () =
+    let actual = Arb.toInt (Arb(5, "HMNPY", "MPN"))
+    let expected = Ok 42
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.toInt 4`` () =
+    let actual = Arb.toInt (Arb(1, "0", "0"))
+    let expected = Error(Exceptions.Argument "Radix must be greater than 1.")
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.toInt 5`` () =
+    let actual = Arb.toInt (Arb(16, "", "2a"))
+    let expected = Error(Exceptions.Argument "Symbols were not specified.")
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.toInt 6`` () =
+    let actual = Arb.toInt (Arb(16, "01", "2a"))
+
+    let expected =
+        Error(Exceptions.Argument "The number of the symbols and the radix didn't match.")
+
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Arb.toInt 7`` () =
+    let actual = Arb.toInt (Arb(16, "0123456789abcdef", "7ffffffff")) // over `Int32.MaxValue`.
+
+    let expected =
+        Error(Exceptions.Overflow "Arithmetic operation resulted in an overflow.")
+
+    Assert.Equal(expected, actual)
+    Assert.Equal(expected, actual)
