@@ -19,8 +19,18 @@ Version 0.5.0
    Contains helper functions for working with values of number types such as int or float, and lower and upper bounds.
 - List  
    Contains helper functions for working with values of type list.
+- Int32  
+   Contains helper functions for working with values of type int (.NET wrapper functions).
 - RadixConversion  
-   Contains helper functions for radix conversion (.NET wrapper functions).
+   Contains modules for radix conversion.
+  - Dec  
+     Contains helper functions for base 10 radix conversion (.NET wrapper functions).
+  - Bin  
+     Contains helper functions for base 2 radix conversion (.NET wrapper functions).
+  - Hex  
+     Contains helper functions for base 16 radix conversion (.NET wrapper functions).
+  - Arb  
+     Contains helper functions for radix conversion with an **Arb**itrary base.
 - Regex  
    Contains wrapper functions for .Net System.Text.RegularExpressions.
 - Result  
