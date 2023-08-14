@@ -45,7 +45,7 @@ module RadixConversion =
 
     [<RequireQualifiedAccess>]
     module Arb =
-        let rec divideTill (number: int) (dividend: int) (divisor: int) (acc: int list) : int list =
+        let rec private divideTill (number: int) (dividend: int) (divisor: int) (acc: int list) : int list =
             let quotient, remainder = System.Math.DivRem(dividend, divisor)
             let acc' = remainder :: acc
 
