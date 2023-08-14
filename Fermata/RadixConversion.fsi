@@ -54,6 +54,36 @@ module RadixConversion =
         /// </code>
         /// Evaluates to <c>Bin "101010"</c>
         /// </example>
+        ///
+        /// <example id="toBin-2">
+        /// <code lang="fsharp">
+        /// "42" |> Dec.validate |> Result.map Dec.toBin
+        /// </code>
+        /// Evaluates to <c>Ok (Bin "101010")</c>
+        /// </example>
+        ///
+        /// <example id="toBin-3">
+        /// <code lang="fsharp">
+        /// let d = "42" |> Dec.validate
+        /// match d with
+        /// | Ok dec ->
+        ///     let (Bin b) = dec |> Dec.toBin
+        ///     b
+        /// | Error _ -> ""
+        /// </code>
+        /// Evaluates to <c>"101010"</c>
+        /// </example>
+        ///
+        /// <example id="toBin-4">
+        /// <code lang="fsharp">
+        /// let d = "42." |> Dec.validate
+        /// let b = d |> Result.map Dec.toBin
+        /// match b with
+        /// | Ok (Bin x) -> x
+        /// | Error _ -> ""
+        /// </code>
+        /// Evaluates to <c>""</c>
+        /// </example>
         val toBin: dec: Dec -> Bin
 
         /// <summary>Returns the equivalent hexadecimal representation of the input int value.</summary>
@@ -68,6 +98,36 @@ module RadixConversion =
         /// input |> Dec.toHex
         /// </code>
         /// Evaluates to <c>Hex "2a"</c>
+        /// </example>
+        ///
+        /// <example id="tohex-2">
+        /// <code lang="fsharp">
+        /// "42" |> Dec.validate |> Result.map Dec.toHex
+        /// </code>
+        /// Evaluates to <c>Ok (Hex "2a")</c>
+        /// </example>
+        ///
+        /// <example id="tohex-3">
+        /// <code lang="fsharp">
+        /// let d = "42" |> Dec.validate
+        /// match d with
+        /// | Ok dec ->
+        ///     let (Hex h) = dec |> Dec.toHex
+        ///     h
+        /// | Error _ -> ""
+        /// </code>
+        /// Evaluates to <c>"2a"</c>
+        /// </example>
+        ///
+        /// <example id="tohex-4">
+        /// <code lang="fsharp">
+        /// let d = "42." |> Dec.validate
+        /// let h = d |> Result.map Dec.toHex
+        /// match h with
+        /// | Ok (Hex x) -> x
+        /// | Error _ -> ""
+        /// </code>
+        /// Evaluates to <c>""</c>
         /// </example>
         val toHex: dec: Dec -> Hex
 
@@ -118,6 +178,37 @@ module RadixConversion =
         /// </code>
         /// Evaluates to <c>Dec 42</c>
         /// </example>
+        ///
+        /// <example id="bintodec-2">
+        ///
+        /// <code lang="fsharp">
+        /// "101010" |> Bin.validate |> Result.map Bin.toDec
+        /// </code>
+        /// Evaluates to <c>Ok (Dec 42)</c>
+        /// </example>
+        ///
+        /// <example id="bintodec-3">
+        /// <code lang="fsharp">
+        /// let b = "101010" |> Bin.validate
+        /// match b with
+        /// | Ok bin ->
+        ///     let (Dec d) = bin |> Bin.toDec
+        ///     string d
+        /// | Error _ -> ""
+        /// </code>
+        /// Evaluates to <c>"42"</c>
+        /// </example>
+        ///
+        /// <example id="bintodec-4">
+        /// <code lang="fsharp">
+        /// let b = "XX" |> Bin.validate
+        /// let d = b |> Result.map Bin.toDec
+        /// match d with
+        /// | Ok (Dec x) -> string x
+        /// | Error _ -> ""
+        /// </code>
+        /// Evaluates to <c>""</c>
+        /// </example>
         val toDec: bin: Bin -> Dec
 
     [<RequireQualifiedAccess>]
@@ -160,12 +251,42 @@ module RadixConversion =
         ///
         /// <returns>The equivalent decimal representation of the input string representation of a hexadecimal number.</returns>
         ///
-        /// <example id="hextrytodec-1">
+        /// <example id="hextodec-1">
         /// <code lang="fsharp">
         /// let input = Hex "FF"
         /// input |> Hex.toDec
         /// </code>
         /// Evaluates to <c>Dec 255</c>
+        /// </example>
+        ///
+        /// <example id="hextodec-2">
+        /// <code lang="fsharp">
+        /// "ff" |> Hex.validate |> Result.map Hex.toDec
+        /// </code>
+        /// Evaluates to <c>Ok (Dec 255)</c>
+        /// </example>
+        ///
+        /// <example id="hextodec-3">
+        /// <code lang="fsharp">
+        /// let h = "ff" |> Hex.validate
+        /// match h with
+        /// | Ok hex ->
+        ///     let (Dec d) = hex |> Hex.toDec
+        ///     string d
+        /// | Error _ -> ""
+        /// </code>
+        /// Evaluates to <c>"255"</c>
+        /// </example>
+        ///
+        /// <example id="hextodec-4">
+        /// <code lang="fsharp">
+        /// let h = "XX" |> Hex.validate
+        /// let d = h |> Result.map Hex.toDec
+        /// match d with
+        /// | Ok (Dec x) -> string x
+        /// | Error _ -> ""
+        /// </code>
+        /// Evaluates to <c>""</c>
         /// </example>
         val toDec: hex: Hex -> Dec
 
