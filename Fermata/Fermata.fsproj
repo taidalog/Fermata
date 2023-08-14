@@ -18,6 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Exceptions.fsi" />
     <Compile Include="Exceptions.fs" />
     <Compile Include="Validators.fsi" />
     <Compile Include="Validators.fs" />
