@@ -13,6 +13,14 @@ module Array =
         | [||] -> None
         | _ -> Array.tail array |> Some
 
+    let fore (array: 'T[]) : 'T[] =
+        array |> Array.rev |> Array.tail |> Array.rev
+
+    let tryFore (array: 'T[]) : 'T[] option =
+        match array with
+        | [||] -> None
+        | _ -> array |> fore |> Some
+
     let countWith (predicate: 'T -> bool) (array: 'T[]) : int =
         array |> Array.filter predicate |> Array.length
 

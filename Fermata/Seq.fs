@@ -13,6 +13,14 @@ module Seq =
         | true -> None
         | false -> Seq.tail source |> Some
 
+    let fore (source: seq<'T>) : seq<'T> =
+        source |> Seq.rev |> Seq.tail |> Seq.rev
+
+    let tryFore (source: seq<'T>) : seq<'T> option =
+        match source |> Seq.isEmpty with
+        | true -> None
+        | false -> source |> fore |> Some
+
     let countWith (predicate: 'T -> bool) (source: seq<'T>) : int =
         source |> Seq.filter predicate |> Seq.length
 

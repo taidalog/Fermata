@@ -24,6 +24,27 @@ let ``Seq.tryTail 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``Seq.fore 1`` () =
+    let inputs = seq [ 0; 1; 2 ]
+    let actual = inputs |> Seq.fore
+    let expected = seq [ 0; 1 ]
+    Assert.Equal<seq<int>>(expected, actual)
+
+[<Fact>]
+let ``Seq.tryFore 1`` () =
+    let inputs = seq [ 0; 1; 2 ]
+    let actual = inputs |> Seq.tryFore |> Option.map Seq.toList
+    let expected = Some(seq [ 0; 1 ] |> Seq.toList)
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Seq.tryFore 2`` () =
+    let inputs: seq<int> = seq []
+    let actual = inputs |> Seq.tryFore
+    let expected = None
+    Assert.Equal(expected, actual)
+
+[<Fact>]
 let ``Seq.countWith 1`` () =
     let source = seq [ "Laziness"; "Impatience"; "Hubris" ]
     let actual = source |> Seq.countWith (fun x -> String.length x > 6)

@@ -34,6 +34,46 @@ module List =
     /// </example>
     val tryTail: list: 'T list -> 'T list option
 
+    /// <summary>Returns the list without the last element.</summary>
+    ///
+    /// <param name="list">The input list.</param>
+    ///
+    /// <returns>The list without the last element.</returns>
+    ///
+    /// <example id="List.fore-1">
+    /// <code lang="fsharp">
+    /// let inputs = [ 0; 1; 2 ]
+    /// inputs |> List.fore
+    /// </code>
+    /// Evaluates to <c>[ 0; 1 ]</c>
+    /// </example>
+    val fore: list: 'T list -> 'T list
+
+    /// <summary>Returns the list without the last element, or
+    /// returns <c>None</c> if the input array is empty.</summary>
+    ///
+    /// <param name="list">The input list.</param>
+    ///
+    /// <returns>The list without the last element, or
+    /// returns <c>None</c> if the input array is empty.</returns>
+    ///
+    /// <example id="List.tryFore-1">
+    /// <code lang="fsharp">
+    /// let inputs = [ 0; 1; 2 ]
+    /// inputs |> List.tryFore
+    /// </code>
+    /// Evaluates to <c>Some [ 0; 1 ]</c>
+    /// </example>
+    ///
+    /// <example id="List.tryFore-2">
+    /// <code lang="fsharp">
+    /// let inputs: int list = []
+    /// inputs |> List.tryFore
+    /// </code>
+    /// Evaluates to <c>None</c>
+    /// </example>
+    val tryFore: list: 'T list -> 'T list option
+
     /// <summary>Returns the number of elements of the list for which the given predicate returns true.</summary>
     ///
     /// <param name="predicate">The function to test the input elements.</param>

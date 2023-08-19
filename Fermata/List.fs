@@ -13,6 +13,14 @@ module List =
         | [] -> None
         | _ -> List.tail list |> Some
 
+    let fore (list: 'T list) : 'T list =
+        list |> List.rev |> List.tail |> List.rev
+
+    let tryFore (list: 'T list) : 'T list option =
+        match list with
+        | [] -> None
+        | _ -> list |> fore |> Some
+
     let countWith (predicate: 'T -> bool) (list: 'T list) : int =
         list |> List.filter predicate |> List.length
 

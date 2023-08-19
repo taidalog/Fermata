@@ -24,6 +24,27 @@ let ``Array.tryTail 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``Array.fore 1`` () =
+    let inputs = [| 0; 1; 2 |]
+    let actual = inputs |> Array.fore
+    let expected = [| 0; 1 |]
+    Assert.Equal<int array>(expected, actual)
+
+[<Fact>]
+let ``Array.tryFore 1`` () =
+    let inputs = [| 0; 1; 2 |]
+    let actual = inputs |> Array.tryFore
+    let expected = Some [| 0; 1 |]
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Array.tryFore 2`` () =
+    let inputs: int[] = [||]
+    let actual = inputs |> Array.tryFore
+    let expected = None
+    Assert.Equal(expected, actual)
+
+[<Fact>]
 let ``Array.countWith 1`` () =
     let inputs = [| "Laziness"; "Impatience"; "Hubris" |]
     let actual = inputs |> Array.countWith (fun x -> String.length x > 6)
@@ -68,7 +89,10 @@ let ``Array.filterIndex 2`` () =
 [<Fact>]
 let ``Array.filterIndexPair 1`` () =
     let inputs = [| 42; 16; 8; 20; 120; 4 |]
-    let actual: (int * int) array = inputs |> Array.filterIndexPair (fun x -> x % 10 = 0)
+
+    let actual: (int * int) array =
+        inputs |> Array.filterIndexPair (fun x -> x % 10 = 0)
+
     let expected = [| (3, 20); (4, 120) |]
     Assert.Equal<(int * int) array>(expected, actual)
 

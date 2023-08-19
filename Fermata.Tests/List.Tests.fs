@@ -24,6 +24,27 @@ let ``List.tryTail 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``List.fore 1`` () =
+    let inputs = [ 0; 1; 2 ]
+    let actual = inputs |> List.fore
+    let expected = [ 0; 1 ]
+    Assert.Equal<int list>(expected, actual)
+
+[<Fact>]
+let ``List.tryFore 1`` () =
+    let inputs = [ 0; 1; 2 ]
+    let actual = inputs |> List.tryFore
+    let expected = Some [ 0; 1 ]
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``List.tryFore 2`` () =
+    let inputs: int list = []
+    let actual = inputs |> List.tryFore
+    let expected = None
+    Assert.Equal(expected, actual)
+
+[<Fact>]
 let ``List.countWith 1`` () =
     let inputs = [ "Laziness"; "Impatience"; "Hubris" ]
     let actual = inputs |> List.countWith (fun x -> String.length x > 6)

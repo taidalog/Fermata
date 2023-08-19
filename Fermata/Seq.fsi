@@ -11,6 +11,10 @@ module Seq =
 
     val tryTail: source: seq<'T> -> seq<'T> option
 
+    val fore: source: seq<'T> -> seq<'T>
+
+    val tryFore: source: seq<'T> -> seq<'T> option
+
     val countWith: predicate: ('T -> bool) -> source: seq<'T> -> int
 
     val trySkip: count: int -> source: seq<'T> -> seq<'T> option

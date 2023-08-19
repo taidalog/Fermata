@@ -34,6 +34,46 @@ module Array =
     /// </example>
     val tryTail: array: 'T array -> 'T array option
 
+    /// <summary>Returns the array without the last element.</summary>
+    ///
+    /// <param name="array">The input array.</param>
+    ///
+    /// <returns>The array without the last element.</returns>
+    ///
+    /// <example id="Array.fore-1">
+    /// <code lang="fsharp">
+    /// let inputs = [| 0; 1; 2 |]
+    /// inputs |> Array.fore
+    /// </code>
+    /// Evaluates to <c>[| 0; 1 |]</c>
+    /// </example>
+    val fore: array: 'T array -> 'T array
+
+    /// <summary>Returns the array without the last element, or
+    /// returns <c>None</c> if the input array is empty.</summary>
+    ///
+    /// <param name="array">The input array.</param>
+    ///
+    /// <returns>The array without the last element, or
+    /// returns <c>None</c> if the input array is empty.</returns>
+    ///
+    /// <example id="Array.tryFore-1">
+    /// <code lang="fsharp">
+    /// let inputs = [| 0; 1; 2 |]
+    /// inputs |> Array.tryFore
+    /// </code>
+    /// Evaluates to <c>Some [| 0; 1 |]</c>
+    /// </example>
+    ///
+    /// <example id="Array.tryFore-2">
+    /// <code lang="fsharp">
+    /// let inputs: int[] = [||]
+    /// inputs |> Array.tryFore
+    /// </code>
+    /// Evaluates to <c>None</c>
+    /// </example>
+    val tryFore: array: 'T array -> 'T array option
+
     /// <summary>Returns the number of elements of the array for which the given predicate returns true.</summary>
     ///
     /// <param name="predicate">The function to test the input elements.</param>
