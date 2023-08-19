@@ -177,8 +177,8 @@ let ``Array.stairs 2`` () =
     Assert.Equal<int[][]>(expected, actual)
 
 [<Fact>]
-let ``Array.stairsRight 1`` () =
-    let actual = Array.stairsRight [| 0..4 |]
+let ``Array.stairsBack 1`` () =
+    let actual = Array.stairsBack [| 0..4 |]
 
     let expected =
         [| [| 4 |]; [| 3; 4 |]; [| 2; 3; 4 |]; [| 1; 2; 3; 4 |]; [| 0; 1; 2; 3; 4 |] |]
@@ -186,8 +186,8 @@ let ``Array.stairsRight 1`` () =
     Assert.Equal<int[][]>(expected, actual)
 
 [<Fact>]
-let ``Array.stairsRight 2`` () =
+let ``Array.stairsBack 2`` () =
     let input: int[] = [||]
-    let actual = input |> Array.stairsRight
+    let actual = input |> Array.stairsBack
     let expected = [||]
     Assert.Equal<int[][]>(expected, actual)

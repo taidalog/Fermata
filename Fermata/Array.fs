@@ -79,7 +79,7 @@ module Array =
         |> Array.toList
         |> fun x -> loop (List.rev x) [] |> List.toArray |> Array.map List.toArray
 
-    let stairsRight (array: 'T[]) : 'T[][] =
+    let stairsBack (array: 'T[]) : 'T[][] =
         let rec loop list acc =
             match list with
             | [] -> acc

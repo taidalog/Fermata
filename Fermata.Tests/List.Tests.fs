@@ -171,14 +171,14 @@ let ``List.stairs 2`` () =
     Assert.Equal<int list list>(expected, actual)
 
 [<Fact>]
-let ``List.stairsRight 1`` () =
-    let actual = List.stairsRight [ 0..4 ]
+let ``List.stairsBack 1`` () =
+    let actual = List.stairsBack [ 0..4 ]
     let expected = [ [ 4 ]; [ 3; 4 ]; [ 2; 3; 4 ]; [ 1; 2; 3; 4 ]; [ 0; 1; 2; 3; 4 ] ]
     Assert.Equal<int list list>(expected, actual)
 
 [<Fact>]
-let ``List.stairsRight 2`` () =
+let ``List.stairsBack 2`` () =
     let input: int list = []
-    let actual = input |> List.stairsRight
+    let actual = input |> List.stairsBack
     let expected = []
     Assert.Equal<int list list>(expected, actual)

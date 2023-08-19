@@ -75,7 +75,7 @@ module List =
 
         loop (List.rev list) []
 
-    let stairsRight (list: 'T list) : 'T list list =
+    let stairsBack (list: 'T list) : 'T list list =
         let rec loop list acc =
             match list with
             | [] -> acc

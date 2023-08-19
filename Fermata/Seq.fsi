@@ -35,4 +35,4 @@ module Seq =
 
     val stairs: source: seq<'T> -> seq<seq<'T>>
 
-    val stairsRight: source: seq<'T> -> seq<seq<'T>>
+    val stairsBack: source: seq<'T> -> seq<seq<'T>>

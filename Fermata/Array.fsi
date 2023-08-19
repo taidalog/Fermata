@@ -318,18 +318,18 @@ module Array =
     ///
     /// <returns>A new array of arrays. The first array contains only the last element of the input array, and the last array contains all the original elements. If the elements are <c>[| i0..iN |]</c>, retuens <c>[| [| iN |]; [| iN-1; iN |]; ... [| i0; ... iN |] |]</c></returns>
     ///
-    /// <example id="Array.stairsRight-1">
+    /// <example id="Array.stairsBack-1">
     /// <code lang="fsharp">
-    /// Array.stairsRight [| 0..4 |]
+    /// Array.stairsBack [| 0..4 |]
     /// </code>
     /// Evaluates to <c>[| [| 4 |]; [| 3; 4 |]; [| 2; 3; 4 |]; [| 1; 2; 3; 4 |]; [| 0; 1; 2; 3; 4 |] |]</c>
     /// </example>
     ///
-    /// <example id="Array.stairsRight-2">
+    /// <example id="Array.stairsBack-2">
     /// <code lang="fsharp">
     /// let input: int[] = [||]
-    /// input |> Array.stairsRight
+    /// input |> Array.stairsBack
     /// </code>
     /// Evaluates to <c>[||]</c>
     /// </example>
-    val stairsRight: array: 'T array -> 'T array array
+    val stairsBack: array: 'T array -> 'T array array

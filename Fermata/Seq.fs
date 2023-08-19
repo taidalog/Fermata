@@ -77,7 +77,7 @@ module Seq =
         |> Seq.toList
         |> fun x -> loop (List.rev x) [] |> List.map List.toSeq |> List.toSeq
 
-    let stairsRight (source: seq<'T>) : seq<seq<'T>> =
+    let stairsBack (source: seq<'T>) : seq<seq<'T>> =
         let rec loop list acc =
             match list with
             | [] -> acc

@@ -179,8 +179,8 @@ let ``Seq.stairs 2`` () =
     Assert.Equal<seq<seq<int>>>(expected, actual)
 
 [<Fact>]
-let ``Seq.stairsRight 1`` () =
-    let actual = Seq.stairsRight (seq [ 0..4 ])
+let ``Seq.stairsBack 1`` () =
+    let actual = Seq.stairsBack (seq [ 0..4 ])
 
     let expected =
         seq
@@ -193,8 +193,8 @@ let ``Seq.stairsRight 1`` () =
     Assert.Equal<seq<seq<int>>>(expected, actual)
 
 [<Fact>]
-let ``Seq.stairsRight 2`` () =
+let ``Seq.stairsBack 2`` () =
     let input: seq<int> = seq []
-    let actual = input |> Seq.stairsRight
+    let actual = input |> Seq.stairsBack
     let expected = seq []
     Assert.Equal<seq<seq<int>>>(expected, actual)

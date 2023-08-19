@@ -318,18 +318,18 @@ module List =
     ///
     /// <returns>A new list of lists. The first list contains only the last element of the input list, and the last list contains all the original elements. If the elements are <c>i0..iN</c>, retuens <c>[ [ iN ]; [ iN-1; iN ]; ... [ i0; ... iN ] ]</c></returns>
     ///
-    /// <example id="List.stairsRight-1">
+    /// <example id="List.stairsBack-1">
     /// <code lang="fsharp">
-    /// List.stairsRight [ 0..4 ]
+    /// List.stairsBack [ 0..4 ]
     /// </code>
     /// Evaluates to <c>[ [ 4 ]; [ 3; 4 ]; [ 2; 3; 4 ]; [ 1; 2; 3; 4 ]; [ 0; 1; 2; 3; 4 ] ]</c>
     /// </example>
     ///
-    /// <example id="List.stairsRight-2">
+    /// <example id="List.stairsBack-2">
     /// <code lang="fsharp">
     /// let input: int list = []
-    /// input |> List.stairsRight
+    /// input |> List.stairsBack
     /// </code>
     /// Evaluates to <c>[]</c>
     /// </example>
-    val stairsRight: list: 'T list -> 'T list list
+    val stairsBack: list: 'T list -> 'T list list
