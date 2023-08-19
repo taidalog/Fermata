@@ -142,3 +142,29 @@ let ``List.padRight 1`` () =
     let actual = list |> List.padRight 8 '0'
     let expected = [ '2'; '4'; '6'; '8'; '0'; '0'; '0'; '0' ]
     Assert.Equal<char list>(expected, actual)
+
+[<Fact>]
+let ``List.stairs 1`` () =
+    let actual = List.stairs [ 0..4 ]
+    let expected = [ [ 0 ]; [ 0; 1 ]; [ 0; 1; 2 ]; [ 0; 1; 2; 3 ]; [ 0; 1; 2; 3; 4 ] ]
+    Assert.Equal<int list list>(expected, actual)
+
+[<Fact>]
+let ``List.stairs 2`` () =
+    let input: int list = []
+    let actual = input |> List.stairs
+    let expected = []
+    Assert.Equal<int list list>(expected, actual)
+
+[<Fact>]
+let ``List.stairsRight 1`` () =
+    let actual = List.stairsRight [ 0..4 ]
+    let expected = [ [ 4 ]; [ 3; 4 ]; [ 2; 3; 4 ]; [ 1; 2; 3; 4 ]; [ 0; 1; 2; 3; 4 ] ]
+    Assert.Equal<int list list>(expected, actual)
+
+[<Fact>]
+let ``List.stairsRight 2`` () =
+    let input: int list = []
+    let actual = input |> List.stairsRight
+    let expected = []
+    Assert.Equal<int list list>(expected, actual)

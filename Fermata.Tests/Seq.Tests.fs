@@ -142,3 +142,45 @@ let ``Seq.padRight 1`` () =
     let actual = source |> Seq.padRight 8 '0'
     let expected = seq [ '2'; '4'; '6'; '8'; '0'; '0'; '0'; '0' ]
     Assert.Equal<seq<char>>(expected, actual)
+
+[<Fact>]
+let ``Seq.stairs 1`` () =
+    let actual = Seq.stairs (seq [ 0..4 ])
+
+    let expected =
+        seq
+            [ seq [ 0 ]
+              seq [ 0; 1 ]
+              seq [ 0; 1; 2 ]
+              seq [ 0; 1; 2; 3 ]
+              seq [ 0; 1; 2; 3; 4 ] ]
+
+    Assert.Equal<seq<seq<int>>>(expected, actual)
+
+[<Fact>]
+let ``Seq.stairs 2`` () =
+    let input: seq<int> = seq []
+    let actual = input |> Seq.stairs
+    let expected = seq []
+    Assert.Equal<seq<seq<int>>>(expected, actual)
+
+[<Fact>]
+let ``Seq.stairsRight 1`` () =
+    let actual = Seq.stairsRight (seq [ 0..4 ])
+
+    let expected =
+        seq
+            [ seq [ 4 ]
+              seq [ 3; 4 ]
+              seq [ 2; 3; 4 ]
+              seq [ 1; 2; 3; 4 ]
+              seq [ 0; 1; 2; 3; 4 ] ]
+
+    Assert.Equal<seq<seq<int>>>(expected, actual)
+
+[<Fact>]
+let ``Seq.stairsRight 2`` () =
+    let input: seq<int> = seq []
+    let actual = input |> Seq.stairsRight
+    let expected = seq []
+    Assert.Equal<seq<seq<int>>>(expected, actual)

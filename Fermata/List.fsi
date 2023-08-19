@@ -266,3 +266,47 @@ module List =
     /// Evaluates to <c>['2'; '4'; '6'; '8'; '0'; '0'; '0'; '0']</c>
     /// </example>
     val padRight: length: int -> padding: 'T -> list: 'T list -> 'T list
+
+    /// <summary>Returns a new list of lists. The first list contains only the first element of the input list, and the last list contains all the original elements. If the elements are <c>i0..iN</c>, retuens <c>[ [ i0 ]; [ i0; i1 ]; ... [ i0; ... iN ] ]</c></summary>
+    ///
+    /// <param name="list"></param>
+    ///
+    /// <returns>A new list of lists. The first list contains only the first element of the input list, and the last list contains all the original elements. If the elements are <c>i0..iN</c>, retuens <c>[ [ i0 ]; [ i0; i1 ]; ... [ i0; ... iN ] ]</c></returns>
+    ///
+    /// <example id="List.stairs-1">
+    /// <code lang="fsharp">
+    /// List.stairs [ 0..4 ]
+    /// </code>
+    /// Evaluates to <c>[ [ 0 ]; [ 0; 1 ]; [ 0; 1; 2 ]; [ 0; 1; 2; 3 ]; [ 0; 1; 2; 3; 4 ] ]</c>
+    /// </example>
+    ///
+    /// <example id="List.stairs-2">
+    /// <code lang="fsharp">
+    /// let input: int list = []
+    /// input |> List.stairs
+    /// </code>
+    /// Evaluates to <c>[]</c>
+    /// </example>
+    val stairs: list: 'T list -> 'T list list
+
+    /// <summary>Returns a new list of lists. The first list contains only the last element of the input list, and the last list contains all the original elements. If the elements are <c>i0..iN</c>, retuens <c>[ [ iN ]; [ iN-1; iN ]; ... [ i0; ... iN ] ]</c></summary>
+    ///
+    /// <param name="list"></param>
+    ///
+    /// <returns>A new list of lists. The first list contains only the last element of the input list, and the last list contains all the original elements. If the elements are <c>i0..iN</c>, retuens <c>[ [ iN ]; [ iN-1; iN ]; ... [ i0; ... iN ] ]</c></returns>
+    ///
+    /// <example id="List.stairsRight-1">
+    /// <code lang="fsharp">
+    /// List.stairsRight [ 0..4 ]
+    /// </code>
+    /// Evaluates to <c>[ [ 4 ]; [ 3; 4 ]; [ 2; 3; 4 ]; [ 1; 2; 3; 4 ]; [ 0; 1; 2; 3; 4 ] ]</c>
+    /// </example>
+    ///
+    /// <example id="List.stairsRight-2">
+    /// <code lang="fsharp">
+    /// let input: int list = []
+    /// input |> List.stairsRight
+    /// </code>
+    /// Evaluates to <c>[]</c>
+    /// </example>
+    val stairsRight: list: 'T list -> 'T list list

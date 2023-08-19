@@ -30,3 +30,7 @@ module Seq =
     val padLeft: length: int -> padding: 'T -> source: seq<'T> -> seq<'T>
 
     val padRight: length: int -> padding: 'T -> source: seq<'T> -> seq<'T>
+
+    val stairs: source: seq<'T> -> seq<seq<'T>>
+
+    val stairsRight: source: seq<'T> -> seq<seq<'T>>

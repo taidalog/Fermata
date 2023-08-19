@@ -266,3 +266,47 @@ module Array =
     /// Evaluates to <c>[|'2'; '4'; '6'; '8'; '0'; '0'; '0'; '0'|]</c>
     /// </example>
     val padRight: length: int -> padding: 'T -> array: 'T[] -> 'T[]
+
+    /// <summary>Returns a new array of arrays. The first array contains only the first element of the input array, and the last array contains all the original elements. If the elements are <c>[| i0..iN |]</c>, retuens <c>[| [| i0 |]; [| i0; i1 |]; ... [| i0; ... iN |] |]</c></summary>
+    ///
+    /// <param name="array">The input array.</param>
+    ///
+    /// <returns>A new array of arrays. The first array contains only the first element of the input array, and the last array contains all the original elements. If the elements are <c>[| i0..iN |]</c>, retuens <c>[| [| i0 |]; [| i0; i1 |]; ... [| i0; ... iN |] |]</c></returns>
+    ///
+    /// <example id="Array.stairs-1">
+    /// <code lang="fsharp">
+    /// Array.stairs [| 0..4 |]
+    /// </code>
+    /// Evaluates to <c>[| [| 0 |]; [| 0; 1 |]; [| 0; 1; 2 |]; [| 0; 1; 2; 3 |]; [| 0; 1; 2; 3; 4 |] |]</c>
+    /// </example>
+    ///
+    /// <example id="Array.stairs-2">
+    /// <code lang="fsharp">
+    /// let input: int[] = [||]
+    /// input |> Array.stairs
+    /// </code>
+    /// Evaluates to <c>[||]</c>
+    /// </example>
+    val stairs: array: 'T array -> 'T array array
+
+    /// <summary>Returns a new array of arrays. The first array contains only the last element of the input array, and the last array contains all the original elements. If the elements are <c>[| i0..iN |]</c>, retuens <c>[| [| iN |]; [| iN-1; iN |]; ... [| i0; ... iN |] |]</c></summary>
+    ///
+    /// <param name="array">The input array.</param>
+    ///
+    /// <returns>A new array of arrays. The first array contains only the last element of the input array, and the last array contains all the original elements. If the elements are <c>[| i0..iN |]</c>, retuens <c>[| [| iN |]; [| iN-1; iN |]; ... [| i0; ... iN |] |]</c></returns>
+    ///
+    /// <example id="Array.stairsRight-1">
+    /// <code lang="fsharp">
+    /// Array.stairsRight [| 0..4 |]
+    /// </code>
+    /// Evaluates to <c>[| [| 4 |]; [| 3; 4 |]; [| 2; 3; 4 |]; [| 1; 2; 3; 4 |]; [| 0; 1; 2; 3; 4 |] |]</c>
+    /// </example>
+    ///
+    /// <example id="Array.stairsRight-2">
+    /// <code lang="fsharp">
+    /// let input: int[] = [||]
+    /// input |> Array.stairsRight
+    /// </code>
+    /// Evaluates to <c>[||]</c>
+    /// </example>
+    val stairsRight: array: 'T array -> 'T array array

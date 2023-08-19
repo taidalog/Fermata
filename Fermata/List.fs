@@ -60,3 +60,19 @@ module List =
             list
         else
             List.append list (List.replicate length' padding)
+
+    let stairs (list: 'T list) : 'T list list =
+        let rec loop list acc =
+            match list with
+            | [] -> acc
+            | _ :: t -> loop t ((List.rev list) :: acc)
+
+        loop (List.rev list) []
+
+    let stairsRight (list: 'T list) : 'T list list =
+        let rec loop list acc =
+            match list with
+            | [] -> acc
+            | _ :: t -> loop t (list :: acc)
+
+        loop list []

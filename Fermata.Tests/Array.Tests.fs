@@ -145,3 +145,35 @@ let ``Array.padRight 1`` () =
     let actual = array |> Array.padRight 8 '0'
     let expected = [| '2'; '4'; '6'; '8'; '0'; '0'; '0'; '0' |]
     Assert.Equal<char array>(expected, actual)
+
+[<Fact>]
+let ``Array.stairs 1`` () =
+    let actual = Array.stairs [| 0..4 |]
+
+    let expected =
+        [| [| 0 |]; [| 0; 1 |]; [| 0; 1; 2 |]; [| 0; 1; 2; 3 |]; [| 0; 1; 2; 3; 4 |] |]
+
+    Assert.Equal<int[][]>(expected, actual)
+
+[<Fact>]
+let ``Array.stairs 2`` () =
+    let input: int[] = [||]
+    let actual = input |> Array.stairs
+    let expected = [||]
+    Assert.Equal<int[][]>(expected, actual)
+
+[<Fact>]
+let ``Array.stairsRight 1`` () =
+    let actual = Array.stairsRight [| 0..4 |]
+
+    let expected =
+        [| [| 4 |]; [| 3; 4 |]; [| 2; 3; 4 |]; [| 1; 2; 3; 4 |]; [| 0; 1; 2; 3; 4 |] |]
+
+    Assert.Equal<int[][]>(expected, actual)
+
+[<Fact>]
+let ``Array.stairsRight 2`` () =
+    let input: int[] = [||]
+    let actual = input |> Array.stairsRight
+    let expected = [||]
+    Assert.Equal<int[][]>(expected, actual)
