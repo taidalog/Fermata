@@ -73,6 +73,20 @@ let ``Array.trySkip 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``Array.filteri 1`` () =
+    let actual = [| 0; 2; 6; 7; 9; 12 |] |> Array.filteri (fun i x -> (i * x) % 2 = 0)
+    let expected = [| 0; 2; 6; 9; 12 |]
+    Assert.Equal<int[]>(expected, actual)
+
+[<Fact>]
+let ``Array.filteri 2`` () =
+    let actual =
+        [| "hey"; "F#"; "" |] |> Array.filteri (fun i x -> (i * String.length x) < 0)
+
+    let expected = [||]
+    Assert.Equal<string[]>(expected, actual)
+
+[<Fact>]
 let ``Array.filterIndex 1`` () =
     let inputs = [| "A"; "B"; "A"; "C"; "C"; "A" |]
     let actual = inputs |> Array.filterIndex (fun x -> x = "A")

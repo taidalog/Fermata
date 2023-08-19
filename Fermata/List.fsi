@@ -126,6 +126,29 @@ module List =
     /// </example>
     val trySkip: count: int -> list: 'T list -> 'T list option
 
+    /// <summary>Returns a new collection containing only the elements of the collection for which the given predicate returns "true". The integer index passed to the function indicates the index (from 0) of element being filtered.</summary>
+    ///
+    /// <param name="predicate">The function to test the input elements.</param>
+    ///
+    /// <param name="list">The input list.</param>
+    ///
+    /// <returns>A list containing only the elements that satisfy the predicate.</returns>
+    ///
+    /// <example id="List.filteri-1">
+    /// <code lang="fsharp">
+    /// [ 0; 2; 6; 7; 9; 12 ] |> List.filteri (fun i x -> (i * x) % 2 = 0)
+    /// </code>
+    /// Evaluates to <c>[ 0; 2; 6; 9; 12 ]</c>
+    /// </example>
+    ///
+    /// <example id="List.filteri-2">
+    /// <code lang="fsharp">
+    /// [ "hey"; "F#"; "" ] |> List.filteri (fun i x -> (i * String.length x) < 0)
+    /// </code>
+    /// Evaluates to <c>[]</c>
+    /// </example>
+    val filteri: predicate: (int -> 'T -> bool) -> list: 'T list -> 'T list
+
     /// <summary>Returns a list of integer indexes (from 0) of the elements of the list
     /// for which the given predicate returns true.</summary>
     ///

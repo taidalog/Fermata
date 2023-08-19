@@ -126,6 +126,29 @@ module Array =
     /// </example>
     val trySkip: count: int -> array: 'T array -> 'T array option
 
+    /// <summary>Returns a new collection containing only the elements of the collection for which the given predicate returns "true". The integer index passed to the function indicates the index (from 0) of element being filtered.</summary>
+    ///
+    /// <param name="predicate">The function to test the input elements.</param>
+    ///
+    /// <param name="array">The input array.</param>
+    ///
+    /// <returns>An array containing only the elements that satisfy the predicate.</returns>
+    ///
+    /// <example id="Array.filteri-1">
+    /// <code lang="fsharp">
+    /// [| 0; 2; 6; 7; 9; 12 |] |> Array.filteri (fun i x -> (i * x) % 2 = 0)
+    /// </code>
+    /// Evaluates to <c>[| 0; 2; 6; 9; 12 |]</c>
+    /// </example>
+    ///
+    /// <example id="Array.filteri-2">
+    /// <code lang="fsharp">
+    /// [| "hey"; "F#"; "" |] |> Array.filteri (fun i x -> (i * String.length x) < 0)
+    /// </code>
+    /// Evaluates to <c>[||]</c>
+    /// </example>
+    val filteri: predicate: (int -> 'T -> bool) -> array: 'T array -> 'T array
+
     /// <summary>Returns an array of integer indexes (from 0) of the elements of the array
     /// for which the given predicate returns true.</summary>
     ///

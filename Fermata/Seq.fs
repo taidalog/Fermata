@@ -30,6 +30,12 @@ module Seq =
         else
             source |> Seq.skip count |> Some
 
+    let filteri (predicate: int -> 'T -> bool) (source: seq<'T>) : seq<'T> =
+        source
+        |> Seq.indexed
+        |> Seq.filter (fun (i, x) -> predicate i x)
+        |> Seq.map (fun (_, x) -> x)
+
     let filterIndex (predicate: 'T -> bool) (source: seq<'T>) : seq<int> =
         source
         |> Seq.indexed

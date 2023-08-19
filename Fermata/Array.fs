@@ -30,6 +30,12 @@ module Array =
         else
             array |> Array.skip count |> Some
 
+    let filteri (predicate: int -> 'T -> bool) (array: 'T[]) : 'T[] =
+        array
+        |> Array.indexed
+        |> Array.filter (fun (i, x) -> predicate i x)
+        |> Array.map (fun (_, x) -> x)
+
     let filterIndex (predicate: 'T -> bool) (array: 'T[]) : int[] =
         array
         |> Array.indexed

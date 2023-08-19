@@ -30,6 +30,12 @@ module List =
         else
             list |> List.skip count |> Some
 
+    let filteri (predicate: int -> 'T -> bool) (list: 'T list) : 'T list =
+        list
+        |> List.indexed
+        |> List.filter (fun (i, x) -> predicate i x)
+        |> List.map (fun (_, x) -> x)
+
     let filterIndex (predicate: 'T -> bool) (list: 'T list) : int list =
         list
         |> List.indexed

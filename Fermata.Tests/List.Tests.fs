@@ -73,6 +73,20 @@ let ``List.trySkip 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``List.filteri 1`` () =
+    let actual = [ 0; 2; 6; 7; 9; 12 ] |> List.filteri (fun i x -> (i * x) % 2 = 0)
+    let expected = [ 0; 2; 6; 9; 12 ]
+    Assert.Equal<int list>(expected, actual)
+
+[<Fact>]
+let ``List.filteri 2`` () =
+    let actual =
+        [ "hey"; "F#"; "" ] |> List.filteri (fun i x -> (i * String.length x) < 0)
+
+    let expected = []
+    Assert.Equal<string list>(expected, actual)
+
+[<Fact>]
 let ``List.filterIndex 1`` () =
     let inputs = [ "A"; "B"; "A"; "C"; "C"; "A" ]
     let actual = inputs |> List.filterIndex (fun x -> x = "A")

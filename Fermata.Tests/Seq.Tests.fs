@@ -73,6 +73,20 @@ let ``Seq.trySkip 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``Seq.filteri 1`` () =
+    let actual = seq [ 0; 2; 6; 7; 9; 12 ] |> Seq.filteri (fun i x -> (i * x) % 2 = 0)
+    let expected = seq [ 0; 2; 6; 9; 12 ]
+    Assert.Equal<seq<int>>(expected, actual)
+
+[<Fact>]
+let ``Seq.filteri 2`` () =
+    let actual =
+        seq [ "hey"; "F#"; "" ] |> Seq.filteri (fun i x -> (i * String.length x) < 0)
+
+    let expected = seq []
+    Assert.Equal<seq<string>>(expected, actual)
+
+[<Fact>]
 let ``Seq.filterIndex 1`` () =
     let source = seq [ "A"; "B"; "A"; "C"; "C"; "A" ]
     let actual = source |> Seq.filterIndex (fun x -> x = "A")

@@ -19,6 +19,8 @@ module Seq =
 
     val trySkip: count: int -> source: seq<'T> -> seq<'T> option
 
+    val filteri: predicate: (int -> 'T -> bool) -> source: seq<'T> -> seq<'T>
+
     val filterIndex: predicate: ('T -> bool) -> source: seq<'T> -> seq<int>
 
     val filterIndexPair: predicate: ('T -> bool) -> source: seq<'T> -> seq<(int * 'T)>
