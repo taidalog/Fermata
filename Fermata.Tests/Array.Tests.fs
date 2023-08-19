@@ -66,16 +66,16 @@ let ``Array.filterIndex 2`` () =
     Assert.Equal<int array>(expected, actual)
 
 [<Fact>]
-let ``Array.filteri 1`` () =
+let ``Array.filterIndexPair 1`` () =
     let inputs = [| 42; 16; 8; 20; 120; 4 |]
-    let actual: (int * int) array = inputs |> Array.filteri (fun x -> x % 10 = 0)
+    let actual: (int * int) array = inputs |> Array.filterIndexPair (fun x -> x % 10 = 0)
     let expected = [| (3, 20); (4, 120) |]
     Assert.Equal<(int * int) array>(expected, actual)
 
 [<Fact>]
-let ``Array.filteri 2`` () =
+let ``Array.filterIndexPair 2`` () =
     let inputs = [| 42; 16; 8; 20; 120; 4 |]
-    let actual: (int * int) array = inputs |> Array.filteri (fun x -> x % 2 = 1)
+    let actual: (int * int) array = inputs |> Array.filterIndexPair (fun x -> x % 2 = 1)
     let expected = [||]
     Assert.Equal<(int * int) array>(expected, actual)
 

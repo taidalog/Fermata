@@ -121,22 +121,22 @@ module List =
     ///
     /// <returns>A list of pairs of indexes and the elements that satisfy the predicate.</returns>
     ///
-    /// <example id="filteri-1">
+    /// <example id="filterindexpair-1">
     /// <code lang="fsharp">
     /// let inputs = [ 42; 16; 8; 20; 120; 4 ]
-    /// inputs |> List.filteri (fun x -> x % 10 = 0)
+    /// inputs |> List.filterIndexPair (fun x -> x % 10 = 0)
     /// </code>
     /// Evaluates to <c>[ (3, 20); (4, 120) ]</c>
     /// </example>
     ///
-    /// <example id="filteri-2">
+    /// <example id="filterindexpair-2">
     /// <code lang="fsharp">
     /// let inputs = [ 42; 16; 8; 20; 120; 4 ]
-    /// inputs |> List.filteri (fun x -> x % 2 = 1)
+    /// inputs |> List.filterIndexPair (fun x -> x % 2 = 1)
     /// </code>
     /// Evaluates to <c>[]</c>
     /// </example>
-    val filteri: predicate: ('T -> bool) -> list: 'T list -> (int * 'T) list
+    val filterIndexPair: predicate: ('T -> bool) -> list: 'T list -> (int * 'T) list
 
     /// <summary>Returns a new list that contains the common elements to the two input lists.</summary>
     ///
