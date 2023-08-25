@@ -59,6 +59,42 @@ let ``Seq.countWith 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``Seq.countBefore 1`` () =
+    let actual = seq [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> Seq.countBefore 0
+    let expected = 0
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Seq.countBefore 2`` () =
+    let actual = seq [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> Seq.countBefore 2
+    let expected = 1
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Seq.countBefore 3`` () =
+    let actual = seq [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> Seq.countBefore 5
+    let expected = 2
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Seq.countAfter 1`` () =
+    let actual = seq [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> Seq.countAfter 0
+    let expected = 2
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Seq.countAfter 2`` () =
+    let actual = seq [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> Seq.countAfter 2
+    let expected = 1
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Seq.countAfter 3`` () =
+    let actual = seq [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> Seq.countAfter 5
+    let expected = 0
+    Assert.Equal(expected, actual)
+
+[<Fact>]
 let ``Seq.trySkip 1`` () =
     let source = seq [ 0; 1; 2; 3; 4; 5 ]
     let actual = source |> Seq.trySkip 3 |> Option.map Seq.toList

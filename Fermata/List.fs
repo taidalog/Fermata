@@ -24,6 +24,12 @@ module List =
     let countWith (predicate: 'T -> bool) (list: 'T list) : int =
         list |> List.filter predicate |> List.length
 
+    let countBefore (index: int) (list: 'T list) : int =
+        list |> List.truncate index |> countWith ((=) (List.item index list))
+
+    let countAfter (index: int) (list: 'T list) : int =
+        list |> List.skip (index + 1) |> countWith ((=) (List.item index list))
+
     let trySkip (count: int) (list: 'T list) : 'T list option =
         if count > (list |> List.length) then
             None

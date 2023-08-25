@@ -99,6 +99,66 @@ module List =
     /// </example>
     val countWith: predicate: ('T -> bool) -> list: 'T list -> int
 
+    /// <summary>Return the number of the occurrences of an item before itself in a list.</summary>
+    ///
+    /// <param name="index">The index of the item to count.</param>
+    ///
+    /// <param name="list">The input list.</param>
+    ///
+    /// <returns>The number of the occurrences of an item before itself in a list.</returns>
+    ///
+    /// <example id="List.countBefore-1">
+    /// <code lang="fsharp">
+    /// [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countBefore 0
+    /// </code>
+    /// Evaluates to <c>0</c>
+    /// </example>
+    ///
+    /// <example id="List.countBefore-2">
+    /// <code lang="fsharp">
+    /// [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countBefore 2
+    /// </code>
+    /// Evaluates to <c>1</c>
+    /// </example>
+    ///
+    /// <example id="List.countBefore-3">
+    /// <code lang="fsharp">
+    /// [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countBefore 5
+    /// </code>
+    /// Evaluates to <c>2</c>
+    /// </example>
+    val countBefore: index: int -> list: 'T list -> int when 'T: equality
+
+    /// <summary>Return the number of the occurrences of an item after itself in a list.</summary>
+    ///
+    /// <param name="index">The index of the item to count.</param>
+    ///
+    /// <param name="list">The input list.</param>
+    ///
+    /// <returns>The number of the occurrences of an item after itself in a list.</returns>
+    ///
+    /// <example id="List.countAfter-1">
+    /// <code lang="fsharp">
+    /// [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countAfter 0
+    /// </code>
+    /// Evaluates to <c>2</c>
+    /// </example>
+    ///
+    /// <example id="List.countAfter-2">
+    /// <code lang="fsharp">
+    /// [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countAfter 2
+    /// </code>
+    /// Evaluates to <c>1</c>
+    /// </example>
+    ///
+    /// <example id="List.countAfter-3">
+    /// <code lang="fsharp">
+    /// [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countAfter 5
+    /// </code>
+    /// Evaluates to <c>0</c>
+    /// </example>
+    val countAfter: index: int -> list: 'T list -> int when 'T: equality
+
     /// <summary>Returns the list without the first N element, or
     /// returns <c>None</c> if the N exceeds the length of the input list.</summary>
     ///

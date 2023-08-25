@@ -17,6 +17,10 @@ module Seq =
 
     val countWith: predicate: ('T -> bool) -> source: seq<'T> -> int
 
+    val countBefore: index: int -> source: seq<'T> -> int when 'T: equality
+
+    val countAfter: index: int -> source: seq<'T> -> int when 'T: equality
+
     val trySkip: count: int -> source: seq<'T> -> seq<'T> option
 
     val filteri: predicate: (int -> 'T -> bool) -> source: seq<'T> -> seq<'T>

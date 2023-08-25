@@ -59,6 +59,42 @@ let ``Array.countWith 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``Array.countBefore 1`` () =
+    let actual = [| 'a'; 'b'; 'a'; 'c'; 'b'; 'a' |] |> Array.countBefore 0
+    let expected = 0
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Array.countBefore 2`` () =
+    let actual = [| 'a'; 'b'; 'a'; 'c'; 'b'; 'a' |] |> Array.countBefore 2
+    let expected = 1
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Array.countBefore 3`` () =
+    let actual = [| 'a'; 'b'; 'a'; 'c'; 'b'; 'a' |] |> Array.countBefore 5
+    let expected = 2
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Array.countAfter 1`` () =
+    let actual = [| 'a'; 'b'; 'a'; 'c'; 'b'; 'a' |] |> Array.countAfter 0
+    let expected = 2
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Array.countAfter 2`` () =
+    let actual = [| 'a'; 'b'; 'a'; 'c'; 'b'; 'a' |] |> Array.countAfter 2
+    let expected = 1
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``Array.countAfter 3`` () =
+    let actual = [| 'a'; 'b'; 'a'; 'c'; 'b'; 'a' |] |> Array.countAfter 5
+    let expected = 0
+    Assert.Equal(expected, actual)
+
+[<Fact>]
 let ``Array.trySkip 1`` () =
     let inputs = [| 0; 1; 2; 3; 4; 5 |]
     let actual = inputs |> Array.trySkip 3

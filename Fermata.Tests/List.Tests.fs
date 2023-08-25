@@ -59,6 +59,42 @@ let ``List.countWith 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``List.countBefore 1`` () =
+    let actual = [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countBefore 0
+    let expected = 0
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``List.countBefore 2`` () =
+    let actual = [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countBefore 2
+    let expected = 1
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``List.countBefore 3`` () =
+    let actual = [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countBefore 5
+    let expected = 2
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``List.countAfter 1`` () =
+    let actual = [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countAfter 0
+    let expected = 2
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``List.countAfter 2`` () =
+    let actual = [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countAfter 2
+    let expected = 1
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``List.countAfter 3`` () =
+    let actual = [ 'a'; 'b'; 'a'; 'c'; 'b'; 'a' ] |> List.countAfter 5
+    let expected = 0
+    Assert.Equal(expected, actual)
+
+[<Fact>]
 let ``List.trySkip 1`` () =
     let inputs = [ 0; 1; 2; 3; 4; 5 ]
     let actual = inputs |> List.trySkip 3
