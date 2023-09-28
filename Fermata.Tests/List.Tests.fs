@@ -255,3 +255,14 @@ let ``List.partitions 3`` () =
 
     let expected = [ [ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 ] ]
     Assert.Equal<int list list>(expected, actual)
+
+[<Fact>]
+let ``List.partitions 4`` () =
+    let input = [ 0..9 ]
+
+    let actual = input |> List.partitions (fun x y -> x < y)
+
+    let expected =
+        [ [ 0 ]; [ 1 ]; [ 2 ]; [ 3 ]; [ 4 ]; [ 5 ]; [ 6 ]; [ 7 ]; [ 8 ]; [ 9 ] ]
+
+    Assert.Equal<int list list>(expected, actual)
