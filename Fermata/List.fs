@@ -88,3 +88,14 @@ module List =
             | _ :: t -> loop t (list :: acc)
 
         loop list []
+
+    let partitions (predicate: 'T -> 'T -> bool) (list: 'T list) : 'T list list =
+        let states =
+            list
+            |> List.pairwise
+            |> List.scan (fun state (x, y) -> state + if predicate x y then 1 else 0) 0
+
+        List.zip list states
+        |> List.groupBy snd
+        |> List.map snd
+        |> List.map (List.map fst)

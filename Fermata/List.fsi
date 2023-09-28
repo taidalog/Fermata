@@ -393,3 +393,5 @@ module List =
     /// Evaluates to <c>[]</c>
     /// </example>
     val stairsBack: list: 'T list -> 'T list list
+
+    val partitions: predicate: ('T -> 'T -> bool) -> list: 'T list -> 'T list list
