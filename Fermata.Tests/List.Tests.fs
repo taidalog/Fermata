@@ -161,6 +161,14 @@ let ``List.intersect 1`` () =
 [<Fact>]
 let ``List.intersect 2`` () =
     let list1 = [ 0; 1; 2; 3; 4 ]
+    let list2 = [ 5; 6; 7; 8; 9 ]
+    let actual = List.intersect list1 list2
+    let expected = []
+    Assert.Equal<int list>(expected, actual)
+
+[<Fact>]
+let ``List.intersect 3`` () =
+    let list1 = [ 0; 1; 2; 3; 4 ]
     let list2 = []
     let actual = List.intersect list1 list2
     let expected = []

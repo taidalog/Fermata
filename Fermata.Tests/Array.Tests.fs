@@ -164,6 +164,14 @@ let ``Array.intersect 1`` () =
 [<Fact>]
 let ``Array.intersect 2`` () =
     let array1 = [| 0; 1; 2; 3; 4 |]
+    let array2 = [| 5; 6; 7; 8; 9 |]
+    let actual = Array.intersect array1 array2
+    let expected = [||]
+    Assert.Equal<int array>(expected, actual)
+
+[<Fact>]
+let ``Array.intersect 3`` () =
+    let array1 = [| 0; 1; 2; 3; 4 |]
     let array2 = [||]
     let actual = Array.intersect array1 array2
     let expected = [||]

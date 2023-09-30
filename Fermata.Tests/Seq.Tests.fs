@@ -161,6 +161,14 @@ let ``Seq.intersect 1`` () =
 [<Fact>]
 let ``Seq.intersect 2`` () =
     let source1 = seq [ 0; 1; 2; 3; 4 ]
+    let source2 = seq [ 5; 6; 7; 8; 9 ]
+    let actual = Seq.intersect source1 source2
+    let expected = seq []
+    Assert.Equal<seq<int>>(expected, actual)
+
+[<Fact>]
+let ``Seq.intersect 3`` () =
+    let source1 = seq [ 0; 1; 2; 3; 4 ]
     let source2 = seq []
     let actual = Seq.intersect source1 source2
     let expected = seq []
