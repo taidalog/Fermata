@@ -162,6 +162,14 @@ let ``Array.intersect 1`` () =
     Assert.Equal<int array>(expected, actual)
 
 [<Fact>]
+let ``Array.intersect 2`` () =
+    let array1 = [| 0; 1; 2; 3; 4 |]
+    let array2 = [||]
+    let actual = Array.intersect array1 array2
+    let expected = [||]
+    Assert.Equal<int array>(expected, actual)
+
+[<Fact>]
 let ``Array.splitWith 1`` () =
     let array = [| 0; 2; 4; 6; 8 |]
     let actual: int array * int array = array |> Array.splitWith (fun x -> x > 5)
@@ -190,11 +198,25 @@ let ``Array.padLeft 1`` () =
     Assert.Equal<char array>(expected, actual)
 
 [<Fact>]
+let ``Array.padLeft 2`` () =
+    let array = [||]
+    let actual = array |> Array.padLeft 4 0
+    let expected = [| 0; 0; 0; 0 |]
+    Assert.Equal<int array>(expected, actual)
+
+[<Fact>]
 let ``Array.padRight 1`` () =
     let array = [| '2'; '4'; '6'; '8' |]
     let actual = array |> Array.padRight 8 '0'
     let expected = [| '2'; '4'; '6'; '8'; '0'; '0'; '0'; '0' |]
     Assert.Equal<char array>(expected, actual)
+
+[<Fact>]
+let ``Array.padRight 2`` () =
+    let array = [||]
+    let actual = array |> Array.padRight 4 0
+    let expected = [| 0; 0; 0; 0 |]
+    Assert.Equal<int array>(expected, actual)
 
 [<Fact>]
 let ``Array.stairs 1`` () =

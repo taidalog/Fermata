@@ -159,6 +159,14 @@ let ``Seq.intersect 1`` () =
     Assert.Equal<seq<int>>(expected, actual)
 
 [<Fact>]
+let ``Seq.intersect 2`` () =
+    let source1 = seq [ 0; 1; 2; 3; 4 ]
+    let source2 = seq []
+    let actual = Seq.intersect source1 source2
+    let expected = seq []
+    Assert.Equal<seq<int>>(expected, actual)
+
+[<Fact>]
 let ``Seq.splitWith 1`` () =
     let source = seq [ 0; 2; 4; 6; 8 ]
     let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x > 5)
@@ -187,11 +195,25 @@ let ``Seq.padLeft 1`` () =
     Assert.Equal<seq<char>>(expected, actual)
 
 [<Fact>]
+let ``Seq.padLeft 2`` () =
+    let source = seq []
+    let actual = source |> Seq.padLeft 4 0
+    let expected = seq [ 0; 0; 0; 0 ]
+    Assert.Equal<seq<int>>(expected, actual)
+
+[<Fact>]
 let ``Seq.padRight 1`` () =
     let source = seq [ '2'; '4'; '6'; '8' ]
     let actual = source |> Seq.padRight 8 '0'
     let expected = seq [ '2'; '4'; '6'; '8'; '0'; '0'; '0'; '0' ]
     Assert.Equal<seq<char>>(expected, actual)
+
+[<Fact>]
+let ``Seq.padRight 2`` () =
+    let source = seq []
+    let actual = source |> Seq.padRight 4 0
+    let expected = seq [ 0; 0; 0; 0 ]
+    Assert.Equal<seq<int>>(expected, actual)
 
 [<Fact>]
 let ``Seq.stairs 1`` () =

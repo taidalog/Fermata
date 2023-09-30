@@ -159,6 +159,14 @@ let ``List.intersect 1`` () =
     Assert.Equal<int list>(expected, actual)
 
 [<Fact>]
+let ``List.intersect 2`` () =
+    let list1 = [ 0; 1; 2; 3; 4 ]
+    let list2 = []
+    let actual = List.intersect list1 list2
+    let expected = []
+    Assert.Equal<int list>(expected, actual)
+
+[<Fact>]
 let ``List.splitWith 1`` () =
     let list = [ 0; 2; 4; 6; 8 ]
     let actual: int list * int list = list |> List.splitWith (fun x -> x > 5)
@@ -187,11 +195,25 @@ let ``List.padLeft 1`` () =
     Assert.Equal<char list>(expected, actual)
 
 [<Fact>]
+let ``List.padLeft 2`` () =
+    let list = []
+    let actual = list |> List.padLeft 4 0
+    let expected = [ 0; 0; 0; 0 ]
+    Assert.Equal<int list>(expected, actual)
+
+[<Fact>]
 let ``List.padRight 1`` () =
     let list = [ '2'; '4'; '6'; '8' ]
     let actual = list |> List.padRight 8 '0'
     let expected = [ '2'; '4'; '6'; '8'; '0'; '0'; '0'; '0' ]
     Assert.Equal<char list>(expected, actual)
+
+[<Fact>]
+let ``List.padRight 2`` () =
+    let list = []
+    let actual = list |> List.padRight 4 0
+    let expected = [ 0; 0; 0; 0 ]
+    Assert.Equal<int list>(expected, actual)
 
 [<Fact>]
 let ``List.stairs 1`` () =
