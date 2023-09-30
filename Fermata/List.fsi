@@ -277,6 +277,24 @@ module List =
     /// </code>
     /// Evaluates to <c>[0; 2; 4]</c>
     /// </example>
+    ///
+    /// <example id="intersect-2">
+    /// <code lang="fsharp">
+    /// let list1 = [ 0; 1; 2; 3; 4 ]
+    /// let list2 = [ 5; 6; 7; 8; 9 ]
+    /// List.intersect list1 list2
+    /// </code>
+    /// Evaluates to <c>[]</c>
+    /// </example>
+    ///
+    /// <example id="intersect-3">
+    /// <code lang="fsharp">
+    /// let list1 = [ 0; 1; 2; 3; 4 ]
+    /// let list2 = []
+    /// List.intersect list1 list2
+    /// </code>
+    /// Evaluates to <c>[]</c>
+    /// </example>
     val intersect: list1: 'T list -> list2: 'T list -> 'T list when 'T: equality
 
     /// <summary>Splits the list into two lists before the first element for which the given predicate returns True.</summary>
@@ -329,6 +347,14 @@ module List =
     /// </code>
     /// Evaluates to <c>['0'; '0'; '0'; '0'; '2'; '4'; '6'; '8']</c>
     /// </example>
+    ///
+    /// <example id="padleft-2">
+    /// <code lang="fsharp">
+    /// let list = []
+    /// list |> List.padLeft 4 0
+    /// </code>
+    /// Evaluates to <c>[ 0; 0; 0; 0 ]</c>
+    /// </example>
     val padLeft: length: int -> padding: 'T -> list: 'T list -> 'T list
 
     /// <summary>Returns a new list to which the specified value is appended to be of the specified length.</summary>
@@ -347,6 +373,14 @@ module List =
     /// list |> List.padRight 8 '0'
     /// </code>
     /// Evaluates to <c>['2'; '4'; '6'; '8'; '0'; '0'; '0'; '0']</c>
+    /// </example>
+    ///
+    /// <example id="padright-2">
+    /// <code lang="fsharp">
+    /// let list = []
+    /// list |> List.padRight 4 0
+    /// </code>
+    /// Evaluates to <c>[ 0; 0; 0; 0 ]</c>
     /// </example>
     val padRight: length: int -> padding: 'T -> list: 'T list -> 'T list
 

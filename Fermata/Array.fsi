@@ -277,6 +277,24 @@ module Array =
     /// </code>
     /// Evaluates to <c>[|0; 2; 4|]</c>
     /// </example>
+    ///
+    /// <example id="intersect-2">
+    /// <code lang="fsharp">
+    /// let array1 = [| 0; 1; 2; 3; 4 |]
+    /// let array2 = [| 5; 6; 7; 8; 9 |]
+    /// Array.intersect array1 array2
+    /// </code>
+    /// Evaluates to <c>[||]</c>
+    /// </example>
+    ///
+    /// <example id="intersect-3">
+    /// <code lang="fsharp">
+    /// let array1 = [| 0; 1; 2; 3; 4 |]
+    /// let array2 = [||]
+    /// Array.intersect array1 array2
+    /// </code>
+    /// Evaluates to <c>[||]</c>
+    /// </example>
     val intersect: array1: 'T array -> array2: 'T array -> 'T array when 'T: equality
 
     /// <summary>Splits the array into two arrays before the first element for which the given predicate returns True.</summary>
@@ -329,6 +347,14 @@ module Array =
     /// </code>
     /// Evaluates to <c>[|'0'; '0'; '0'; '0'; '2'; '4'; '6'; '8'|]</c>
     /// </example>
+    ///
+    /// <example id="padleft-2">
+    /// <code lang="fsharp">
+    /// let array = [||]
+    /// array |> Array.padLeft 4 0
+    /// </code>
+    /// Evaluates to <c>[| 0; 0; 0; 0 |]</c>
+    /// </example>
     val padLeft: length: int -> padding: 'T -> array: 'T[] -> 'T[]
 
     /// <summary>Returns a new array to which the specified value is appended to be of the specified length.</summary>
@@ -347,6 +373,14 @@ module Array =
     /// array |> Array.padRight 8 '0'
     /// </code>
     /// Evaluates to <c>[|'2'; '4'; '6'; '8'; '0'; '0'; '0'; '0'|]</c>
+    /// </example>
+    ///
+    /// <example id="padright-2">
+    /// <code lang="fsharp">
+    /// let array = [||]
+    /// array |> Array.padRight 4 0
+    /// </code>
+    /// Evaluates to <c>[| 0; 0; 0; 0 |]</c>
     /// </example>
     val padRight: length: int -> padding: 'T -> array: 'T[] -> 'T[]
 
