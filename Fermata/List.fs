@@ -89,7 +89,7 @@ module List =
 
         loop list []
 
-    let partitions (predicate: 'T -> 'T -> bool) (list: 'T list) : 'T list list =
+    let splits (predicate: 'T -> 'T -> bool) (list: 'T list) : 'T list list =
         list
         |> List.pairwise
         |> List.fold

@@ -93,7 +93,7 @@ module Seq =
         |> Seq.toList
         |> fun x -> loop x [] |> List.map List.toSeq |> List.toSeq
 
-    let partitions (predicate: 'T -> 'T -> bool) (source: seq<'T>) : seq<seq<'T>> =
+    let splits (predicate: 'T -> 'T -> bool) (source: seq<'T>) : seq<seq<'T>> =
         source
         |> Seq.pairwise
         |> Seq.fold

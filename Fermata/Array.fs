@@ -95,7 +95,7 @@ module Array =
         |> Array.toList
         |> fun x -> loop x [] |> List.toArray |> Array.map List.toArray
 
-    let partitions (predicate: 'T -> 'T -> bool) (array: 'T[]) : 'T[][] =
+    let splits (predicate: 'T -> 'T -> bool) (array: 'T[]) : 'T[][] =
         array
         |> Array.pairwise
         |> Array.fold
