@@ -234,3 +234,70 @@ let ``Seq.stairsBack 2`` () =
     let actual = input |> Seq.stairsBack
     let expected = seq []
     Assert.Equal<seq<seq<int>>>(expected, actual)
+
+[<Fact>]
+let ``Seq.partitions 1`` () =
+    let actual = "AAAABBCDDCAA" |> Seq.partitions (<>)
+
+    let expected =
+        seq
+            [ seq [ 'A'; 'A'; 'A'; 'A' ]
+              seq [ 'B'; 'B' ]
+              seq [ 'C' ]
+              seq [ 'D'; 'D' ]
+              seq [ 'C' ]
+              seq [ 'A'; 'A' ] ]
+
+    Assert.Equal<seq<seq<char>>>(expected, actual)
+
+[<Fact>]
+let ``Seq.partitions 2`` () =
+    let digit value =
+        match value with
+        | 0 -> 1
+        | _ -> value |> abs |> float |> log10 |> int |> ((+) 1)
+
+    let input = seq [ 0; 2; 12; 42; 128; 666; 6; 928; 1024 ]
+
+    let actual = input |> Seq.partitions (fun x y -> digit x <> digit y)
+
+    let expected =
+        seq
+            [ seq [ 0; 2 ]
+              seq [ 12; 42 ]
+              seq [ 128; 666 ]
+              seq [ 6 ]
+              seq [ 928 ]
+              seq [ 1024 ] ]
+
+    Assert.Equal<seq<seq<int>>>(expected, actual)
+
+[<Fact>]
+let ``Seq.partitions 3`` () =
+    let input = seq [ 0..9 ]
+
+    let actual = input |> Seq.partitions (fun x y -> x > y)
+
+    let expected = seq [ seq [ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 ] ]
+    Assert.Equal<seq<seq<int>>>(expected, actual)
+
+[<Fact>]
+let ``Seq.partitions 4`` () =
+    let input = seq [ 0..9 ]
+
+    let actual = input |> Seq.partitions (fun x y -> x < y)
+
+    let expected =
+        seq
+            [ seq [ 0 ]
+              seq [ 1 ]
+              seq [ 2 ]
+              seq [ 3 ]
+              seq [ 4 ]
+              seq [ 5 ]
+              seq [ 6 ]
+              seq [ 7 ]
+              seq [ 8 ]
+              seq [ 9 ] ]
+
+    Assert.Equal<seq<seq<int>>>(expected, actual)

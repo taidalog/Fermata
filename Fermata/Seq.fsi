@@ -40,3 +40,5 @@ module Seq =
     val stairs: source: seq<'T> -> seq<seq<'T>>
 
     val stairsBack: source: seq<'T> -> seq<seq<'T>>
+
+    val partitions: predicate: ('T -> 'T -> bool) -> source: seq<'T> -> seq<seq<'T>>

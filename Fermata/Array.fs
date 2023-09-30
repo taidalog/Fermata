@@ -94,3 +94,14 @@ module Array =
         array
         |> Array.toList
         |> fun x -> loop x [] |> List.toArray |> Array.map List.toArray
+
+    let partitions (predicate: 'T -> 'T -> bool) (array: 'T[]) : 'T[][] =
+        array
+        |> Array.pairwise
+        |> Array.fold
+            (fun acc (x, y) ->
+                if predicate x y then
+                    Array.append acc [| [| y |] |]
+                else
+                    Array.append (fore acc) [| (Array.append (Array.last acc) [| y |]) |])
+            [| [| Array.head array |] |]

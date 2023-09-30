@@ -92,3 +92,14 @@ module Seq =
         source
         |> Seq.toList
         |> fun x -> loop x [] |> List.map List.toSeq |> List.toSeq
+
+    let partitions (predicate: 'T -> 'T -> bool) (source: seq<'T>) : seq<seq<'T>> =
+        source
+        |> Seq.pairwise
+        |> Seq.fold
+            (fun acc (x, y) ->
+                if predicate x y then
+                    Seq.append acc (seq [ (seq [ y ]) ])
+                else
+                    Seq.append (fore acc) [ (Seq.append (Seq.last acc) [ y ]) ])
+            (seq [ seq ([ Seq.head source ]) ])

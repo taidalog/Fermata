@@ -393,3 +393,47 @@ module Array =
     /// Evaluates to <c>[||]</c>
     /// </example>
     val stairsBack: array: 'T array -> 'T array array
+
+    /// <summary>Splits the input array before the elements for which the given predicate returns True.</summary>
+    ///
+    /// <param name="predicate">The function to test the input elements.</param>
+    ///
+    /// <param name="array">The input array.</param>
+    ///
+    /// <returns>The input array before the elements for which the given predicate returns True.</returns>
+    ///
+    /// <example id="Array.partitions-1">
+    /// <code lang="fsharp">
+    /// "AAAABBCDDCAA" |> Seq.toArray |> Array.partitions (<>)
+    /// </code>
+    /// Evaluates to <c>[| [| 'A'; 'A'; 'A'; 'A' |]; [| 'B'; 'B' |]; [| 'C' |]; [| 'D'; 'D' |]; [| 'C' |]; [| 'A'; 'A' |] |]</c>
+    /// </example>
+    ///
+    /// <example id="Array.partitions-2">
+    /// <code lang="fsharp">
+    /// let digit value =
+    ///     match value with
+    ///     | 0 -> 1
+    ///     | _ -> value |> abs |> float |> log10 |> int |> ((+) 1)
+    /// let input = [| 0; 2; 12; 42; 128; 666; 6; 928; 1024 |]
+    /// input |> Array.partitions (fun x y -> digit x <> digit y)
+    /// </code>
+    /// Evaluates to <c>[| [| 0; 2 |]; [| 12; 42 |]; [| 128; 666 |]; [| 6 |]; [| 928 |]; [| 1024 |] |]</c>
+    /// </example>
+    ///
+    /// <example id="Array.partitions-3">
+    /// <code lang="fsharp">
+    /// let input = [| 0..9 |]
+    /// input |> Array.partitions (fun x y -> x > y)
+    /// </code>
+    /// Evaluates to <c>[| [| 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 |] |]</c>
+    /// </example>
+    ///
+    /// <example id="Array.partitions-4">
+    /// <code lang="fsharp">
+    /// let input = [| 0..9 |]
+    /// input |> Array.partitions (fun x y -> x < y)
+    /// </code>
+    /// Evaluates to <c>[| [| 0 |]; [| 1 |]; [| 2 |]; [| 3 |]; [| 4 |]; [| 5 |]; [| 6 |]; [| 7 |]; [| 8 |]; [| 9 |] |]</c>
+    /// </example>
+    val partitions: predicate: ('T -> 'T -> bool) -> array: 'T[] -> 'T[][]
