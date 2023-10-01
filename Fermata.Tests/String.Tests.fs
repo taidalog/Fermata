@@ -16,6 +16,12 @@ let ``head-1`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``head-2`` () =
+    let actual = "A" |> String.head
+    let expected = "A"
+    Assert.Equal(expected, actual)
+
+[<Fact>]
 let ``tryhead-1`` () =
     let actual = "Cheshire Cat" |> String.tryHead
     let expected = Some "C"
@@ -31,6 +37,12 @@ let ``tryhead-2`` () =
 let ``tail-1`` () =
     let actual = "cat" |> String.tail
     let expected = "at"
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``tail-2`` () =
+    let actual = "t" |> String.tail
+    let expected = ""
     Assert.Equal(expected, actual)
 
 [<Fact>]
@@ -54,6 +66,12 @@ let ``trytail-3`` () =
 [<Fact>]
 let ``last-1`` () =
     let actual = "The" |> String.last
+    let expected = "e"
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``last-2`` () =
+    let actual = "e" |> String.last
     let expected = "e"
     Assert.Equal(expected, actual)
 
@@ -126,6 +144,13 @@ let ``replace-1`` () =
     let input = "The quick brown fox jumps..."
     let actual = input |> String.replace "quick" "lazy"
     let expected = "The lazy brown fox jumps..."
+    Assert.Equal(expected, actual)
+
+[<Fact>]
+let ``replace-2`` () =
+    let input = "The quick brown fox jumps..."
+    let actual = input |> String.replace "lazy" "quick"
+    let expected = "The quick brown fox jumps..."
     Assert.Equal(expected, actual)
 
 [<Fact>]
@@ -203,6 +228,12 @@ let ``rev-1`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
+let ``rev-2`` () =
+    let actual = "" |> String.rev
+    let expected = ""
+    Assert.Equal(expected, actual)
+
+[<Fact>]
 let ``chunkbysize-1`` () =
     let actual = "abcdefghijk" |> String.chunkBySize 4
 
@@ -213,6 +244,12 @@ let ``chunkbysize-1`` () =
             "ijk"
         }
 
+    Assert.Equal<seq<string>>(expected, actual)
+
+[<Fact>]
+let ``chunkbysize-2`` () =
+    let actual = "" |> String.chunkBySize 4
+    let expected = seq []
     Assert.Equal<seq<string>>(expected, actual)
 
 [<Fact>]
@@ -229,9 +266,21 @@ let ``chunkbysize-right-1`` () =
     Assert.Equal<seq<string>>(expected, actual)
 
 [<Fact>]
+let ``chunkbysize-right-2`` () =
+    let actual = "" |> String.chunkBySizeRight 4
+    let expected = seq []
+    Assert.Equal<seq<string>>(expected, actual)
+
+[<Fact>]
 let ``split-1`` () =
     let actual = "127.0.0.1" |> String.split '.'
     let expected = [ "127"; "0"; "0"; "1" ]
+    Assert.Equal<seq<string>>(expected, actual)
+
+[<Fact>]
+let ``split-2`` () =
+    let actual = "127.0.0.1" |> String.split ';'
+    let expected = [ "127.0.0.1" ]
     Assert.Equal<seq<string>>(expected, actual)
 
 [<Fact>]
