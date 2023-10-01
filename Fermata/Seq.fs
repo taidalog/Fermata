@@ -74,24 +74,15 @@ module Seq =
             Seq.append source (Seq.replicate length' padding)
 
     let stairs (source: seq<'T>) : seq<seq<'T>> =
-        let rec loop list acc =
-            match list with
-            | [] -> acc
-            | _ :: t -> loop t ((List.rev list) :: acc)
-
         source
-        |> Seq.toList
-        |> fun x -> loop (List.rev x) [] |> List.map List.toSeq |> List.toSeq
+        |> Seq.scan (fun acc x -> Seq.append acc (seq { x })) Seq.empty
+        |> Seq.tail
 
     let stairsBack (source: seq<'T>) : seq<seq<'T>> =
-        let rec loop list acc =
-            match list with
-            | [] -> acc
-            | _ :: t -> loop t (list :: acc)
-
         source
-        |> Seq.toList
-        |> fun x -> loop x [] |> List.map List.toSeq |> List.toSeq
+        |> Seq.rev
+        |> Seq.scan (fun acc x -> Seq.append (seq { x }) acc) Seq.empty
+        |> Seq.tail
 
     let splits (predicate: 'T -> 'T -> bool) (source: seq<'T>) : seq<seq<'T>> =
         source

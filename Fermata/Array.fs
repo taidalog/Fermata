@@ -76,24 +76,13 @@ module Array =
             Array.append array (Array.replicate length' padding)
 
     let stairs (array: 'T[]) : 'T[][] =
-        let rec loop list acc =
-            match list with
-            | [] -> acc
-            | _ :: t -> loop t ((List.rev list) :: acc)
-
-        array
-        |> Array.toList
-        |> fun x -> loop (List.rev x) [] |> List.toArray |> Array.map List.toArray
+        array |> Array.scan (fun acc x -> Array.append acc [| x |]) [||] |> Array.tail
 
     let stairsBack (array: 'T[]) : 'T[][] =
-        let rec loop list acc =
-            match list with
-            | [] -> acc
-            | _ :: t -> loop t (list :: acc)
-
         array
-        |> Array.toList
-        |> fun x -> loop x [] |> List.toArray |> Array.map List.toArray
+        |> Array.rev
+        |> Array.scan (fun acc x -> Array.append [| x |] acc) [||]
+        |> Array.tail
 
     let splits (predicate: 'T -> 'T -> bool) (array: 'T[]) : 'T[][] =
         array

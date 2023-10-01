@@ -74,20 +74,10 @@ module List =
             List.append list (List.replicate length' padding)
 
     let stairs (list: 'T list) : 'T list list =
-        let rec loop list acc =
-            match list with
-            | [] -> acc
-            | _ :: t -> loop t ((List.rev list) :: acc)
-
-        loop (List.rev list) []
+        list |> List.scan (fun acc x -> x :: acc) [] |> List.tail |> List.map List.rev
 
     let stairsBack (list: 'T list) : 'T list list =
-        let rec loop list acc =
-            match list with
-            | [] -> acc
-            | _ :: t -> loop t (list :: acc)
-
-        loop list []
+        list |> List.rev |> List.scan (fun acc x -> x :: acc) [] |> List.tail
 
     let splits (predicate: 'T -> 'T -> bool) (list: 'T list) : 'T list list =
         list
