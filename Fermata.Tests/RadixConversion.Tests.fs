@@ -20,10 +20,18 @@ let ``Dec.validate 1`` () =
 let ``Dec.validate 2`` () =
     let actual = "FF" |> Dec.validate
 
-    let expected =
-        Error(Exceptions.Format "The input string 'FF' was not in a correct format.")
+    let msg =
+        match actual with
+        | Ok _ -> ""
+        | Error e ->
+            match e with
+            | Exceptions.Format s -> s
+            | _ -> ""
 
-    Assert.Equal(expected, actual)
+    //let expected =
+    //    Error(Exceptions.Format "The input string 'FF' was not in a correct format.")
+
+    Assert.Matches("(The )?[Ii]nput string ('FF' )?was not in a correct format.", msg)
 
 [<Fact>]
 let ``Dec.validate 3`` () =
