@@ -21,6 +21,13 @@ module String =
     /// </code>
     /// Evaluates to <c>"C"</c>
     /// </example>
+    ///
+    /// <example id="head-2">
+    /// <code lang="fsharp">
+    /// "A" |> String.head
+    /// </code>
+    /// Evaluates to <c>"A"</c>
+    /// </example>
     val head: str: string -> string
 
     /// <summary>Returns the first character of the string, or
@@ -57,6 +64,13 @@ module String =
     /// "cat" |> String.tail
     /// </code>
     /// Evaluates to <c>"at"</c>
+    /// </example>
+    ///
+    /// <example id="tail-2">
+    /// <code lang="fsharp">
+    /// "t" |> String.tail
+    /// </code>
+    /// Evaluates to <c>""</c>
     /// </example>
     val tail: str: string -> string
 
@@ -99,6 +113,13 @@ module String =
     /// <example id="last-1">
     /// <code lang="fsharp">
     /// "The" |> String.last
+    /// </code>
+    /// Evaluates to <c>"e"</c>
+    /// </example>
+    ///
+    /// <example id="last-2">
+    /// <code lang="fsharp">
+    /// "e" |> String.last
     /// </code>
     /// Evaluates to <c>"e"</c>
     /// </example>
@@ -230,6 +251,14 @@ module String =
     /// |> String.replace "quick" "lazy"
     /// </code>
     /// Evaluates to <c>"The lazy brown fox jumps..."</c>
+    /// </example>
+    ///
+    /// <example id="replace-2">
+    /// <code lang="fsharp">
+    /// "The quick brown fox jumps..."
+    /// |> String.replace "lazy" "quick"
+    /// </code>
+    /// Evaluates to <c>"The quick brown fox jumps..."</c>
     /// </example>
     val replace: oldString: string -> newString: string -> str: string -> string
 
@@ -385,6 +414,13 @@ module String =
     /// </code>
     /// Evaluates to <c>"CBA"</c>
     /// </example>
+    ///
+    /// <example id="rev-2">
+    /// <code lang="fsharp">
+    /// "" |> String.rev
+    /// </code>
+    /// Evaluates to <c>""</c>
+    /// </example>
     val rev: str: string -> string
 
     /// <summary>Divides the input string into chunks of length at most <paramref name="chunkSize"/>.</summary>
@@ -400,6 +436,13 @@ module String =
     /// "abcdefghijk" |> String.chunkBySize 4
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>seq {"abcd"; "efgh"; "ijk"}</c>
+    /// </example>
+    ///
+    /// <example id="chunkbysize-2">
+    /// <code lang="fsharp">
+    /// "" |> String.chunkBySize 4
+    /// </code>
+    /// Evaluates to <c>seq []</c>
     /// </example>
     val chunkBySize: chunkSize: int -> str: string -> seq<string>
 
@@ -418,6 +461,13 @@ module String =
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>seq {"abc"; "defg"; "hijk"}</c>
     /// </example>
+    ///
+    /// <example id="chunkbysize-right-2">
+    /// <code lang="fsharp">
+    /// "" |> String.chunkBySizeRight 4
+    /// </code>
+    /// Evaluates to <c>seq []</c>
+    /// </example>
     val chunkBySizeRight: chunkSize: int -> str: string -> seq<string>
 
     /// <summary>Returns a new list of substrings of the input string, split by a specified character.</summary>
@@ -433,6 +483,13 @@ module String =
     /// "127.0.0.1" |> String.split '.'
     /// </code>
     /// Evaluates to <c>["127"; "0"; "0"; "1"]</c>
+    /// </example>
+    ///
+    /// <example id="split-2">
+    /// <code lang="fsharp">
+    /// "127.0.0.1" |> String.split ';'
+    /// </code>
+    /// Evaluates to <c>[ "127.0.0.1" ]</c>
     /// </example>
     val split: separator: char -> str: string -> string list
 
