@@ -90,7 +90,7 @@ module Seq =
         |> Seq.fold
             (fun acc (x, y) ->
                 if predicate x y then
-                    Seq.append acc (seq [ (seq [ y ]) ])
+                    Seq.append acc (seq { (seq { y }) })
                 else
-                    Seq.append (fore acc) [ (Seq.append (Seq.last acc) [ y ]) ])
-            (seq [ seq ([ Seq.head source ]) ])
+                    Seq.append (fore acc) (seq { (Seq.append (Seq.last acc) (seq { y })) }))
+            (seq { seq (seq { Seq.head source }) })
