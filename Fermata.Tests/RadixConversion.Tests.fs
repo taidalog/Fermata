@@ -28,9 +28,6 @@ let ``Dec.validate 2`` () =
             | Exceptions.Format s -> s
             | _ -> ""
 
-    //let expected =
-    //    Error(Exceptions.Format "The input string 'FF' was not in a correct format.")
-
     Assert.Matches("(The )?[Ii]nput string ('FF' )?was not in a correct format.", msg)
 
 [<Fact>]
