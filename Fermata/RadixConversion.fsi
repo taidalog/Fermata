@@ -8,10 +8,21 @@ namespace Fermata
 
 module RadixConversion =
 
-    type Dec = Dec of int
-    type Bin = Bin of string
-    type Hex = Hex of string
-    type Arb = Arb of radix: int * symbols: seq<char> * value: string
+    type Dec =
+        | Valid of int
+        | Invalid of exn
+
+    type Bin =
+        | Valid of string
+        | Invalid of exn
+
+    type Hex =
+        | Valid of string
+        | Invalid of exn
+
+    type Arb =
+        | Valid of radix: int * symbols: seq<char> * value: string
+        | Invalid of exn
 
     [<RequireQualifiedAccess>]
     module Dec =
@@ -45,7 +56,7 @@ module RadixConversion =
         /// </code>
         /// Evaluates to <c>Error (Exceptions.Overflow "Value was either too large or too small for an Int32.")</c>
         /// </example>
-        val validate: input: string -> Result<Dec, exn>
+        val validate: input: string -> Dec
 
         /// <summary>Returns the equivalent binary representation of the input int value.</summary>
         ///
@@ -169,7 +180,7 @@ module RadixConversion =
         /// </code>
         /// Evaluates to <c>Error (Exceptions.Overflow "Value is too long. Value must be shorter or equal to 32")</c>
         /// </example>
-        val validate: input: string -> Result<Bin, exn>
+        val validate: input: string -> Bin
 
         /// <summary>Returns the equivalent decimal representation of the input string representation of a binary number.</summary>
         ///
@@ -249,7 +260,7 @@ module RadixConversion =
         /// </code>
         /// Evaluates to <c>Error (Exceptions.Overflow "Value is too long. Value must be shorter or equal to 8")</c>
         /// </example>
-        val validate: input: string -> Result<Hex, exn>
+        val validate: input: string -> Hex
 
         /// <summary>Returns the equivalent decimal representation of the input string representation of a hexadecimal number.</summary>
         ///
@@ -350,7 +361,7 @@ module RadixConversion =
         /// </code>
         /// Evaluates to <c>Error(Exceptions.Argument "The number of the symbols and the radix didn't match.")</c>
         /// </example>
-        val ofInt: radix: int -> symbols: seq<char> -> number: int -> Result<Arb, exn>
+        val ofInt: radix: int -> symbols: seq<char> -> number: int -> Arb
 
         /// <summary>Returns <c>(Ok int)</c> if the radix converstion succeeded, otherwise <c>Error</c>.
         /// <c>Arb</c> is a single case discriminated union that conatins radix, symbols to represent a number, and the result value.</summary>
