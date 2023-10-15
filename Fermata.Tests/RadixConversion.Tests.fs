@@ -20,15 +20,10 @@ let ``Dec.validate 1`` () =
 let ``Dec.validate 2`` () =
     let actual = "FF" |> Dec.validate
 
-    let msg =
-        match actual with
-        | Dec.Valid _ -> ""
-        | Dec.Invalid e ->
-            match e with
-            | Exceptions.Format s -> s
-            | _ -> ""
+    let expected =
+        Dec.Invalid(Exceptions.Format "Input string was not in a correct format.")
 
-    Assert.Matches("(The )?[Ii]nput string ('FF' )?was not in a correct format.", msg)
+    Assert.Equal(expected, actual)
 
 [<Fact>]
 let ``Dec.validate 3`` () =
@@ -53,38 +48,16 @@ let ``Dec.toBin 2`` () =
 
 [<Fact>]
 let ``Dec.toBin 3`` () =
-    let d = "42" |> Dec.validate
+    let actual = "42." |> Dec.validate |> Dec.toBin
 
-    let actual =
-        match d with
-        | Dec.Valid _ ->
-            d
-            |> Dec.toBin
-            |> function
-                | Bin.Valid x -> x
-                | _ -> ""
-        | Dec.Invalid _ -> ""
+    let expected =
+        Bin.Invalid(Exceptions.Format "Input string was not in a correct format.")
 
-    let expected = "101010"
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Dec.toBin 4`` () =
-    let d = "42." |> Dec.validate
-    let b = d |> Dec.toBin
-
-    let actual =
-        match b with
-        | Bin.Valid x -> x
-        | Bin.Invalid _ -> ""
-
-    let expected = ""
     Assert.Equal(expected, actual)
 
 [<Fact>]
 let ``Dec.toHex 1`` () =
-    let input = Dec.Valid 42
-    let actual = input |> Dec.toHex
+    let actual = Dec.Valid 42 |> Dec.toHex
     let expected = Hex.Valid "2a"
     Assert.Equal(expected, actual)
 
@@ -96,45 +69,22 @@ let ``Dec.toHex 2`` () =
 
 [<Fact>]
 let ``Dec.toHex 3`` () =
-    let d = "42" |> Dec.validate
+    let actual = "42." |> Dec.validate |> Dec.toHex
 
-    let actual =
-        match d with
-        | Dec.Valid _ ->
-            d
-            |> Dec.toHex
-            |> function
-                | Hex.Valid x -> x
-                | _ -> ""
-        | Dec.Invalid _ -> ""
+    let expected =
+        Hex.Invalid(Exceptions.Format "Input string was not in a correct format.")
 
-    let expected = "2a"
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Dec.toHex 4`` () =
-    let d = "42." |> Dec.validate
-    let h = d |> Dec.toHex
-
-    let actual =
-        match h with
-        | Hex.Valid x -> x
-        | Hex.Invalid _ -> ""
-
-    let expected = ""
     Assert.Equal(expected, actual)
 
 [<Fact>]
 let ``Bin.validate 1`` () =
-    let input = "101010"
-    let actual = input |> Bin.validate
+    let actual = "101010" |> Bin.validate
     let expected = Bin.Valid "101010"
     Assert.Equal(expected, actual)
 
 [<Fact>]
 let ``Bin.validate 2`` () =
-    let input = "FF"
-    let actual = input |> Bin.validate
+    let actual = "FF" |> Bin.validate
 
     let expected =
         Bin.Invalid(Exceptions.Format "The input string 'FF' was not in a correct format.")
@@ -143,8 +93,7 @@ let ``Bin.validate 2`` () =
 
 [<Fact>]
 let ``Bin.validate 3`` () =
-    let input = "100000000000000000000000000000000"
-    let actual = input |> Bin.validate
+    let actual = "100000000000000000000000000000000" |> Bin.validate
 
     let expected =
         Bin.Invalid(Exceptions.Overflow "Value is too long. Value must be shorter or equal to 32")
@@ -153,8 +102,7 @@ let ``Bin.validate 3`` () =
 
 [<Fact>]
 let ``Bin.toDec 1`` () =
-    let input = Bin.Valid "101010"
-    let actual = input |> Bin.toDec
+    let actual = Bin.Valid "101010" |> Bin.toDec
     let expected = Dec.Valid 42
     Assert.Equal(expected, actual)
 
@@ -166,45 +114,22 @@ let ``Bin.toDec 2`` () =
 
 [<Fact>]
 let ``Bin.toDec 3`` () =
-    let b = "101010" |> Bin.validate
+    let actual = "XX" |> Bin.validate |> Bin.toDec
 
-    let actual =
-        match b with
-        | Bin.Valid _ ->
-            b
-            |> Bin.toDec
-            |> function
-                | Dec.Valid x -> string x
-                | _ -> ""
-        | Bin.Invalid _ -> ""
+    let expected =
+        Dec.Invalid(Exceptions.Format "The input string 'XX' was not in a correct format.")
 
-    let expected = "42"
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Bin.toDec 4`` () =
-    let b = "XX" |> Bin.validate
-    let d = b |> Bin.toDec
-
-    let actual =
-        match d with
-        | Dec.Valid x -> string x
-        | Dec.Invalid _ -> ""
-
-    let expected = ""
     Assert.Equal(expected, actual)
 
 [<Fact>]
 let ``Hex.validate 1`` () =
-    let input = "FF"
-    let actual = input |> Hex.validate
+    let actual = "FF" |> Hex.validate
     let expected = Hex.Valid "FF"
     Assert.Equal(expected, actual)
 
 [<Fact>]
 let ``Hex.validate 2`` () =
-    let input = "XX"
-    let actual = input |> Hex.validate
+    let actual = "XX" |> Hex.validate
 
     let expected =
         Hex.Invalid(Exceptions.Format "The input string 'XX' was not in a correct format.")
@@ -213,8 +138,7 @@ let ``Hex.validate 2`` () =
 
 [<Fact>]
 let ``Hex.validate 3`` () =
-    let input = "FFFFFFFFF"
-    let actual = input |> Hex.validate
+    let actual = "FFFFFFFFF" |> Hex.validate
 
     let expected =
         Hex.Invalid(Exceptions.Overflow "Value is too long. Value must be shorter or equal to 8")
@@ -223,8 +147,7 @@ let ``Hex.validate 3`` () =
 
 [<Fact>]
 let ``Hex.toDec 1`` () =
-    let input = Hex.Valid "FF"
-    let actual = input |> Hex.toDec
+    let actual = Hex.Valid "FF" |> Hex.toDec
     let expected = Dec.Valid 255
     Assert.Equal(expected, actual)
 
@@ -236,32 +159,11 @@ let ``Hex.toDec 2`` () =
 
 [<Fact>]
 let ``Hex.toDec 3`` () =
-    let h = "ff" |> Hex.validate
+    let actual = "XX" |> Hex.validate |> Hex.toDec
 
-    let actual =
-        match h with
-        | Hex.Valid _ ->
-            h
-            |> Hex.toDec
-            |> function
-                | Dec.Valid x -> string x
-                | _ -> ""
-        | Hex.Invalid _ -> ""
+    let expected =
+        Dec.Invalid(Exceptions.Format "The input string 'XX' was not in a correct format.")
 
-    let expected = "255"
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Hex.toDec 4`` () =
-    let h = "XX" |> Hex.validate
-    let d = h |> Hex.toDec
-
-    let actual =
-        match d with
-        | Dec.Valid x -> string x
-        | Dec.Invalid _ -> ""
-
-    let expected = ""
     Assert.Equal(expected, actual)
 
 [<Fact>]
@@ -349,5 +251,4 @@ let ``Arb.toInt 7`` () =
     let expected =
         Error(Exceptions.Overflow "Arithmetic operation resulted in an overflow.")
 
-    Assert.Equal(expected, actual)
     Assert.Equal(expected, actual)
