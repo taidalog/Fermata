@@ -36,18 +36,12 @@ let ``Dec.validate 3`` () =
 
 [<Fact>]
 let ``Dec.toBin 1`` () =
-    let actual = Dec.Valid 42 |> Dec.toBin
-    let expected = Bin.Valid "101010"
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Dec.toBin 2`` () =
     let actual = "42" |> Dec.validate |> Dec.toBin
     let expected = Bin.Valid "101010"
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Dec.toBin 3`` () =
+let ``Dec.toBin 2`` () =
     let actual = "42." |> Dec.validate |> Dec.toBin
 
     let expected =
@@ -57,18 +51,12 @@ let ``Dec.toBin 3`` () =
 
 [<Fact>]
 let ``Dec.toHex 1`` () =
-    let actual = Dec.Valid 42 |> Dec.toHex
-    let expected = Hex.Valid "2a"
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Dec.toHex 2`` () =
     let actual = "42" |> Dec.validate |> Dec.toHex
     let expected = Hex.Valid "2a"
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Dec.toHex 3`` () =
+let ``Dec.toHex 2`` () =
     let actual = "42." |> Dec.validate |> Dec.toHex
 
     let expected =
@@ -102,18 +90,12 @@ let ``Bin.validate 3`` () =
 
 [<Fact>]
 let ``Bin.toDec 1`` () =
-    let actual = Bin.Valid "101010" |> Bin.toDec
-    let expected = Dec.Valid 42
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Bin.toDec 2`` () =
     let actual = "101010" |> Bin.validate |> Bin.toDec
     let expected = Dec.Valid 42
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Bin.toDec 3`` () =
+let ``Bin.toDec 2`` () =
     let actual = "XX" |> Bin.validate |> Bin.toDec
 
     let expected =
@@ -147,18 +129,12 @@ let ``Hex.validate 3`` () =
 
 [<Fact>]
 let ``Hex.toDec 1`` () =
-    let actual = Hex.Valid "FF" |> Hex.toDec
-    let expected = Dec.Valid 255
-    Assert.Equal(expected, actual)
-
-[<Fact>]
-let ``Hex.toDec 2`` () =
     let actual = "ff" |> Hex.validate |> Hex.toDec
     let expected = Dec.Valid 255
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Hex.toDec 3`` () =
+let ``Hex.toDec 2`` () =
     let actual = "XX" |> Hex.validate |> Hex.toDec
 
     let expected =
