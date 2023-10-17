@@ -27,290 +27,183 @@ module RadixConversion =
     [<RequireQualifiedAccess>]
     module Dec =
 
-        /// <summary>Returns Ok if the input string can be parsed as a decimal number, otherwise Error.</summary>
+        /// <summary>Returns <c>Dec.Valid</c> if the input string can be parsed as a decimal number, otherwise <c>Dec.Invalid</c>.</summary>
         ///
         /// <param name="input">The input string.</param>
         ///
-        /// <returns>Ok if the input string can be parsed as a decimal number, otherwise Error.</returns>
+        /// <returns><c>Dec.Valid</c> if the input string can be parsed as a decimal number, otherwise <c>Dec.Invalid</c>.</returns>
         ///
-        /// <example id="decvalidate-1">
+        /// <example id="Dec.validate-1">
         /// <code lang="fsharp">
-        /// let input = "42"
-        /// input |> Dec.validate
+        /// "42" |> Dec.validate
         /// </code>
-        /// Evaluates to <c>Ok (Dec 42)</c>
+        /// Evaluates to <c>Dec.Valid 42</c>
         /// </example>
         ///
-        /// <example id="decvalidate-2">
+        /// <example id="Dec.validate-2">
         /// <code lang="fsharp">
-        /// let input = "FF"
-        /// input |> Dec.validate
+        /// "FF" |> Dec.validate
         /// </code>
-        /// Evaluates to <c>Error (Exceptions.Format "The input string 'FF' was not in a correct format.")</c>
+        /// Evaluates to <c>Dec.Invalid(Exceptions.Format "Input string was not in a correct format.")</c>
         /// </example>
         ///
-        /// <example id="decvalidate-3">
+        /// <example id="Dec.validate-3">
         /// <code lang="fsharp">
-        /// let input = "2147483648"
-        /// input |> Dec.validate
+        /// "2147483648" |> Dec.validate
         /// </code>
-        /// Evaluates to <c>Error (Exceptions.Overflow "Value was either too large or too small for an Int32.")</c>
+        /// Evaluates to <c>Dec.Invalid(Exceptions.Overflow "Value was either too large or too small for an Int32.")</c>
         /// </example>
         val validate: input: string -> Dec
 
-        /// <summary>Returns the equivalent binary representation of the input int value.</summary>
+        /// <summary>Returns the equivalent <c>Bin</c> representation of the input <c>Dec</c> value if it is valid, otherwise <c>Bin.Invalid</c>.</summary>
         ///
-        /// <param name="dec">The input int value.</param>
+        /// <param name="dec">The input <c>Dec</c>.</param>
         ///
-        /// <returns>The equivalent binary representation of the input int value.</returns>
+        /// <returns>The equivalent <c>Bin</c> representation of the input <c>Dec</c> value if it is valid, otherwise <c>Bin.Invalid</c>.</returns>
         ///
-        /// <example id="tobin-1">
+        /// <example id="Dec.toBin-1">
         /// <code lang="fsharp">
-        /// let input = Dec 42
-        /// input |> Dec.toBin
+        /// "42" |> Dec.validate |> Dec.toBin
         /// </code>
-        /// Evaluates to <c>Bin "101010"</c>
+        /// Evaluates to <c>Bin.Valid "101010"</c>
         /// </example>
         ///
-        /// <example id="toBin-2">
+        /// <example id="Dec.toBin-2">
         /// <code lang="fsharp">
-        /// "42" |> Dec.validate |> Result.map Dec.toBin
+        /// "42." |> Dec.validate |> Dec.toBin
         /// </code>
-        /// Evaluates to <c>Ok (Bin "101010")</c>
-        /// </example>
-        ///
-        /// <example id="toBin-3">
-        /// <code lang="fsharp">
-        /// let d = "42" |> Dec.validate
-        /// match d with
-        /// | Ok dec ->
-        ///     let (Bin b) = dec |> Dec.toBin
-        ///     b
-        /// | Error _ -> ""
-        /// </code>
-        /// Evaluates to <c>"101010"</c>
-        /// </example>
-        ///
-        /// <example id="toBin-4">
-        /// <code lang="fsharp">
-        /// let d = "42." |> Dec.validate
-        /// let b = d |> Result.map Dec.toBin
-        /// match b with
-        /// | Ok (Bin x) -> x
-        /// | Error _ -> ""
-        /// </code>
-        /// Evaluates to <c>""</c>
+        /// Evaluates to <c>Bin.Invalid(Exceptions.Format "Input string was not in a correct format.")</c>
         /// </example>
         val toBin: dec: Dec -> Bin
 
-        /// <summary>Returns the equivalent hexadecimal representation of the input int value.</summary>
+        /// <summary>Returns the equivalent <c>Hex</c> representation of the input <c>Dec</c> value if it is valid, otherwise <c>Hex.Invalid</c>.</summary>
         ///
-        /// <param name="dec">The input int value.</param>
+        /// <param name="dec">The input <c>Dec</c>.</param>
         ///
-        /// <returns>The equivalent hexadecimal representation of the input int value.</returns>
+        /// <returns>The equivalent <c>Hex</c> representation of the input <c>Dec</c> value if it is valid, otherwise <c>Hex.Invalid</c>.</returns>
         ///
-        /// <example id="tohex-1">
+        /// <example id="Dec.toHex-1">
         /// <code lang="fsharp">
-        /// let input = Dec 42
-        /// input |> Dec.toHex
+        /// "42" |> Dec.validate |> Dec.toHex
         /// </code>
-        /// Evaluates to <c>Hex "2a"</c>
+        /// Evaluates to <c>Hex.Valid "2a"</c>
         /// </example>
         ///
-        /// <example id="tohex-2">
+        /// <example id="Dec.toHex-2">
         /// <code lang="fsharp">
-        /// "42" |> Dec.validate |> Result.map Dec.toHex
+        /// "42." |> Dec.validate |> Dec.toHex
         /// </code>
-        /// Evaluates to <c>Ok (Hex "2a")</c>
-        /// </example>
-        ///
-        /// <example id="tohex-3">
-        /// <code lang="fsharp">
-        /// let d = "42" |> Dec.validate
-        /// match d with
-        /// | Ok dec ->
-        ///     let (Hex h) = dec |> Dec.toHex
-        ///     h
-        /// | Error _ -> ""
-        /// </code>
-        /// Evaluates to <c>"2a"</c>
-        /// </example>
-        ///
-        /// <example id="tohex-4">
-        /// <code lang="fsharp">
-        /// let d = "42." |> Dec.validate
-        /// let h = d |> Result.map Dec.toHex
-        /// match h with
-        /// | Ok (Hex x) -> x
-        /// | Error _ -> ""
-        /// </code>
-        /// Evaluates to <c>""</c>
+        /// Evaluates to <c>Hex.Invalid(Exceptions.Format "Input string was not in a correct format.")</c>
         /// </example>
         val toHex: dec: Dec -> Hex
 
     [<RequireQualifiedAccess>]
     module Bin =
 
-        /// <summary>Returns Ok if the input string can be parsed as a binary number, otherwise Error.</summary>
+        /// <summary>Returns <c>Bin.Valid</c> if the input string can be parsed as a binary number, otherwise <c>Bin.Invalid</c>.</summary>
         ///
         /// <param name="input">The input string.</param>
         ///
-        /// <returns>Ok if the input string can be parsed as a binary number, otherwise Error.</returns>
+        /// <returns><c>Bin.Valid</c> if the input string can be parsed as a binary number, otherwise <c>Bin.Invalid</c>.</returns>
         ///
-        /// <example id="binvalidate-1">
+        /// <example id="Bin.validate-1">
         /// <code lang="fsharp">
-        /// let input = "101010"
-        /// input |> Bin.validate
+        /// "101010" |> Bin.validate
         /// </code>
-        /// Evaluates to <c>Ok (Bin "101010")</c>
+        /// Evaluates to <c>Bin.Valid "101010"</c>
         /// </example>
         ///
-        /// <example id="binvalidate-2">
+        /// <example id="Bin.validate-2">
         /// <code lang="fsharp">
-        /// let input = "FF"
-        /// input |> Bin.validate
+        /// "FF" |> Bin.validate
         /// </code>
-        /// Evaluates to <c>Error (Exceptions.Format "The input string 'FF' was not in a correct format.")</c>
+        /// Evaluates to <c>Bin.Invalid(Exceptions.Format "The input string 'FF' was not in a correct format.")</c>
         /// </example>
         ///
-        /// <example id="binvalidate-3">
+        /// <example id="Bin.validate-3">
         /// <code lang="fsharp">
-        /// let input = "100000000000000000000000000000000"
-        /// input |> Bin.validate
+        /// "100000000000000000000000000000000" |> Bin.validate
         /// </code>
-        /// Evaluates to <c>Error (Exceptions.Overflow "Value is too long. Value must be shorter or equal to 32")</c>
+        /// Evaluates to <c>Bin.Invalid(Exceptions.Overflow "Value is too long. Value must be shorter or equal to 32")</c>
         /// </example>
         val validate: input: string -> Bin
 
-        /// <summary>Returns the equivalent decimal representation of the input string representation of a binary number.</summary>
+        /// <summary>Returns the equivalent <c>Dec</c> representation of the input <c>Bin</c> value if it is valid, otherwise <c>Dec.Invalid</c>.</summary>
         ///
-        /// <param name="input">The input string.</param>
+        /// <param name="bin">The input <c>Bin</c>.</param>
         ///
-        /// <returns>The equivalent decimal representation of the input string representation of a binary number.</returns>
+        /// <returns>The equivalent <c>Dec</c> representation of the input <c>Bin</c> value if it is valid, otherwise <c>Dec.Invalid</c>.</returns>
         ///
-        /// <example id="bintodec-1">
+        /// <example id="Bin.toDec-1">
         /// <code lang="fsharp">
-        /// let input = Bin "101010"
-        /// input |> Bin.toDec
+        /// "101010" |> Bin.validate |> Bin.toDec
         /// </code>
-        /// Evaluates to <c>Dec 42</c>
+        /// Evaluates to <c>Dec.Valid 42</c>
         /// </example>
         ///
-        /// <example id="bintodec-2">
-        ///
+        /// <example id="Bin.toDec-2">
         /// <code lang="fsharp">
-        /// "101010" |> Bin.validate |> Result.map Bin.toDec
+        /// "XX" |> Bin.validate |> Bin.toDec
         /// </code>
-        /// Evaluates to <c>Ok (Dec 42)</c>
-        /// </example>
-        ///
-        /// <example id="bintodec-3">
-        /// <code lang="fsharp">
-        /// let b = "101010" |> Bin.validate
-        /// match b with
-        /// | Ok bin ->
-        ///     let (Dec d) = bin |> Bin.toDec
-        ///     string d
-        /// | Error _ -> ""
-        /// </code>
-        /// Evaluates to <c>"42"</c>
-        /// </example>
-        ///
-        /// <example id="bintodec-4">
-        /// <code lang="fsharp">
-        /// let b = "XX" |> Bin.validate
-        /// let d = b |> Result.map Bin.toDec
-        /// match d with
-        /// | Ok (Dec x) -> string x
-        /// | Error _ -> ""
-        /// </code>
-        /// Evaluates to <c>""</c>
+        /// Evaluates to <c>Dec.Invalid(Exceptions.Format "The input string 'XX' was not in a correct format.")</c>
         /// </example>
         val toDec: bin: Bin -> Dec
 
     [<RequireQualifiedAccess>]
     module Hex =
 
-        /// <summary>Returns Ok if the input string can be parsed as a hexadecimal number, otherwise Error.</summary>
+        /// <summary>Returns <c>Hex.Valid</c> if the input string can be parsed as a hexadecimal number, otherwise <c>Hex.Invalid</c>.</summary>
         ///
         /// <param name="input">The input string.</param>
         ///
-        /// <returns>Ok if the input string can be parsed as a hexadecimal number, otherwise Error.</returns>
+        /// <returns><c>Hex.Valid</c> if the input string can be parsed as a hexadecimal number, otherwise <c>Hex.Invalid</c>.</returns>
         ///
-        /// <example id="hexvalidate-1">
+        /// <example id="Hex.validate-1">
         /// <code lang="fsharp">
-        /// let input = "FF"
-        /// input |> Hex.validate
+        /// "FF" |> Hex.validate
         /// </code>
-        /// Evaluates to <c>Ok (Hex "FF")</c>
+        /// Evaluates to <c>Hex.Valid "FF"</c>
         /// </example>
         ///
-        /// <example id="hexvalidate-2">
+        /// <example id="Hex.validate-2">
         /// <code lang="fsharp">
-        /// let input = "XX"
-        /// input |> Hex.validate
+        /// "XX" |> Hex.validate
         /// </code>
-        /// Evaluates to <c>Error (Exceptions.Format "The input string 'XX' was not in a correct format.")</c>
+        /// Evaluates to <c>Hex.Invalid(Exceptions.Format "The input string 'XX' was not in a correct format.")</c>
         /// </example>
         ///
-        /// <example id="hexvalidate-3">
+        /// <example id="Hex.validate-3">
         /// <code lang="fsharp">
-        /// let input = "FFFFFFFFF"
-        /// input |> Hex.validate
+        /// "FFFFFFFFF" |> Hex.validate
         /// </code>
-        /// Evaluates to <c>Error (Exceptions.Overflow "Value is too long. Value must be shorter or equal to 8")</c>
-        /// </example>
+        /// Evaluates to <c>Hex.Invalid(Exceptions.Overflow "Value is too long. Value must be shorter or equal to 8")</c>
         val validate: input: string -> Hex
 
-        /// <summary>Returns the equivalent decimal representation of the input string representation of a hexadecimal number.</summary>
+        /// <summary>Returns the equivalent <c>Dec</c> representation of the input <c>Hex</c> value if it is valid, otherwise <c>Dec.Invalid</c>.</summary>
         ///
-        /// <param name="input">The input string.</param>
+        /// <param name="hex">The input <c>Hex</c>.</param>
         ///
-        /// <returns>The equivalent decimal representation of the input string representation of a hexadecimal number.</returns>
+        /// <returns>The equivalent <c>Dec</c> representation of the input <c>Hex</c> value if it is valid, otherwise <c>Dec.Invalid</c>.</returns>
         ///
-        /// <example id="hextodec-1">
+        /// <example id="Hex.toDec-1">
         /// <code lang="fsharp">
-        /// let input = Hex "FF"
-        /// input |> Hex.toDec
+        /// "ff" |> Hex.validate |> Hex.toDec
         /// </code>
-        /// Evaluates to <c>Dec 255</c>
+        /// Evaluates to <c>Dec.Valid 255</c>
         /// </example>
         ///
-        /// <example id="hextodec-2">
+        /// <example id="Hex.toDec-2">
         /// <code lang="fsharp">
-        /// "ff" |> Hex.validate |> Result.map Hex.toDec
+        /// "XX" |> Hex.validate |> Hex.toDec
         /// </code>
-        /// Evaluates to <c>Ok (Dec 255)</c>
-        /// </example>
-        ///
-        /// <example id="hextodec-3">
-        /// <code lang="fsharp">
-        /// let h = "ff" |> Hex.validate
-        /// match h with
-        /// | Ok hex ->
-        ///     let (Dec d) = hex |> Hex.toDec
-        ///     string d
-        /// | Error _ -> ""
-        /// </code>
-        /// Evaluates to <c>"255"</c>
-        /// </example>
-        ///
-        /// <example id="hextodec-4">
-        /// <code lang="fsharp">
-        /// let h = "XX" |> Hex.validate
-        /// let d = h |> Result.map Hex.toDec
-        /// match d with
-        /// | Ok (Dec x) -> string x
-        /// | Error _ -> ""
-        /// </code>
-        /// Evaluates to <c>""</c>
+        /// Evaluates to <c>Dec.Invalid(Exceptions.Format "The input string 'XX' was not in a correct format.")</c>
         /// </example>
         val toDec: hex: Hex -> Dec
 
     [<RequireQualifiedAccess>]
     module Arb =
-        /// <summary>Returns <c>(Ok Arb)</c> if the radix converstion succeeded, otherwise <c>Error</c>.
-        /// <c>Arb</c> is a single case discriminated union that conatins radix, symbols to represent a number with, and the result value.</summary>
+        /// <summary>Returns <c>Arb.Valid</c> if the radix converstion succeeded, otherwise <c>Arb.Invalid</c>.
+        /// <c>Arb</c> is two-case discriminated union that conatins Valid(radix, symbols to represent a number, and the result value), or Invalid.</summary>
         ///
         /// <param name="radix">The radix to convert the number with.</param>
         ///
@@ -318,103 +211,103 @@ module RadixConversion =
         ///
         /// <param name="number">The input number to convert.</param>
         ///
-        /// <returns><c>(Ok Arb)</c> if the radix converstion succeeded, otherwise <c>Error</c>.</returns>
+        /// <returns><c>Arb.Valid</c> if the radix converstion succeeded, otherwise <c>Arb.Invalid</c>.</returns>
         ///
-        /// <example id="arbofint-1">
+        /// <example id="Arb.ofInt-1">
         /// <code lang="fsharp">
         /// Arb.ofInt 2 "01" 42
         /// </code>
-        /// Evaluates to <c>Ok(Arb(2, "01", "101010"))</c>
+        /// Evaluates to <c>Arb.Valid(2, "01", "101010")</c>
         /// </example>
         ///
-        /// <example id="arbofint-2">
+        /// <example id="Arb.ofInt-2">
         /// <code lang="fsharp">
         /// Arb.ofInt 5 "01234" 42
         /// </code>
-        /// Evaluates to <c>Ok(Arb(5, "01234", "132"))</c>
+        /// Evaluates to <c>Arb.Valid(5, "01234", "132")</c>
         /// </example>
         ///
-        /// <example id="arbofint-3">
+        /// <example id="Arb.ofInt-3">
         /// <code lang="fsharp">
         /// Arb.ofInt 5 "HMNPY" 42
         /// </code>
-        /// Evaluates to <c>Ok(Arb(5, "HMNPY", "MPN"))</c>
+        /// Evaluates to <c>Arb.Valid(5, "HMNPY", "MPN")</c>
         /// </example>
         ///
-        /// <example id="arbofint-4">
+        /// <example id="Arb.ofInt-4">
         /// <code lang="fsharp">
         /// Arb.ofInt 1 "0" 42
         /// </code>
-        /// Evaluates to <c>Error(Exceptions.Argument "Radix must be greater than 1.")</c>
+        /// Evaluates to <c>Arb.Invalid(Exceptions.Argument "Radix must be greater than 1.")</c>
         /// </example>
         ///
-        /// <example id="arbofint-5">
+        /// <example id="Arb.ofInt-5">
         /// <code lang="fsharp">
         /// Arb.ofInt 16 "" 42
         /// </code>
-        /// Evaluates to <c>Error(Exceptions.Argument "Symbols were not specified.")</c>
+        /// Evaluates to <c>Arb.Invalid(Exceptions.Argument "Symbols were not specified.")</c>
         /// </example>
         ///
-        /// <example id="arbofint-6">
+        /// <example id="Arb.ofInt-6">
         /// <code lang="fsharp">
         /// Arb.ofInt 16 "01" 42
         /// </code>
-        /// Evaluates to <c>Error(Exceptions.Argument "The number of the symbols and the radix didn't match.")</c>
+        /// Evaluates to <c>Arb.Invalid(Exceptions.Argument "The number of the symbols and the radix didn't match.")</c>
         /// </example>
         val ofInt: radix: int -> symbols: seq<char> -> number: int -> Arb
 
-        /// <summary>Returns <c>(Ok int)</c> if the radix converstion succeeded, otherwise <c>Error</c>.
-        /// <c>Arb</c> is a single case discriminated union that conatins radix, symbols to represent a number, and the result value.</summary>
+        /// <summary>Returns <c>Ok</c> if the radix converstion succeeded, otherwise <c>Error</c>.
+        /// <c>Arb</c> is two-case discriminated union that conatins Valid(radix, symbols to represent a number, and the result value), or Invalid.</summary>
         ///
         /// <param name="arb">The input <c>Arb</c>.</param>
         ///
-        /// <returns><c>(Ok int)</c> if the radix converstion succeeded, otherwise <c>Error</c>.</returns>
+        /// <returns><c>Ok</c> if the radix converstion succeeded, otherwise <c>Error</c>.</returns>
         ///
-        /// <example id="arbtoint-1">
+        /// <example id="Arb.toInt-1">
         /// <code lang="fsharp">
-        /// Arb.toInt (Arb(2, "01", "101010"))
+        /// Arb.toInt (Arb.Valid(2, "01", "101010"))
         /// </code>
         /// Evaluates to <c>Ok 42</c>
         /// </example>
         ///
-        /// <example id="arbtoint-2">
+        /// <example id="Arb.toInt-2">
         /// <code lang="fsharp">
-        /// Arb.toInt (Arb(5, "01234", "132"))
+        /// Arb.toInt (Arb.Valid(5, "01234", "132"))
         /// </code>
         /// Evaluates to <c>Ok 42</c>
         /// </example>
         ///
-        /// <example id="arbtoint-3">
+        /// <example id="Arb.toInt-3">
         /// <code lang="fsharp">
-        /// Arb.toInt (Arb(5, "HMNPY", "MPN"))
+        /// Arb.toInt (Arb.Valid(5, "HMNPY", "MPN"))
         /// </code>
         /// Evaluates to <c>Ok 42</c>
         /// </example>
         ///
-        /// <example id="arbtoint-4">
+        /// <example id="Arb.toInt-4">
         /// <code lang="fsharp">
-        /// Arb.toInt (Arb(1, "0", "0"))
+        /// Arb.toInt (Arb.Valid(1, "0", "0"))
         /// </code>
         /// Evaluates to <c>Error(Exceptions.Argument "Radix must be greater than 1.")</c>
         /// </example>
         ///
-        /// <example id="arbtoint-5">
+        /// <example id="Arb.toInt-5">
         /// <code lang="fsharp">
-        /// Arb.toInt (Arb(16, "", "2a"))
+        /// Arb.toInt (Arb.Valid(16, "", "2a"))
         /// </code>
         /// Evaluates to <c>Error(Exceptions.Argument "Symbols were not specified.")</c>
         /// </example>
         ///
-        /// <example id="arbtoint-6">
+        /// <example id="Arb.toInt-6">
         /// <code lang="fsharp">
-        /// Arb.toInt (Arb(16, "01", "2a"))
+        /// Arb.toInt (Arb.Valid(16, "01", "2a"))
         /// </code>
         /// Evaluates to <c>Error(Exceptions.Argument "The number of the symbols and the radix didn't match.")</c>
         /// </example>
         ///
-        /// <example id="arbtoint-7">
+        /// <example id="Arb.toInt-7">
         /// <code lang="fsharp">
-        /// Arb.toInt (Arb(16, "0123456789abcdef", "7ffffffff")) // over `Int32.MaxValue`.
+        /// Arb.toInt (Arb.Valid(16, "0123456789abcdef", "7ffffffff")) // over `Int32.MaxValue`.
         /// </code>
         /// Evaluates to <c>Error(Exceptions.Overflow "Arithmetic operation resulted in an overflow.")</c>
         /// </example>
