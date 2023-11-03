@@ -84,9 +84,9 @@ For more information, please see [Fermata on NuGet Gallery](https://www.nuget.or
 
 ### 0.6.0
 
-- Functions in `Dec` module return values of type `Dec`, while they returned values of type `int` or `Result<int>`.
-- Functions in `Bin` module return values of type `Bin`, while they returned values of type `int` or `Result<int>`.
-- Functions in `Hex` module return values of type `Hex`, while they returned values of type `int` or `Result<int>`.
+- Functions in `Dec` module return values of type `Dec`, a discrinimated union to represent a decimal number. Those functions used to return values of type `string`, `string option` or `Result<int, exn>`.
+- Functions in `Bin` module return values of type `Bin`, a discrinimated union to represent a binary number. Those functions used to return values of type `int`, `int option` or `Result<string, exn>`.
+- Functions in `Hex` module return values of type `Hex`, a discrinimated union to represent a hexadecimal number. Those functions used to return values of type `int`, `int option` or `Result<string, exn>`.
 
 ## Links
 
