@@ -17,10 +17,10 @@ Version 0.6.0
    Contains helper functions for working with values of type bool.
 - Bound  
    Contains helper functions for working with values of number types such as int or float, and lower and upper bounds.
-- List  
-   Contains helper functions for working with values of type list.
 - Int32  
    Contains helper functions for working with values of type int (.NET wrapper functions).
+- List  
+   Contains helper functions for working with values of type list.
 - RadixConversion  
    Contains modules for radix conversion.
   - Dec  
@@ -73,6 +73,14 @@ For more information, please see [Fermata on NuGet Gallery](https://www.nuget.or
 ## Release Notes
 
 [Releases on GitHub](https://github.com/taidalog/Fermata/releases)
+
+## Breaking Changes
+
+### 0.6.0
+
+- Functions in `Dec` module return values of type `Dec`, while they returned values of type `int` or `Result<int>`.
+- Functions in `Bin` module return values of type `Bin`, while they returned values of type `int` or `Result<int>`.
+- Functions in `Hex` module return values of type `Hex`, while they returned values of type `int` or `Result<int>`.
 
 ## Links
 
