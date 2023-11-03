@@ -20,10 +20,15 @@ let ``Dec.validate 1`` () =
 let ``Dec.validate 2`` () =
     let actual = "FF" |> Dec.validate
 
-    let expected =
-        Dec.Invalid(Exceptions.Format "Input string was not in a correct format.")
+    let msg =
+        match actual with
+        | Dec.Valid _ -> ""
+        | Dec.Invalid e ->
+            match e with
+            | Exceptions.Format s -> s
+            | _ -> ""
 
-    Assert.Equal(expected, actual)
+    Assert.Matches("(The )?[Ii]nput string ('FF' )?was not in a correct format.", msg)
 
 [<Fact>]
 let ``Dec.validate 3`` () =
@@ -44,10 +49,15 @@ let ``Dec.toBin 1`` () =
 let ``Dec.toBin 2`` () =
     let actual = "42." |> Dec.validate |> Dec.toBin
 
-    let expected =
-        Bin.Invalid(Exceptions.Format "Input string was not in a correct format.")
+    let msg =
+        match actual with
+        | Bin.Valid _ -> ""
+        | Bin.Invalid e ->
+            match e with
+            | Exceptions.Format s -> s
+            | _ -> ""
 
-    Assert.Equal(expected, actual)
+    Assert.Matches("(The )?[Ii]nput string ('42.' )?was not in a correct format.", msg)
 
 [<Fact>]
 let ``Dec.toHex 1`` () =
@@ -59,10 +69,15 @@ let ``Dec.toHex 1`` () =
 let ``Dec.toHex 2`` () =
     let actual = "42." |> Dec.validate |> Dec.toHex
 
-    let expected =
-        Hex.Invalid(Exceptions.Format "Input string was not in a correct format.")
+    let msg =
+        match actual with
+        | Hex.Valid _ -> ""
+        | Hex.Invalid e ->
+            match e with
+            | Exceptions.Format s -> s
+            | _ -> ""
 
-    Assert.Equal(expected, actual)
+    Assert.Matches("(The )?[Ii]nput string ('42.' )?was not in a correct format.", msg)
 
 [<Fact>]
 let ``Bin.validate 1`` () =
