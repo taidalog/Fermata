@@ -9,6 +9,12 @@ Version 0.7.0
 - Provides functions for working with values of basic types in F#.
 - Works in a Fable project.
 
+## Target Frameworks
+
+- .NET Standard 2.0
+- .NET 6
+- .NET 7
+
 ## Modules
 
 - Array  
