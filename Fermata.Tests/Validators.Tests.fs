@@ -6,6 +6,7 @@
 
 module Validators.Tests
 
+open System
 open Xunit
 open Fermata
 open Fermata.Validators
@@ -19,14 +20,34 @@ let ``Validators.validateNotNullOrEmpty 1`` () =
 [<Fact>]
 let ``Validators.validateNotNullOrEmpty 2`` () =
     let actual = null |> validateNotNullOrEmpty
-    let expected = Error(Exceptions.ArgumentNull "Value cannot be null.")
-    Assert.Equal(expected, actual)
+    let expected = Error(ArgumentNullException())
+
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
 
 [<Fact>]
 let ``Validators.validateNotNullOrEmpty 3`` () =
     let actual = "" |> validateNotNullOrEmpty
-    let expected = Error(Exceptions.ArgumentNull "Value cannot be null.")
-    Assert.Equal(expected, actual)
+    let expected = Error(ArgumentNullException())
+
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
 
 [<Fact>]
 let ``Validators.validateNotEmptyString 1`` () =
@@ -37,8 +58,18 @@ let ``Validators.validateNotEmptyString 1`` () =
 [<Fact>]
 let ``Validators.validateNotEmptyString 2`` () =
     let actual = "" |> validateNotEmptyString
-    let expected = Error(Exceptions.EmptyString "Value cannot be empty string.")
-    Assert.Equal(expected, actual)
+    let expected = Error(ArgumentException "Value cannot be empty string.")
+
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
 
 [<Fact>]
 let ``Validators.validateFormat 1`` () =
@@ -51,9 +82,18 @@ let ``Validators.validateFormat 2`` () =
     let actual = "4a" |> validateFormat "^[0-9]+$"
 
     let expected =
-        Error(Exceptions.Format "The input string '4a' was not in a correct format.")
+        Error(FormatException "The input string '4a' was not in a correct format.")
 
-    Assert.Equal(expected, actual)
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
 
 [<Fact>]
 let ``Validators.validateRange 1`` () =
@@ -66,9 +106,18 @@ let ``Validators.validateRange 2`` () =
     let actual = 512 |> validateRange 0 255
 
     let expected =
-        Error(Exceptions.OutOfRange "512 is out of range. Value must be within 0 and 255")
+        Error(ArgumentOutOfRangeException("input", "512 is out of range. Value must be within 0 and 255"))
 
-    Assert.Equal(expected, actual)
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
 
 [<Fact>]
 let ``Validators.validateRange 3`` () =
@@ -81,9 +130,18 @@ let ``Validators.validateRange 4`` () =
     let actual = 'A' |> validateRange '0' '9'
 
     let expected =
-        Error(Exceptions.OutOfRange "'A' is out of range. Value must be within '0' and '9'")
+        Error(ArgumentOutOfRangeException("input", "'A' is out of range. Value must be within '0' and '9'"))
 
-    Assert.Equal(expected, actual)
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
 
 [<Fact>]
 let ``Validators.validateMaxLength 1`` () =
@@ -97,9 +155,18 @@ let ``Validators.validateMaxLength 2`` () =
         "100000000000000000000000000000000" |> validateMaxLength String.length 32
 
     let expected =
-        Error(Exceptions.Overflow "Value is too long. Value must be shorter or equal to 32")
+        Error(OverflowException "Value is too long. Value must be shorter or equal to 32")
 
-    Assert.Equal(expected, actual)
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
 
 [<Fact>]
 let ``Validators.validateMaxLength 3`` () =
@@ -113,6 +180,15 @@ let ``Validators.validateMaxLength 4`` () =
         [ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10 ] |> validateMaxLength List.length 10
 
     let expected =
-        Error(Exceptions.Overflow "Value is too long. Value must be shorter or equal to 10")
+        Error(OverflowException "Value is too long. Value must be shorter or equal to 10")
 
-    Assert.Equal(expected, actual)
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
