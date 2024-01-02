@@ -25,34 +25,34 @@ module Int32 =
     /// <code lang="fsharp">
     /// Int32.validate "42."
     /// </code>
-    /// Evaluates to <c>Error(Exceptions.Format "The input string '42.' was not in a correct format.")</c>
+    /// Evaluates to <c>Error(FormatException "The input string '42.' was not in a correct format.")</c>
     /// </example>
     ///
     /// <example id="Int32.validate-3">
     /// <code lang="fsharp">
     /// Int32.validate null
     /// </code>
-    /// Evaluates to <c>Error(Exceptions.ArgumentNull "Value cannot be null. (Parameter 's')")</c>
+    /// Evaluates to <c>Error(ArgumentNullException())</c>
     /// </example>
     ///
     /// <example id="Int32.validate-4">
     /// <code lang="fsharp">
     /// Int32.validate ""
     /// </code>
-    /// Evaluates to <c>Error(Exceptions.EmptyString "Value cannot be empty string.")</c>
+    /// Evaluates to <c>Error(FormatException "The input string '' was not in a correct format.")</c>
     /// </example>
     ///
     /// <example id="Int32.validate-5">
     /// <code lang="fsharp">
     /// Int32.validate "2147483648" // System.Int32.MaxValue + 1
     /// </code>
-    /// Evaluates to <c>Error(Exceptions.Overflow "Value was either too large or too small for an Int32.")</c>
+    /// Evaluates to <c>Error(OverflowException "Value was either too large or too small for an Int32.")</c>
     /// </example>
     ///
     /// <example id="Int32.validate-6">
     /// <code lang="fsharp">
     /// Int32.validate "-2147483649" // System.Int32.MinValue - 1
     /// </code>
-    /// Evaluates to <c>Error(Exceptions.Overflow "Value was either too large or too small for an Int32.")</c>
+    /// Evaluates to <c>Error(OverflowException "Value was either too large or too small for an Int32.")</c>
     /// </example>
     val validate: value: string -> Result<int, exn>

@@ -27,7 +27,7 @@ module Validators =
     /// let input = null
     /// input |> validateNotNullOrEmpty
     /// </code>
-    /// Evaluates to <c>Error (ArgumentNull "Value cannot be null.")</c>
+    /// Evaluates to <c>Error(ArgumentNullException())</c>
     /// </example>
     ///
     /// <example id="validatenotnullorempty-3">
@@ -35,7 +35,7 @@ module Validators =
     /// let input = ""
     /// input |> validateNotNullOrEmpty
     /// </code>
-    /// Evaluates to <c>Error (ArgumentNull "Value cannot be null.")</c>
+    /// Evaluates to <c>Error(ArgumentNullException())</c>
     /// </example>
     val validateNotNullOrEmpty: input: string -> Result<string, exn>
 
@@ -58,7 +58,7 @@ module Validators =
     /// let input = ""
     /// input |> validateNotEmptyString
     /// </code>
-    /// Evaluates to <c>Error (EmptyString "Value cannot be empty string.")</c>
+    /// Evaluates to <c>Error(ArgumentException "Value cannot be empty string.")</c>
     /// </example>
     val validateNotEmptyString: input: string -> Result<string, exn>
 
@@ -82,7 +82,7 @@ module Validators =
     /// let input = "4a"
     /// input |> validateFormat "^[0-9]+$"
     /// </code>
-    /// Evaluates to <c>Error (Format "The input string '4a' was not in a correct format.")</c>
+    /// Evaluates to <c>Error(FormatException "The input string '4a' was not in a correct format.")</c>
     /// </example>
     val validateFormat: pattern: string -> input: string -> Result<string, exn>
 
@@ -107,7 +107,7 @@ module Validators =
     /// let input = 512
     /// input |> validateRange 0 255
     /// </code>
-    /// Evaluates to <c>Error (OutOfRange "512 is out of range. Value must be within 0 and 255")</c>
+    /// Evaluates to <c>Error(ArgumentOutOfRangeException("input", "512 is out of range. Value must be within 0 and 255"))</c>
     /// </example>
     ///
     /// <example id="validaterange-3">
@@ -123,7 +123,7 @@ module Validators =
     /// let input = 'A'
     /// input |> validateRange '0' '9'
     /// </code>
-    /// Evaluates to <c>Error (OutOfRange "'A' is out of range. Value must be within '0' and '9'")</c>
+    /// Evaluates to <c>Error(ArgumentOutOfRangeException("input", "'A' is out of range. Value must be within '0' and '9'"))</c>
     /// </example>
     val validateRange: min: 'T -> max: 'T -> input: 'T -> Result<'T, exn> when 'T: comparison
 
@@ -148,7 +148,7 @@ module Validators =
     /// <code lang="fsharp">
     /// "100000000000000000000000000000000" |> validateMaxLength String.length 32
     /// </code>
-    /// Evaluates to <c>Error (Exceptions.Overflow "Value is too long. Value must be shorter or equal to 32")</c>
+    /// Evaluates to <c>Error(OverflowException "Value is too long. Value must be shorter or equal to 32")</c>
     /// </example>
     ///
     /// <example id="Validators.validateMaxLength-3">
@@ -162,6 +162,6 @@ module Validators =
     /// <code lang="fsharp">
     /// [ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10 ] |> validateMaxLength List.length 10
     /// </code>
-    /// Evaluates to <c>Error (Exceptions.Overflow "Value is too long. Value must be shorter or equal to 10")</c>
+    /// Evaluates to <c>Error(OverflowException "Value is too long. Value must be shorter or equal to 10")</c>
     /// </example>
     val validateMaxLength: measurer: ('T -> int) -> max: int -> value: 'T -> Result<'T, exn>
