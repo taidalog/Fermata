@@ -34,8 +34,6 @@
     <Compile Include="Bound.fs" />
     <Compile Include="Int32.fsi" />
     <Compile Include="Int32.fs" />
-    <Compile Include="RadixConversion.fsi" />
-    <Compile Include="RadixConversion.fs" />
     <Compile Include="Regex.fsi" />
     <Compile Include="Regex.fs" />
     <Compile Include="Result.fsi" />
