@@ -244,22 +244,22 @@ module Array =
     ///
     /// <returns>An array of pairs of indexes and the elements that satisfy the predicate.</returns>
     ///
-    /// <example id="filterindexpair-1">
+    /// <example id="filterIndexed-1">
     /// <code lang="fsharp">
     /// let inputs = [| 42; 16; 8; 20; 120; 4 |]
-    /// inputs |> Array.filterIndexPair (fun x -> x % 10 = 0)
+    /// inputs |> Array.filterIndexed (fun x -> x % 10 = 0)
     /// </code>
     /// Evaluates to <c>[| (3, 20); (4, 120) |]</c>
     /// </example>
     ///
-    /// <example id="filterindexpair-2">
+    /// <example id="filterIndexed-2">
     /// <code lang="fsharp">
     /// let inputs = [| 42; 16; 8; 20; 120; 4 |]
-    /// inputs |> Array.filterIndexPair (fun x -> x % 2 = 1)
+    /// inputs |> Array.filterIndexed (fun x -> x % 2 = 1)
     /// </code>
     /// Evaluates to <c>[||]</c>
     /// </example>
-    val filterIndexPair: predicate: ('T -> bool) -> array: 'T array -> (int * 'T) array
+    val filterIndexed: predicate: ('T -> bool) -> array: 'T array -> (int * 'T) array
 
     /// <summary>Returns a new array that contains the common elements to the two input arrays.</summary>
     ///

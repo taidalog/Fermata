@@ -48,7 +48,7 @@ module Seq =
         |> Seq.filter (fun (_, x) -> predicate x)
         |> Seq.map (fun (i, _) -> i)
 
-    let filterIndexPair (predicate: 'T -> bool) (source: seq<'T>) : seq<(int * 'T)> =
+    let filterIndexed (predicate: 'T -> bool) (source: seq<'T>) : seq<(int * 'T)> =
         source |> Seq.mapi (fun i x -> (i, x)) |> Seq.filter (fun (_, x) -> predicate x)
 
     let intersect (source1: seq<'T>) (source2: seq<'T>) : seq<'T> =

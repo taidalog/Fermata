@@ -251,22 +251,22 @@ module Seq =
     ///
     /// <returns>A sequence of pairs of indexes and the elements that satisfy the predicate.</returns>
     ///
-    /// <example id="Seq.filterIndexPair-1">
+    /// <example id="Seq.filterIndexed-1">
     /// <code lang="fsharp">
     /// let source = seq {42; 16; 8; 20; 120; 4}
-    /// source |> Seq.filterIndexPair (fun x -> x % 10 = 0)
+    /// source |> Seq.filterIndexed (fun x -> x % 10 = 0)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>seq {(3, 20); (4, 120)}</c>
     /// </example>
     ///
-    /// <example id="Seq.filterIndexPair-2">
+    /// <example id="Seq.filterIndexed-2">
     /// <code lang="fsharp">
     /// let source = seq {42; 16; 8; 20; 120; 4}
-    /// source |> Seq.filterIndexPair (fun x -> x % 2 = 1)
+    /// source |> Seq.filterIndexed (fun x -> x % 2 = 1)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>Seq.empty</c>
     /// </example>
-    val filterIndexPair: predicate: ('T -> bool) -> source: seq<'T> -> seq<(int * 'T)>
+    val filterIndexed: predicate: ('T -> bool) -> source: seq<'T> -> seq<(int * 'T)>
 
     /// <summary>Returns a new sequence that contains the common elements to the two input sequences.</summary>
     ///

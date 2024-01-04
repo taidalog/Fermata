@@ -48,7 +48,7 @@ module Array =
         |> Array.filter (fun (_, x) -> predicate x)
         |> Array.map (fun (i, _) -> i)
 
-    let filterIndexPair (predicate: 'T -> bool) (array: 'T[]) : (int * 'T)[] =
+    let filterIndexed (predicate: 'T -> bool) (array: 'T[]) : (int * 'T)[] =
         array
         |> Array.mapi (fun i x -> (i, x))
         |> Array.filter (fun (_, x) -> predicate x)

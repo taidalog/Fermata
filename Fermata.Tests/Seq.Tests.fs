@@ -323,7 +323,7 @@ let ``Seq.filterIndex 2`` () =
     Assert.Equal<seq<int>>(expected, actual)
 
 [<Fact>]
-let ``Seq.filterIndexPair 1`` () =
+let ``Seq.filterIndexed 1`` () =
     let source =
         seq {
             42
@@ -334,7 +334,7 @@ let ``Seq.filterIndexPair 1`` () =
             4
         }
 
-    let actual = source |> Seq.filterIndexPair (fun x -> x % 10 = 0)
+    let actual = source |> Seq.filterIndexed (fun x -> x % 10 = 0)
 
     let expected =
         seq {
@@ -345,7 +345,7 @@ let ``Seq.filterIndexPair 1`` () =
     Assert.Equal<seq<(int * int)>>(expected, actual)
 
 [<Fact>]
-let ``Seq.filterIndexPair 2`` () =
+let ``Seq.filterIndexed 2`` () =
     let source =
         seq {
             42
@@ -356,7 +356,7 @@ let ``Seq.filterIndexPair 2`` () =
             4
         }
 
-    let actual = source |> Seq.filterIndexPair (fun x -> x % 2 = 1)
+    let actual = source |> Seq.filterIndexed (fun x -> x % 2 = 1)
     let expected = Seq.empty
     Assert.Equal<seq<(int * int)>>(expected, actual)
 
