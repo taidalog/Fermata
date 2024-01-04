@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>Fermata</PackageId>
-    <Version>0.7.0</Version>
+    <Version>1.0.0</Version>
     <Authors>taidalog</Authors>
     <Company />
     <Description>An F# helper library for working with values of basic types in F#. Compatible with Fable.</Description>
@@ -12,14 +12,12 @@
     <PackageTags>F#; FSharp; fable; miscellaneous; helper; library; functional; programming</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Copyright>Copyright (c) 2022-2023 taidalog</Copyright>
+    <Copyright>Copyright (c) 2022-2024 taidalog</Copyright>
     <RepositoryUrl>https://github.com/taidalog/Fermata.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Exceptions.fsi" />
-    <Compile Include="Exceptions.fs" />
     <Compile Include="Validators.fsi" />
     <Compile Include="Validators.fs" />
     <Compile Include="Array.fsi" />
@@ -34,8 +32,6 @@
     <Compile Include="Bound.fs" />
     <Compile Include="Int32.fsi" />
     <Compile Include="Int32.fs" />
-    <Compile Include="RadixConversion.fsi" />
-    <Compile Include="RadixConversion.fs" />
     <Compile Include="Regex.fsi" />
     <Compile Include="Regex.fs" />
     <Compile Include="Result.fsi" />

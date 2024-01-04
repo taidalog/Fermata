@@ -1,6 +1,6 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
@@ -45,16 +45,16 @@ let ``Array.tryFore 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Array.countWith 1`` () =
+let ``Array.count 1`` () =
     let inputs = [| "Laziness"; "Impatience"; "Hubris" |]
-    let actual = inputs |> Array.countWith (fun x -> String.length x > 6)
+    let actual = inputs |> Array.count (fun x -> String.length x > 6)
     let expected = 2
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Array.countWith 2`` () =
+let ``Array.count 2`` () =
     let inputs = [| "Laziness"; "Impatience"; "Hubris" |]
-    let actual = inputs |> Array.countWith (fun x -> String.length x < 0)
+    let actual = inputs |> Array.count (fun x -> String.length x < 0)
     let expected = 0
     Assert.Equal(expected, actual)
 
@@ -137,19 +137,18 @@ let ``Array.filterIndex 2`` () =
     Assert.Equal<int array>(expected, actual)
 
 [<Fact>]
-let ``Array.filterIndexPair 1`` () =
+let ``Array.filterIndexed 1`` () =
     let inputs = [| 42; 16; 8; 20; 120; 4 |]
 
-    let actual: (int * int) array =
-        inputs |> Array.filterIndexPair (fun x -> x % 10 = 0)
+    let actual: (int * int) array = inputs |> Array.filterIndexed (fun x -> x % 10 = 0)
 
     let expected = [| (3, 20); (4, 120) |]
     Assert.Equal<(int * int) array>(expected, actual)
 
 [<Fact>]
-let ``Array.filterIndexPair 2`` () =
+let ``Array.filterIndexed 2`` () =
     let inputs = [| 42; 16; 8; 20; 120; 4 |]
-    let actual: (int * int) array = inputs |> Array.filterIndexPair (fun x -> x % 2 = 1)
+    let actual: (int * int) array = inputs |> Array.filterIndexed (fun x -> x % 2 = 1)
     let expected = [||]
     Assert.Equal<(int * int) array>(expected, actual)
 
@@ -178,23 +177,23 @@ let ``Array.intersect 3`` () =
     Assert.Equal<int array>(expected, actual)
 
 [<Fact>]
-let ``Array.splitWith 1`` () =
+let ``Array.splitFind 1`` () =
     let array = [| 0; 2; 4; 6; 8 |]
-    let actual: int array * int array = array |> Array.splitWith (fun x -> x > 5)
+    let actual: int array * int array = array |> Array.splitFind (fun x -> x > 5)
     let expected = ([| 0; 2; 4 |], [| 6; 8 |])
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Array.splitWith 2`` () =
+let ``Array.splitFind 2`` () =
     let array = [| 0; 2; 5; 6; 8 |]
-    let actual = array |> Array.splitWith (fun x -> x % 2 = 1)
+    let actual = array |> Array.splitFind (fun x -> x % 2 = 1)
     let expected = ([| 0; 2 |], [| 5; 6; 8 |])
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Array.splitWith 3`` () =
+let ``Array.splitFind 3`` () =
     let array = [| 0; 2; 5; 6; 8 |]
-    let actual: int array * int array = array |> Array.splitWith (fun x -> x % 2 = 2)
+    let actual: int array * int array = array |> Array.splitFind (fun x -> x % 2 = 2)
     let expected = ([| 0; 2; 5; 6; 8 |], [||])
     Assert.Equal(expected, actual)
 
@@ -259,8 +258,8 @@ let ``Array.stairsBack 2`` () =
     Assert.Equal<int[][]>(expected, actual)
 
 [<Fact>]
-let ``Array.splits 1`` () =
-    let actual = "AAAABBCDDCAA" |> Seq.toArray |> Array.splits (<>)
+let ``Array.splitWith 1`` () =
+    let actual = "AAAABBCDDCAA" |> Seq.toArray |> Array.splitWith (<>)
 
     let expected =
         [| [| 'A'; 'A'; 'A'; 'A' |]
@@ -273,7 +272,7 @@ let ``Array.splits 1`` () =
     Assert.Equal<char[][]>(expected, actual)
 
 [<Fact>]
-let ``Array.splits 2`` () =
+let ``Array.splitWith 2`` () =
     let digit value =
         match value with
         | 0 -> 1
@@ -281,7 +280,7 @@ let ``Array.splits 2`` () =
 
     let input = [| 0; 2; 12; 42; 128; 666; 6; 928; 1024 |]
 
-    let actual = input |> Array.splits (fun x y -> digit x <> digit y)
+    let actual = input |> Array.splitWith (fun x y -> digit x <> digit y)
 
     let expected =
         [| [| 0; 2 |]; [| 12; 42 |]; [| 128; 666 |]; [| 6 |]; [| 928 |]; [| 1024 |] |]
@@ -289,19 +288,19 @@ let ``Array.splits 2`` () =
     Assert.Equal<int[][]>(expected, actual)
 
 [<Fact>]
-let ``Array.splits 3`` () =
+let ``Array.splitWith 3`` () =
     let input = [| 0..9 |]
 
-    let actual = input |> Array.splits (fun x y -> x > y)
+    let actual = input |> Array.splitWith (fun x y -> x > y)
 
     let expected = [| [| 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 |] |]
     Assert.Equal<int[][]>(expected, actual)
 
 [<Fact>]
-let ``Array.splits 4`` () =
+let ``Array.splitWith 4`` () =
     let input = [| 0..9 |]
 
-    let actual = input |> Array.splits (fun x y -> x < y)
+    let actual = input |> Array.splitWith (fun x y -> x < y)
 
     let expected =
         [| [| 0 |]

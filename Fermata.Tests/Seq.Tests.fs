@@ -1,6 +1,6 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
@@ -87,7 +87,7 @@ let ``Seq.tryFore 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Seq.countWith 1`` () =
+let ``Seq.count 1`` () =
     let source =
         seq {
             "Laziness"
@@ -95,12 +95,12 @@ let ``Seq.countWith 1`` () =
             "Hubris"
         }
 
-    let actual = source |> Seq.countWith (fun x -> String.length x > 6)
+    let actual = source |> Seq.count (fun x -> String.length x > 6)
     let expected = 2
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Seq.countWith 2`` () =
+let ``Seq.count 2`` () =
     let source =
         seq {
             "Laziness"
@@ -108,7 +108,7 @@ let ``Seq.countWith 2`` () =
             "Hubris"
         }
 
-    let actual = source |> Seq.countWith (fun x -> String.length x < 0)
+    let actual = source |> Seq.count (fun x -> String.length x < 0)
     let expected = 0
     Assert.Equal(expected, actual)
 
@@ -323,7 +323,7 @@ let ``Seq.filterIndex 2`` () =
     Assert.Equal<seq<int>>(expected, actual)
 
 [<Fact>]
-let ``Seq.filterIndexPair 1`` () =
+let ``Seq.filterIndexed 1`` () =
     let source =
         seq {
             42
@@ -334,7 +334,7 @@ let ``Seq.filterIndexPair 1`` () =
             4
         }
 
-    let actual = source |> Seq.filterIndexPair (fun x -> x % 10 = 0)
+    let actual = source |> Seq.filterIndexed (fun x -> x % 10 = 0)
 
     let expected =
         seq {
@@ -345,7 +345,7 @@ let ``Seq.filterIndexPair 1`` () =
     Assert.Equal<seq<(int * int)>>(expected, actual)
 
 [<Fact>]
-let ``Seq.filterIndexPair 2`` () =
+let ``Seq.filterIndexed 2`` () =
     let source =
         seq {
             42
@@ -356,7 +356,7 @@ let ``Seq.filterIndexPair 2`` () =
             4
         }
 
-    let actual = source |> Seq.filterIndexPair (fun x -> x % 2 = 1)
+    let actual = source |> Seq.filterIndexed (fun x -> x % 2 = 1)
     let expected = Seq.empty
     Assert.Equal<seq<(int * int)>>(expected, actual)
 
@@ -432,7 +432,7 @@ let ``Seq.intersect 3`` () =
     Assert.Equal<seq<int>>(expected, actual)
 
 [<Fact>]
-let ``Seq.splitWith 1`` () =
+let ``Seq.splitFind 1`` () =
     let source =
         seq {
             0
@@ -442,7 +442,7 @@ let ``Seq.splitWith 1`` () =
             8
         }
 
-    let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x > 5)
+    let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x > 5)
 
     let expected =
         (seq {
@@ -458,7 +458,7 @@ let ``Seq.splitWith 1`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Seq.splitWith 2`` () =
+let ``Seq.splitFind 2`` () =
     let source =
         seq {
             0
@@ -468,7 +468,7 @@ let ``Seq.splitWith 2`` () =
             8
         }
 
-    let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x % 2 = 1)
+    let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x % 2 = 1)
 
     let expected =
         (seq {
@@ -484,7 +484,7 @@ let ``Seq.splitWith 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Seq.splitWith 3`` () =
+let ``Seq.splitFind 3`` () =
     let source =
         seq {
             0
@@ -494,7 +494,7 @@ let ``Seq.splitWith 3`` () =
             8
         }
 
-    let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x % 2 = 2)
+    let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x % 2 = 2)
 
     let expected =
         (seq {
@@ -679,8 +679,8 @@ let ``Seq.stairsBack 2`` () =
     Assert.Equal<seq<seq<int>>>(expected, actual)
 
 [<Fact>]
-let ``Seq.splits 1`` () =
-    let actual = "AAAABBCDDCAA" |> Seq.splits (<>)
+let ``Seq.splitWith 1`` () =
+    let actual = "AAAABBCDDCAA" |> Seq.splitWith (<>)
 
     let expected =
         seq {
@@ -714,7 +714,7 @@ let ``Seq.splits 1`` () =
     Assert.Equal<seq<seq<char>>>(expected, actual)
 
 [<Fact>]
-let ``Seq.splits 2`` () =
+let ``Seq.splitWith 2`` () =
     let digit value =
         match value with
         | 0 -> 1
@@ -733,7 +733,7 @@ let ``Seq.splits 2`` () =
             1024
         }
 
-    let actual = input |> Seq.splits (fun x y -> digit x <> digit y)
+    let actual = input |> Seq.splitWith (fun x y -> digit x <> digit y)
 
     let expected =
         seq {
@@ -760,10 +760,10 @@ let ``Seq.splits 2`` () =
     Assert.Equal<seq<seq<int>>>(expected, actual)
 
 [<Fact>]
-let ``Seq.splits 3`` () =
+let ``Seq.splitWith 3`` () =
     let input = seq { 0..9 }
 
-    let actual = input |> Seq.splits (fun x y -> x > y)
+    let actual = input |> Seq.splitWith (fun x y -> x > y)
 
     let expected =
         seq {
@@ -784,10 +784,10 @@ let ``Seq.splits 3`` () =
     Assert.Equal<seq<seq<int>>>(expected, actual)
 
 [<Fact>]
-let ``Seq.splits 4`` () =
+let ``Seq.splitWith 4`` () =
     let input = seq { 0..9 }
 
-    let actual = input |> Seq.splits (fun x y -> x < y)
+    let actual = input |> Seq.splitWith (fun x y -> x < y)
 
     let expected =
         seq {

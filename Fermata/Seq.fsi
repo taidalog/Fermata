@@ -1,6 +1,6 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
@@ -81,22 +81,22 @@ module Seq =
     ///
     /// <returns>The number of elements of the sequence for which the given predicate returns true.</returns>
     ///
-    /// <example id="Seq.countWith-1">
+    /// <example id="Seq.count-1">
     /// <code lang="fsharp">
     /// let source = seq {"Laziness"; "Impatience"; "Hubris"}
-    /// source |> Seq.countWith (fun x -> String.length x > 6)
+    /// source |> Seq.count (fun x -> String.length x > 6)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>2</c>
     /// </example>
     ///
-    /// <example id="Seq.countWith-2">
+    /// <example id="Seq.count-2">
     /// <code lang="fsharp">
     /// let source = seq {"Laziness"; "Impatience"; "Hubris"}
-    /// source |> Seq.countWith (fun x -> String.length x < 0)
+    /// source |> Seq.count (fun x -> String.length x < 0)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>0</c>
     /// </example>
-    val countWith: predicate: ('T -> bool) -> source: seq<'T> -> int
+    val count: predicate: ('T -> bool) -> source: seq<'T> -> int
 
     /// <summary>Return the number of the occurrences of an item before itself in a sequence.</summary>
     ///
@@ -251,22 +251,22 @@ module Seq =
     ///
     /// <returns>A sequence of pairs of indexes and the elements that satisfy the predicate.</returns>
     ///
-    /// <example id="Seq.filterIndexPair-1">
+    /// <example id="Seq.filterIndexed-1">
     /// <code lang="fsharp">
     /// let source = seq {42; 16; 8; 20; 120; 4}
-    /// source |> Seq.filterIndexPair (fun x -> x % 10 = 0)
+    /// source |> Seq.filterIndexed (fun x -> x % 10 = 0)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>seq {(3, 20); (4, 120)}</c>
     /// </example>
     ///
-    /// <example id="Seq.filterIndexPair-2">
+    /// <example id="Seq.filterIndexed-2">
     /// <code lang="fsharp">
     /// let source = seq {42; 16; 8; 20; 120; 4}
-    /// source |> Seq.filterIndexPair (fun x -> x % 2 = 1)
+    /// source |> Seq.filterIndexed (fun x -> x % 2 = 1)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>Seq.empty</c>
     /// </example>
-    val filterIndexPair: predicate: ('T -> bool) -> source: seq<'T> -> seq<(int * 'T)>
+    val filterIndexed: predicate: ('T -> bool) -> source: seq<'T> -> seq<(int * 'T)>
 
     /// <summary>Returns a new sequence that contains the common elements to the two input sequences.</summary>
     ///
@@ -312,30 +312,30 @@ module Seq =
     ///
     /// <returns>The result two sequences.</returns>
     ///
-    /// <example id="Seq.splitWith-1">
+    /// <example id="Seq.splitFind-1">
     /// <code lang="fsharp">
     /// let source = seq {0; 2; 4; 6; 8}
-    /// let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x > 5)
+    /// let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x > 5)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>(seq {0; 2; 4}, seq {6; 8})</c>
     /// </example>
     ///
-    /// <example id="Seq.splitWith-2">
+    /// <example id="Seq.splitFind-2">
     /// <code lang="fsharp">
     /// let source = seq {0; 2; 5; 6; 8}
-    /// let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x % 2 = 1)
+    /// let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x % 2 = 1)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>(seq {0; 2}, seq {5; 6; 8})</c>
     /// </example>
     ///
-    /// <example id="Seq.splitWith-3">
+    /// <example id="Seq.splitFind-3">
     /// <code lang="fsharp">
     /// let source = seq {0; 2; 5; 6; 8}
-    /// let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x % 2 = 2)
+    /// let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x % 2 = 2)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>(seq {0; 2; 5; 6; 8}, Seq.empty)</c>
     /// </example>
-    val splitWith: predicate: ('T -> bool) -> source: seq<'T> -> (seq<'T> * seq<'T>)
+    val splitFind: predicate: ('T -> bool) -> source: seq<'T> -> (seq<'T> * seq<'T>)
 
     /// <summary>Returns a new sequence to which the specified value is prepended to be of the specified length.</summary>
     ///
@@ -459,9 +459,9 @@ module Seq =
     ///
     /// <returns>The input sequence before the elements for which the given predicate returns True.</returns>
     ///
-    /// <example id="Seq.splits-1">
+    /// <example id="Seq.splitWith-1">
     /// <code lang="fsharp">
-    /// "AAAABBCDDCAA" |> Seq.splits (<>)
+    /// "AAAABBCDDCAA" |> Seq.splitWith (<>)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>
     /// seq {
@@ -475,14 +475,14 @@ module Seq =
     /// </c>
     /// </example>
     ///
-    /// <example id="Seq.splits-2">
+    /// <example id="Seq.splitWith-2">
     /// <code lang="fsharp">
     /// let digit value =
     ///     match value with
     ///     | 0 -> 1
     ///     | _ -> value |> abs |> float |> log10 |> int |> ((+) 1)
     /// let input = seq {0; 2; 12; 42; 128; 666; 6; 928; 1024 }
-    /// input |> Seq.splits (fun x y -> digit x <> digit y)
+    /// input |> Seq.splitWith (fun x y -> digit x <> digit y)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <code>
     /// seq {
@@ -496,18 +496,18 @@ module Seq =
     /// </code>
     /// </example>
     ///
-    /// <example id="Seq.splits-3">
+    /// <example id="Seq.splitWith-3">
     /// <code lang="fsharp">
     /// let input = seq { 0..9 }
-    /// input |> Seq.splits (fun x y -> x > y)
+    /// input |> Seq.splitWith (fun x y -> x > y)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>seq { seq {0; 1; 2; 3; 4; 5; 6; 7; 8; 9} }</c>
     /// </example>
     ///
-    /// <example id="Seq.splits-4">
+    /// <example id="Seq.splitWith-4">
     /// <code lang="fsharp">
     /// let input = seq { 0..9 }
-    /// input |> Seq.splits (fun x y -> x < y)
+    /// input |> Seq.splitWith (fun x y -> x < y)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <code>
     /// seq {
@@ -524,4 +524,4 @@ module Seq =
     /// }
     /// </code>
     /// </example>
-    val splits: predicate: ('T -> 'T -> bool) -> source: seq<'T> -> seq<seq<'T>>
+    val splitWith: predicate: ('T -> 'T -> bool) -> source: seq<'T> -> seq<seq<'T>>

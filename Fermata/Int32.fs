@@ -1,6 +1,6 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
@@ -11,13 +11,12 @@ open System
 [<RequireQualifiedAccess>]
 module Int32 =
     let validate (value: string) : Result<int, exn> =
-        if value = String.Empty then
-            Error(Exceptions.EmptyString "Value cannot be empty string.")
-        else
-            try
-                Ok(Int32.Parse value)
-            with
-            | :? System.ArgumentNullException as e -> Error(Exceptions.ArgumentNull e.Message)
-            | :? System.FormatException as e -> Error(Exceptions.Format e.Message)
-            | :? System.OverflowException as e -> Error(Exceptions.Overflow e.Message)
-            | _ as e -> Error(Exceptions.Unknown e.Message)
+        try
+            Ok(Int32.Parse value)
+        with
+        | :? System.ArgumentNullException -> Error(ArgumentNullException())
+        | :? System.FormatException ->
+            Error(FormatException $"The input string '%s{value}' was not in a correct format.")
+        | :? System.OverflowException ->
+            Error(OverflowException "Value was either too large or too small for an Int32.")
+        | _ as e -> Error(ArgumentException e.Message)

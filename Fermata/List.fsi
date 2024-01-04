@@ -1,6 +1,6 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
@@ -82,22 +82,22 @@ module List =
     ///
     /// <returns>The number of elements of the list for which the given predicate returns true.</returns>
     ///
-    /// <example id="countwith-1">
+    /// <example id="count-1">
     /// <code lang="fsharp">
     /// let inputs = ["Laziness"; "Impatience"; "Hubris"]
-    /// inputs |> List.countWith (fun x -> String.length x > 6)
+    /// inputs |> List.count (fun x -> String.length x > 6)
     /// </code>
     /// Evaluates to <c>2</c>
     /// </example>
     ///
-    /// <example id="countwith-2">
+    /// <example id="count-2">
     /// <code lang="fsharp">
     /// let inputs = ["Laziness"; "Impatience"; "Hubris"]
-    /// inputs |> List.countWith (fun x -> String.length x < 0)
+    /// inputs |> List.count (fun x -> String.length x < 0)
     /// </code>
     /// Evaluates to <c>0</c>
     /// </example>
-    val countWith: predicate: ('T -> bool) -> list: 'T list -> int
+    val count: predicate: ('T -> bool) -> list: 'T list -> int
 
     /// <summary>Return the number of the occurrences of an item before itself in a list.</summary>
     ///
@@ -244,22 +244,22 @@ module List =
     ///
     /// <returns>A list of pairs of indexes and the elements that satisfy the predicate.</returns>
     ///
-    /// <example id="filterindexpair-1">
+    /// <example id="filterIndexed-1">
     /// <code lang="fsharp">
     /// let inputs = [ 42; 16; 8; 20; 120; 4 ]
-    /// inputs |> List.filterIndexPair (fun x -> x % 10 = 0)
+    /// inputs |> List.filterIndexed (fun x -> x % 10 = 0)
     /// </code>
     /// Evaluates to <c>[ (3, 20); (4, 120) ]</c>
     /// </example>
     ///
-    /// <example id="filterindexpair-2">
+    /// <example id="filterIndexed-2">
     /// <code lang="fsharp">
     /// let inputs = [ 42; 16; 8; 20; 120; 4 ]
-    /// inputs |> List.filterIndexPair (fun x -> x % 2 = 1)
+    /// inputs |> List.filterIndexed (fun x -> x % 2 = 1)
     /// </code>
     /// Evaluates to <c>[]</c>
     /// </example>
-    val filterIndexPair: predicate: ('T -> bool) -> list: 'T list -> (int * 'T) list
+    val filterIndexed: predicate: ('T -> bool) -> list: 'T list -> (int * 'T) list
 
     /// <summary>Returns a new list that contains the common elements to the two input lists.</summary>
     ///
@@ -305,30 +305,30 @@ module List =
     ///
     /// <returns>The result two lists.</returns>
     ///
-    /// <example id="splitwith-1">
+    /// <example id="splitFind-1">
     /// <code lang="fsharp">
     /// let list = [0; 2; 4; 6; 8]
-    /// list |> List.splitWith (fun x -> x > 5)
+    /// list |> List.splitFind (fun x -> x > 5)
     /// </code>
     /// Evaluates to <c>([0; 2; 4], [6; 8])</c>
     /// </example>
     ///
-    /// <example id="splitwith-2">
+    /// <example id="splitFind-2">
     /// <code lang="fsharp">
     /// let list = [0; 2; 5; 6; 8]
-    /// list |> List.splitWith (fun x -> x % 2 = 1)
+    /// list |> List.splitFind (fun x -> x % 2 = 1)
     /// </code>
     /// Evaluates to <c>([0; 2], [5; 6; 8])</c>
     /// </example>
     ///
-    /// <example id="splitwith-3">
+    /// <example id="splitFind-3">
     /// <code lang="fsharp">
     /// let list = [0; 2; 5; 6; 8]
-    /// list |> List.splitWith (fun x -> x % 2 = 2)
+    /// list |> List.splitFind (fun x -> x % 2 = 2)
     /// </code>
     /// Evaluates to <c>([0; 2; 5; 6; 8], [])</c>
     /// </example>
-    val splitWith: predicate: ('T -> bool) -> list: 'T list -> ('T list * 'T list)
+    val splitFind: predicate: ('T -> bool) -> list: 'T list -> ('T list * 'T list)
 
     /// <summary>Returns a new list to which the specified value is prepended to be of the specified length.</summary>
     ///
@@ -436,38 +436,38 @@ module List =
     ///
     /// <returns>The input list before the elements for which the given predicate returns True.</returns>
     ///
-    /// <example id="List.splits-1">
+    /// <example id="List.splitWith-1">
     /// <code lang="fsharp">
-    /// "AAAABBCDDCAA" |> Seq.toList |> List.splits (<>)
+    /// "AAAABBCDDCAA" |> Seq.toList |> List.splitWith (<>)
     /// </code>
     /// Evaluates to <c>[ [ 'A'; 'A'; 'A'; 'A' ]; [ 'B'; 'B' ]; [ 'C' ]; [ 'D'; 'D' ]; [ 'C' ]; [ 'A'; 'A' ] ]</c>
     /// </example>
     ///
-    /// <example id="List.splits-2">
+    /// <example id="List.splitWith-2">
     /// <code lang="fsharp">
     /// let digit value =
     ///     match value with
     ///     | 0 -> 1
     ///     | _ -> value |> abs |> float |> log10 |> int |> ((+) 1)
     /// let input = [ 0; 2; 12; 42; 128; 666; 6; 928; 1024 ]
-    /// input |> List.splits (fun x y -> digit x <> digit y)
+    /// input |> List.splitWith (fun x y -> digit x <> digit y)
     /// </code>
     /// Evaluates to <c>[ [ 0; 2 ]; [ 12; 42 ]; [ 128; 666 ]; [ 6 ]; [ 928 ]; [ 1024 ] ]</c>
     /// </example>
     ///
-    /// <example id="List.splits-3">
+    /// <example id="List.splitWith-3">
     /// <code lang="fsharp">
     /// let input = [ 0..9 ]
-    /// input |> List.splits (fun x y -> x > y)
+    /// input |> List.splitWith (fun x y -> x > y)
     /// </code>
     /// Evaluates to <c>[ [ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 ] ]</c>
     /// </example>
     ///
-    /// <example id="List.splits-4">
+    /// <example id="List.splitWith-4">
     /// <code lang="fsharp">
     /// let input = [ 0..9 ]
-    /// input |> List.splits (fun x y -> x < y)
+    /// input |> List.splitWith (fun x y -> x < y)
     /// </code>
     /// Evaluates to <c>[ [ 0 ]; [ 1 ]; [ 2 ]; [ 3 ]; [ 4 ]; [ 5 ]; [ 6 ]; [ 7 ]; [ 8 ]; [ 9 ] ]</c>
     /// </example>
-    val splits: predicate: ('T -> 'T -> bool) -> list: 'T list -> 'T list list
+    val splitWith: predicate: ('T -> 'T -> bool) -> list: 'T list -> 'T list list

@@ -1,6 +1,6 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
@@ -501,27 +501,27 @@ module String =
     ///
     /// <returns>The result two strings.</returns>
     ///
-    /// <example id="splitwith-1">
+    /// <example id="splitFind-1">
     /// <code lang="fsharp">
     /// let str = "00001010"
-    /// str |> String.splitWith (fun c -> c = '1')
+    /// str |> String.splitFind (fun c -> c = '1')
     /// </code>
     /// Evaluates to <c>("0000", "1010")</c>
     /// </example>
     ///
-    /// <example id="splitwith-2">
+    /// <example id="splitFind-2">
     /// <code lang="fsharp">
     /// let str = "taidalog"
-    /// str |> String.splitWith ((=) 'l')
+    /// str |> String.splitFind ((=) 'l')
     /// </code>
     /// Evaluates to <c>("taida", "log")</c>
     /// </example>
     ///
-    /// <example id="splitwith-3">
+    /// <example id="splitFind-3">
     /// <code lang="fsharp">
     /// let str = "taidalog"
-    /// str |> String.splitWith ((=) 'z')
+    /// str |> String.splitFind ((=) 'z')
     /// </code>
     /// Evaluates to <c>("taidalog", "")</c>
     /// </example>
-    val splitWith: predicate: (char -> bool) -> str: string -> string * string
+    val splitFind: predicate: (char -> bool) -> str: string -> string * string

@@ -1,11 +1,12 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
 module Int32.Tests
 
+open System
 open Xunit
 open Fermata
 
@@ -19,45 +20,86 @@ let ``Int32.validate 1`` () =
 let ``Int32.validate 2`` () =
     let actual = Int32.validate "42."
 
-    let msg =
-        match actual with
-        | Ok _ -> ""
-        | Error e ->
-            match e with
-            | Exceptions.Format s -> s
-            | _ -> ""
+    let expected =
+        Error(FormatException "The input string '42.' was not in a correct format.")
 
-    Assert.Matches("(The )?[Ii]nput string ('42.' )?was not in a correct format.", msg)
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
 
 [<Fact>]
 let ``Int32.validate 3`` () =
     let actual = Int32.validate null
+    let expected = Error(ArgumentNullException())
 
-    let expected =
-        Error(Exceptions.ArgumentNull "Value cannot be null. (Parameter 's')")
-
-    Assert.Equal(expected, actual)
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
 
 [<Fact>]
 let ``Int32.validate 4`` () =
     let actual = Int32.validate ""
-    let expected = Error(Exceptions.EmptyString "Value cannot be empty string.")
-    Assert.Equal(expected, actual)
+
+    let expected =
+        Error(FormatException "The input string '' was not in a correct format.")
+
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
 
 [<Fact>]
 let ``Int32.validate 5`` () =
     let actual = Int32.validate "2147483648" // System.Int32.MaxValue + 1
 
     let expected =
-        Error(Exceptions.Overflow "Value was either too large or too small for an Int32.")
+        Error(OverflowException "Value was either too large or too small for an Int32.")
 
-    Assert.Equal(expected, actual)
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""
 
 [<Fact>]
 let ``Int32.validate 6`` () =
     let actual = Int32.validate "-2147483649" // System.Int32.MinValue - 1
 
     let expected =
-        Error(Exceptions.Overflow "Value was either too large or too small for an Int32.")
+        Error(OverflowException "Value was either too large or too small for an Int32.")
 
-    Assert.Equal(expected, actual)
+    match expected with
+    | Ok _ -> Assert.Fail ""
+    | Error e1 ->
+        match actual with
+        | Ok _ -> Assert.Fail ""
+        | Error e2 ->
+            if e2.GetType().Name = e1.GetType().Name then
+                Assert.Equal(e1.Message, e2.Message)
+            else
+                Assert.Fail ""

@@ -1,6 +1,6 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
@@ -64,6 +64,6 @@ module String =
     let split (separator: char) (str: string) : string list =
         str.Split([| separator |]) |> Array.toList
 
-    let splitWith (predicate: char -> bool) (str: string) : string * string =
+    let splitFind (predicate: char -> bool) (str: string) : string * string =
         str |> Seq.takeWhile (predicate >> not) |> Seq.map string |> String.concat "",
         str |> Seq.skipWhile (predicate >> not) |> Seq.map string |> String.concat ""

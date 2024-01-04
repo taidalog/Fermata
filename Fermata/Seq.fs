@@ -1,6 +1,6 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
@@ -21,14 +21,14 @@ module Seq =
         | true -> None
         | false -> source |> fore |> Some
 
-    let countWith (predicate: 'T -> bool) (source: seq<'T>) : int =
+    let count (predicate: 'T -> bool) (source: seq<'T>) : int =
         source |> Seq.filter predicate |> Seq.length
 
     let countBefore (index: int) (source: seq<'T>) : int =
-        source |> Seq.truncate index |> countWith ((=) (Seq.item index source))
+        source |> Seq.truncate index |> count ((=) (Seq.item index source))
 
     let countAfter (index: int) (source: seq<'T>) : int =
-        source |> Seq.skip (index + 1) |> countWith ((=) (Seq.item index source))
+        source |> Seq.skip (index + 1) |> count ((=) (Seq.item index source))
 
     let trySkip (count: int) (source: seq<'T>) : seq<'T> option =
         if count > (source |> Seq.length) then
@@ -48,13 +48,13 @@ module Seq =
         |> Seq.filter (fun (_, x) -> predicate x)
         |> Seq.map (fun (i, _) -> i)
 
-    let filterIndexPair (predicate: 'T -> bool) (source: seq<'T>) : seq<(int * 'T)> =
+    let filterIndexed (predicate: 'T -> bool) (source: seq<'T>) : seq<(int * 'T)> =
         source |> Seq.mapi (fun i x -> (i, x)) |> Seq.filter (fun (_, x) -> predicate x)
 
     let intersect (source1: seq<'T>) (source2: seq<'T>) : seq<'T> =
         Seq.filter (fun x -> Seq.contains x source2) source1
 
-    let splitWith (predicate: 'T -> bool) (source: seq<'T>) : seq<'T> * seq<'T> =
+    let splitFind (predicate: 'T -> bool) (source: seq<'T>) : seq<'T> * seq<'T> =
         source |> Seq.takeWhile (predicate >> not), source |> Seq.skipWhile (predicate >> not)
 
     let padLeft (length: int) (padding: 'T) (source: seq<'T>) : seq<'T> =
@@ -84,7 +84,7 @@ module Seq =
         |> Seq.scan (fun acc x -> Seq.append (seq { x }) acc) Seq.empty
         |> Seq.tail
 
-    let splits (predicate: 'T -> 'T -> bool) (source: seq<'T>) : seq<seq<'T>> =
+    let splitWith (predicate: 'T -> 'T -> bool) (source: seq<'T>) : seq<seq<'T>> =
         source
         |> Seq.pairwise
         |> Seq.fold

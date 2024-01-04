@@ -1,6 +1,6 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
@@ -284,22 +284,22 @@ let ``split-2`` () =
     Assert.Equal<seq<string>>(expected, actual)
 
 [<Fact>]
-let ``splitwith-1`` () =
+let ``splitFind-1`` () =
     let str = "00001010"
-    let actual = str |> String.splitWith (fun c -> c = '1')
+    let actual = str |> String.splitFind (fun c -> c = '1')
     let expected = ("0000", "1010")
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``splitwith-2`` () =
+let ``splitFind-2`` () =
     let str = "taidalog"
-    let actual = str |> String.splitWith ((=) 'l')
+    let actual = str |> String.splitFind ((=) 'l')
     let expected = ("taida", "log")
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``splitwith-3`` () =
+let ``splitFind-3`` () =
     let str = "taidalog"
-    let actual = str |> String.splitWith ((=) 'z')
+    let actual = str |> String.splitFind ((=) 'z')
     let expected = ("taidalog", "")
     Assert.Equal(expected, actual)

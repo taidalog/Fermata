@@ -1,6 +1,6 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
@@ -21,14 +21,14 @@ module List =
         | [] -> None
         | _ -> list |> fore |> Some
 
-    let countWith (predicate: 'T -> bool) (list: 'T list) : int =
+    let count (predicate: 'T -> bool) (list: 'T list) : int =
         list |> List.filter predicate |> List.length
 
     let countBefore (index: int) (list: 'T list) : int =
-        list |> List.truncate index |> countWith ((=) (List.item index list))
+        list |> List.truncate index |> count ((=) (List.item index list))
 
     let countAfter (index: int) (list: 'T list) : int =
-        list |> List.skip (index + 1) |> countWith ((=) (List.item index list))
+        list |> List.skip (index + 1) |> count ((=) (List.item index list))
 
     let trySkip (count: int) (list: 'T list) : 'T list option =
         if count > (list |> List.length) then
@@ -48,13 +48,13 @@ module List =
         |> List.filter (fun (_, x) -> predicate x)
         |> List.map (fun (i, _) -> i)
 
-    let filterIndexPair (predicate: 'T -> bool) (list: 'T list) : (int * 'T) list =
+    let filterIndexed (predicate: 'T -> bool) (list: 'T list) : (int * 'T) list =
         list |> List.mapi (fun i x -> (i, x)) |> List.filter (fun (_, x) -> predicate x)
 
     let intersect (list1: 'T list) (list2: 'T list) : 'T list =
         List.filter (fun x -> List.contains x list2) list1
 
-    let splitWith (predicate: 'T -> bool) (list: 'T list) : 'T list * 'T list =
+    let splitFind (predicate: 'T -> bool) (list: 'T list) : 'T list * 'T list =
         list |> List.takeWhile (predicate >> not), list |> List.skipWhile (predicate >> not)
 
     let padLeft (length: int) (padding: 'T) (list: 'T list) : 'T list =
@@ -79,7 +79,7 @@ module List =
     let stairsBack (list: 'T list) : 'T list list =
         list |> List.rev |> List.scan (fun acc x -> x :: acc) [] |> List.tail
 
-    let splits (predicate: 'T -> 'T -> bool) (list: 'T list) : 'T list list =
+    let splitWith (predicate: 'T -> 'T -> bool) (list: 'T list) : 'T list list =
         list
         |> List.pairwise
         |> List.fold

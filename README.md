@@ -2,7 +2,7 @@
 
 An F# helper library for working with values of basic types in F#. Compatible with Fable.
 
-Version 0.7.0
+Version 1.0.0
 
 ## Features
 
@@ -14,6 +14,7 @@ Version 0.7.0
 - .NET Standard 2.0
 - .NET 6
 - .NET 7
+- .NET 8
 
 ## Modules
 
@@ -27,16 +28,6 @@ Version 0.7.0
    Contains helper functions for working with values of type int (.NET wrapper functions).
 - List  
    Contains helper functions for working with values of type list.
-- RadixConversion  
-   Contains modules for radix conversion.
-  - Dec  
-     Contains helper functions for base 10 radix conversion (.NET wrapper functions).
-  - Bin  
-     Contains helper functions for base 2 radix conversion (.NET wrapper functions).
-  - Hex  
-     Contains helper functions for base 16 radix conversion (.NET wrapper functions).
-  - Arb  
-     Contains helper functions for radix conversion with an **Arb**itrary base.
 - Regex  
    Contains wrapper functions for .Net System.Text.RegularExpressions.
 - Result  
@@ -57,13 +48,13 @@ For more information, see each signature file (`.fsi`).
 .NET CLI,
 
 ```
-dotnet add package Fermata --version 0.7.0
+dotnet add package Fermata --version 1.0.0
 ```
 
 F# Intaractive,
 
 ```
-#r "nuget: Fermata, 0.7.0"
+#r "nuget: Fermata, 1.0.0"
 ```
 
 For more information, please see [Fermata on NuGet Gallery](https://www.nuget.org/packages/Fermata).
@@ -81,6 +72,25 @@ For more information, please see [Fermata on NuGet Gallery](https://www.nuget.or
 [Releases on GitHub](https://github.com/taidalog/Fermata/releases)
 
 ## Breaking Changes
+
+### 1.0.0
+
+- Removed `RadixConversion` module from Fermata. The module is now separated as a single module [Fermata.RadixConversion](https://github.com/taidalog/Fermata.RadixConversion).
+- Removed `Exceptions` module from Fermata. Now functions in Fermata return the built-in exceptions instead of `Fermata.Exceptions`.
+- Some functions are renamed.
+  - `Array.countWith` -> `Array.count`
+  - `Array.filterIndexPair` -> `Array.filterIndexed`
+  - `Array.splits` -> `Array.splitWith`
+  - `Array.splitWith` -> `Array.splitFind`
+  - `List.countWith` -> `List.count`
+  - `List.filterIndexPair` -> `List.filterIndexed`
+  - `List.splits` -> `List.splitWith`
+  - `List.splitWith` -> `List.splitFind`
+  - `Seq.countWith` -> `Seq.count`
+  - `Seq.filterIndexPair` -> `Seq.filterIndexed`
+  - `Seq.splits` -> `Seq.splitWith`
+  - `Seq.splitWith` -> `Seq.splitFind`
+  - `String.splitWith` -> `String.splitFind`
 
 ### 0.6.0
 

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
     <GenerateProgramFile>false</GenerateProgramFile>
@@ -14,7 +14,6 @@
     <Compile Include="Bool.Tests.fs" />
     <Compile Include="Bound.Tests.fs" />
     <Compile Include="Int32.Tests.fs" />
-    <Compile Include="RadixConversion.Tests.fs" />
     <Compile Include="Regex.Tests.fs" />
     <Compile Include="Result.Tests.fs" />
     <Compile Include="String.Tests.fs" />

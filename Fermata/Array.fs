@@ -1,6 +1,6 @@
-// Fermata Version 0.7.0
+// Fermata Version 1.0.0
 // https://github.com/taidalog/Fermata
-// Copyright (c) 2022-2023 taidalog
+// Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
 // https://github.com/taidalog/Fermata/blob/main/LICENSE
 
@@ -21,14 +21,14 @@ module Array =
         | [||] -> None
         | _ -> array |> fore |> Some
 
-    let countWith (predicate: 'T -> bool) (array: 'T[]) : int =
+    let count (predicate: 'T -> bool) (array: 'T[]) : int =
         array |> Array.filter predicate |> Array.length
 
     let countBefore (index: int) (array: 'T[]) : int =
-        array |> Array.truncate index |> countWith ((=) (Array.item index array))
+        array |> Array.truncate index |> count ((=) (Array.item index array))
 
     let countAfter (index: int) (array: 'T[]) : int =
-        array |> Array.skip (index + 1) |> countWith ((=) (Array.item index array))
+        array |> Array.skip (index + 1) |> count ((=) (Array.item index array))
 
     let trySkip (count: int) (array: 'T[]) : 'T[] option =
         if count > (array |> Array.length) then
@@ -48,7 +48,7 @@ module Array =
         |> Array.filter (fun (_, x) -> predicate x)
         |> Array.map (fun (i, _) -> i)
 
-    let filterIndexPair (predicate: 'T -> bool) (array: 'T[]) : (int * 'T)[] =
+    let filterIndexed (predicate: 'T -> bool) (array: 'T[]) : (int * 'T)[] =
         array
         |> Array.mapi (fun i x -> (i, x))
         |> Array.filter (fun (_, x) -> predicate x)
@@ -56,7 +56,7 @@ module Array =
     let intersect (array1: 'T[]) (array2: 'T[]) : 'T[] =
         Array.filter (fun x -> Array.contains x array2) array1
 
-    let splitWith (predicate: 'T -> bool) (array: 'T[]) : 'T[] * 'T[] =
+    let splitFind (predicate: 'T -> bool) (array: 'T[]) : 'T[] * 'T[] =
         array |> Array.takeWhile (predicate >> not), array |> Array.skipWhile (predicate >> not)
 
     let padLeft (length: int) (padding: 'T) (array: 'T[]) : 'T[] =
@@ -84,7 +84,7 @@ module Array =
         |> Array.scan (fun acc x -> Array.append [| x |] acc) [||]
         |> Array.tail
 
-    let splits (predicate: 'T -> 'T -> bool) (array: 'T[]) : 'T[][] =
+    let splitWith (predicate: 'T -> 'T -> bool) (array: 'T[]) : 'T[][] =
         array
         |> Array.pairwise
         |> Array.fold
