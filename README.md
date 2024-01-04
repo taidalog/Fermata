@@ -75,6 +75,7 @@ For more information, please see [Fermata on NuGet Gallery](https://www.nuget.or
 
 ### 1.0.0
 
+- Removed `RadixConversion` module from Fermata. The module is now separated as a single module [Fermata.RadixConversion](https://github.com/taidalog/Fermata.RadixConversion).
 - Function are renamed.
   - `Array.countWith` -> `Array.count`
   - `Array.filterIndexPair` -> `Array.filterIndexed`
