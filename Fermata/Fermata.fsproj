@@ -12,7 +12,7 @@
     <PackageTags>F#; FSharp; fable; miscellaneous; helper; library; functional; programming</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Copyright>Copyright (c) 2022-2023 taidalog</Copyright>
+    <Copyright>Copyright (c) 2022-2024 taidalog</Copyright>
     <RepositoryUrl>https://github.com/taidalog/Fermata.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
