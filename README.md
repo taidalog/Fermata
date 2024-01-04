@@ -14,6 +14,7 @@ Version 1.0.0
 - .NET Standard 2.0
 - .NET 6
 - .NET 7
+- .NET 8
 
 ## Modules
 
@@ -27,16 +28,6 @@ Version 1.0.0
    Contains helper functions for working with values of type int (.NET wrapper functions).
 - List  
    Contains helper functions for working with values of type list.
-- RadixConversion  
-   Contains modules for radix conversion.
-  - Dec  
-     Contains helper functions for base 10 radix conversion (.NET wrapper functions).
-  - Bin  
-     Contains helper functions for base 2 radix conversion (.NET wrapper functions).
-  - Hex  
-     Contains helper functions for base 16 radix conversion (.NET wrapper functions).
-  - Arb  
-     Contains helper functions for radix conversion with an **Arb**itrary base.
 - Regex  
    Contains wrapper functions for .Net System.Text.RegularExpressions.
 - Result  
@@ -81,6 +72,23 @@ For more information, please see [Fermata on NuGet Gallery](https://www.nuget.or
 [Releases on GitHub](https://github.com/taidalog/Fermata/releases)
 
 ## Breaking Changes
+
+### 1.0.0
+
+- Function are renamed.
+  - `Array.countWith` -> `Array.count`
+  - `Array.filterIndexPair` -> `Array.filterIndexed`
+  - `Array.splits` -> `Array.splitWith`
+  - `Array.splitWith` -> `Array.splitFind`
+  - `List.countWith` -> `List.count`
+  - `List.filterIndexPair` -> `List.filterIndexed`
+  - `List.splits` -> `List.splitWith`
+  - `List.splitWith` -> `List.splitFind`
+  - `Seq.countWith` -> `Seq.count`
+  - `Seq.filterIndexPair` -> `Seq.filterIndexed`
+  - `Seq.splits` -> `Seq.splitWith`
+  - `Seq.splitWith` -> `Seq.splitFind`
+  - `String.splitWith` -> `String.splitFind`
 
 ### 0.6.0
 
