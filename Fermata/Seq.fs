@@ -84,7 +84,7 @@ module Seq =
         |> Seq.scan (fun acc x -> Seq.append (seq { x }) acc) Seq.empty
         |> Seq.tail
 
-    let splits (predicate: 'T -> 'T -> bool) (source: seq<'T>) : seq<seq<'T>> =
+    let splitWith (predicate: 'T -> 'T -> bool) (source: seq<'T>) : seq<seq<'T>> =
         source
         |> Seq.pairwise
         |> Seq.fold

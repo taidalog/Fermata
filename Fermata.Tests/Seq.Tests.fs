@@ -679,8 +679,8 @@ let ``Seq.stairsBack 2`` () =
     Assert.Equal<seq<seq<int>>>(expected, actual)
 
 [<Fact>]
-let ``Seq.splits 1`` () =
-    let actual = "AAAABBCDDCAA" |> Seq.splits (<>)
+let ``Seq.splitWith 1`` () =
+    let actual = "AAAABBCDDCAA" |> Seq.splitWith (<>)
 
     let expected =
         seq {
@@ -714,7 +714,7 @@ let ``Seq.splits 1`` () =
     Assert.Equal<seq<seq<char>>>(expected, actual)
 
 [<Fact>]
-let ``Seq.splits 2`` () =
+let ``Seq.splitWith 2`` () =
     let digit value =
         match value with
         | 0 -> 1
@@ -733,7 +733,7 @@ let ``Seq.splits 2`` () =
             1024
         }
 
-    let actual = input |> Seq.splits (fun x y -> digit x <> digit y)
+    let actual = input |> Seq.splitWith (fun x y -> digit x <> digit y)
 
     let expected =
         seq {
@@ -760,10 +760,10 @@ let ``Seq.splits 2`` () =
     Assert.Equal<seq<seq<int>>>(expected, actual)
 
 [<Fact>]
-let ``Seq.splits 3`` () =
+let ``Seq.splitWith 3`` () =
     let input = seq { 0..9 }
 
-    let actual = input |> Seq.splits (fun x y -> x > y)
+    let actual = input |> Seq.splitWith (fun x y -> x > y)
 
     let expected =
         seq {
@@ -784,10 +784,10 @@ let ``Seq.splits 3`` () =
     Assert.Equal<seq<seq<int>>>(expected, actual)
 
 [<Fact>]
-let ``Seq.splits 4`` () =
+let ``Seq.splitWith 4`` () =
     let input = seq { 0..9 }
 
-    let actual = input |> Seq.splits (fun x y -> x < y)
+    let actual = input |> Seq.splitWith (fun x y -> x < y)
 
     let expected =
         seq {

@@ -436,38 +436,38 @@ module Array =
     ///
     /// <returns>The input array before the elements for which the given predicate returns True.</returns>
     ///
-    /// <example id="Array.splits-1">
+    /// <example id="Array.splitWith-1">
     /// <code lang="fsharp">
-    /// "AAAABBCDDCAA" |> Seq.toArray |> Array.splits (<>)
+    /// "AAAABBCDDCAA" |> Seq.toArray |> Array.splitWith (<>)
     /// </code>
     /// Evaluates to <c>[| [| 'A'; 'A'; 'A'; 'A' |]; [| 'B'; 'B' |]; [| 'C' |]; [| 'D'; 'D' |]; [| 'C' |]; [| 'A'; 'A' |] |]</c>
     /// </example>
     ///
-    /// <example id="Array.splits-2">
+    /// <example id="Array.splitWith-2">
     /// <code lang="fsharp">
     /// let digit value =
     ///     match value with
     ///     | 0 -> 1
     ///     | _ -> value |> abs |> float |> log10 |> int |> ((+) 1)
     /// let input = [| 0; 2; 12; 42; 128; 666; 6; 928; 1024 |]
-    /// input |> Array.splits (fun x y -> digit x <> digit y)
+    /// input |> Array.splitWith (fun x y -> digit x <> digit y)
     /// </code>
     /// Evaluates to <c>[| [| 0; 2 |]; [| 12; 42 |]; [| 128; 666 |]; [| 6 |]; [| 928 |]; [| 1024 |] |]</c>
     /// </example>
     ///
-    /// <example id="Array.splits-3">
+    /// <example id="Array.splitWith-3">
     /// <code lang="fsharp">
     /// let input = [| 0..9 |]
-    /// input |> Array.splits (fun x y -> x > y)
+    /// input |> Array.splitWith (fun x y -> x > y)
     /// </code>
     /// Evaluates to <c>[| [| 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 |] |]</c>
     /// </example>
     ///
-    /// <example id="Array.splits-4">
+    /// <example id="Array.splitWith-4">
     /// <code lang="fsharp">
     /// let input = [| 0..9 |]
-    /// input |> Array.splits (fun x y -> x < y)
+    /// input |> Array.splitWith (fun x y -> x < y)
     /// </code>
     /// Evaluates to <c>[| [| 0 |]; [| 1 |]; [| 2 |]; [| 3 |]; [| 4 |]; [| 5 |]; [| 6 |]; [| 7 |]; [| 8 |]; [| 9 |] |]</c>
     /// </example>
-    val splits: predicate: ('T -> 'T -> bool) -> array: 'T[] -> 'T[][]
+    val splitWith: predicate: ('T -> 'T -> bool) -> array: 'T[] -> 'T[][]

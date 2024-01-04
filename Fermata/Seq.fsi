@@ -459,9 +459,9 @@ module Seq =
     ///
     /// <returns>The input sequence before the elements for which the given predicate returns True.</returns>
     ///
-    /// <example id="Seq.splits-1">
+    /// <example id="Seq.splitWith-1">
     /// <code lang="fsharp">
-    /// "AAAABBCDDCAA" |> Seq.splits (<>)
+    /// "AAAABBCDDCAA" |> Seq.splitWith (<>)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>
     /// seq {
@@ -475,14 +475,14 @@ module Seq =
     /// </c>
     /// </example>
     ///
-    /// <example id="Seq.splits-2">
+    /// <example id="Seq.splitWith-2">
     /// <code lang="fsharp">
     /// let digit value =
     ///     match value with
     ///     | 0 -> 1
     ///     | _ -> value |> abs |> float |> log10 |> int |> ((+) 1)
     /// let input = seq {0; 2; 12; 42; 128; 666; 6; 928; 1024 }
-    /// input |> Seq.splits (fun x y -> digit x <> digit y)
+    /// input |> Seq.splitWith (fun x y -> digit x <> digit y)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <code>
     /// seq {
@@ -496,18 +496,18 @@ module Seq =
     /// </code>
     /// </example>
     ///
-    /// <example id="Seq.splits-3">
+    /// <example id="Seq.splitWith-3">
     /// <code lang="fsharp">
     /// let input = seq { 0..9 }
-    /// input |> Seq.splits (fun x y -> x > y)
+    /// input |> Seq.splitWith (fun x y -> x > y)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>seq { seq {0; 1; 2; 3; 4; 5; 6; 7; 8; 9} }</c>
     /// </example>
     ///
-    /// <example id="Seq.splits-4">
+    /// <example id="Seq.splitWith-4">
     /// <code lang="fsharp">
     /// let input = seq { 0..9 }
-    /// input |> Seq.splits (fun x y -> x < y)
+    /// input |> Seq.splitWith (fun x y -> x < y)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <code>
     /// seq {
@@ -524,4 +524,4 @@ module Seq =
     /// }
     /// </code>
     /// </example>
-    val splits: predicate: ('T -> 'T -> bool) -> source: seq<'T> -> seq<seq<'T>>
+    val splitWith: predicate: ('T -> 'T -> bool) -> source: seq<'T> -> seq<seq<'T>>

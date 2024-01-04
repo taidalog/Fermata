@@ -84,7 +84,7 @@ module Array =
         |> Array.scan (fun acc x -> Array.append [| x |] acc) [||]
         |> Array.tail
 
-    let splits (predicate: 'T -> 'T -> bool) (array: 'T[]) : 'T[][] =
+    let splitWith (predicate: 'T -> 'T -> bool) (array: 'T[]) : 'T[][] =
         array
         |> Array.pairwise
         |> Array.fold

@@ -79,7 +79,7 @@ module List =
     let stairsBack (list: 'T list) : 'T list list =
         list |> List.rev |> List.scan (fun acc x -> x :: acc) [] |> List.tail
 
-    let splits (predicate: 'T -> 'T -> bool) (list: 'T list) : 'T list list =
+    let splitWith (predicate: 'T -> 'T -> bool) (list: 'T list) : 'T list list =
         list
         |> List.pairwise
         |> List.fold

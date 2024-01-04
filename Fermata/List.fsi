@@ -436,38 +436,38 @@ module List =
     ///
     /// <returns>The input list before the elements for which the given predicate returns True.</returns>
     ///
-    /// <example id="List.splits-1">
+    /// <example id="List.splitWith-1">
     /// <code lang="fsharp">
-    /// "AAAABBCDDCAA" |> Seq.toList |> List.splits (<>)
+    /// "AAAABBCDDCAA" |> Seq.toList |> List.splitWith (<>)
     /// </code>
     /// Evaluates to <c>[ [ 'A'; 'A'; 'A'; 'A' ]; [ 'B'; 'B' ]; [ 'C' ]; [ 'D'; 'D' ]; [ 'C' ]; [ 'A'; 'A' ] ]</c>
     /// </example>
     ///
-    /// <example id="List.splits-2">
+    /// <example id="List.splitWith-2">
     /// <code lang="fsharp">
     /// let digit value =
     ///     match value with
     ///     | 0 -> 1
     ///     | _ -> value |> abs |> float |> log10 |> int |> ((+) 1)
     /// let input = [ 0; 2; 12; 42; 128; 666; 6; 928; 1024 ]
-    /// input |> List.splits (fun x y -> digit x <> digit y)
+    /// input |> List.splitWith (fun x y -> digit x <> digit y)
     /// </code>
     /// Evaluates to <c>[ [ 0; 2 ]; [ 12; 42 ]; [ 128; 666 ]; [ 6 ]; [ 928 ]; [ 1024 ] ]</c>
     /// </example>
     ///
-    /// <example id="List.splits-3">
+    /// <example id="List.splitWith-3">
     /// <code lang="fsharp">
     /// let input = [ 0..9 ]
-    /// input |> List.splits (fun x y -> x > y)
+    /// input |> List.splitWith (fun x y -> x > y)
     /// </code>
     /// Evaluates to <c>[ [ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 ] ]</c>
     /// </example>
     ///
-    /// <example id="List.splits-4">
+    /// <example id="List.splitWith-4">
     /// <code lang="fsharp">
     /// let input = [ 0..9 ]
-    /// input |> List.splits (fun x y -> x < y)
+    /// input |> List.splitWith (fun x y -> x < y)
     /// </code>
     /// Evaluates to <c>[ [ 0 ]; [ 1 ]; [ 2 ]; [ 3 ]; [ 4 ]; [ 5 ]; [ 6 ]; [ 7 ]; [ 8 ]; [ 9 ] ]</c>
     /// </example>
-    val splits: predicate: ('T -> 'T -> bool) -> list: 'T list -> 'T list list
+    val splitWith: predicate: ('T -> 'T -> bool) -> list: 'T list -> 'T list list

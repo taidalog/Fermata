@@ -250,8 +250,8 @@ let ``List.stairsBack 2`` () =
     Assert.Equal<int list list>(expected, actual)
 
 [<Fact>]
-let ``List.splits 1`` () =
-    let actual = "AAAABBCDDCAA" |> Seq.toList |> List.splits (<>)
+let ``List.splitWith 1`` () =
+    let actual = "AAAABBCDDCAA" |> Seq.toList |> List.splitWith (<>)
 
     let expected =
         [ [ 'A'; 'A'; 'A'; 'A' ]
@@ -264,7 +264,7 @@ let ``List.splits 1`` () =
     Assert.Equal<char list list>(expected, actual)
 
 [<Fact>]
-let ``List.splits 2`` () =
+let ``List.splitWith 2`` () =
     let digit value =
         match value with
         | 0 -> 1
@@ -272,25 +272,25 @@ let ``List.splits 2`` () =
 
     let input = [ 0; 2; 12; 42; 128; 666; 6; 928; 1024 ]
 
-    let actual = input |> List.splits (fun x y -> digit x <> digit y)
+    let actual = input |> List.splitWith (fun x y -> digit x <> digit y)
 
     let expected = [ [ 0; 2 ]; [ 12; 42 ]; [ 128; 666 ]; [ 6 ]; [ 928 ]; [ 1024 ] ]
     Assert.Equal<int list list>(expected, actual)
 
 [<Fact>]
-let ``List.splits 3`` () =
+let ``List.splitWith 3`` () =
     let input = [ 0..9 ]
 
-    let actual = input |> List.splits (fun x y -> x > y)
+    let actual = input |> List.splitWith (fun x y -> x > y)
 
     let expected = [ [ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 ] ]
     Assert.Equal<int list list>(expected, actual)
 
 [<Fact>]
-let ``List.splits 4`` () =
+let ``List.splitWith 4`` () =
     let input = [ 0..9 ]
 
-    let actual = input |> List.splits (fun x y -> x < y)
+    let actual = input |> List.splitWith (fun x y -> x < y)
 
     let expected =
         [ [ 0 ]; [ 1 ]; [ 2 ]; [ 3 ]; [ 4 ]; [ 5 ]; [ 6 ]; [ 7 ]; [ 8 ]; [ 9 ] ]
