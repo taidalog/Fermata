@@ -21,14 +21,14 @@ module Seq =
         | true -> None
         | false -> source |> fore |> Some
 
-    let countWith (predicate: 'T -> bool) (source: seq<'T>) : int =
+    let count (predicate: 'T -> bool) (source: seq<'T>) : int =
         source |> Seq.filter predicate |> Seq.length
 
     let countBefore (index: int) (source: seq<'T>) : int =
-        source |> Seq.truncate index |> countWith ((=) (Seq.item index source))
+        source |> Seq.truncate index |> count ((=) (Seq.item index source))
 
     let countAfter (index: int) (source: seq<'T>) : int =
-        source |> Seq.skip (index + 1) |> countWith ((=) (Seq.item index source))
+        source |> Seq.skip (index + 1) |> count ((=) (Seq.item index source))
 
     let trySkip (count: int) (source: seq<'T>) : seq<'T> option =
         if count > (source |> Seq.length) then

@@ -81,22 +81,22 @@ module Seq =
     ///
     /// <returns>The number of elements of the sequence for which the given predicate returns true.</returns>
     ///
-    /// <example id="Seq.countWith-1">
+    /// <example id="Seq.count-1">
     /// <code lang="fsharp">
     /// let source = seq {"Laziness"; "Impatience"; "Hubris"}
-    /// source |> Seq.countWith (fun x -> String.length x > 6)
+    /// source |> Seq.count (fun x -> String.length x > 6)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>2</c>
     /// </example>
     ///
-    /// <example id="Seq.countWith-2">
+    /// <example id="Seq.count-2">
     /// <code lang="fsharp">
     /// let source = seq {"Laziness"; "Impatience"; "Hubris"}
-    /// source |> Seq.countWith (fun x -> String.length x < 0)
+    /// source |> Seq.count (fun x -> String.length x < 0)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>0</c>
     /// </example>
-    val countWith: predicate: ('T -> bool) -> source: seq<'T> -> int
+    val count: predicate: ('T -> bool) -> source: seq<'T> -> int
 
     /// <summary>Return the number of the occurrences of an item before itself in a sequence.</summary>
     ///

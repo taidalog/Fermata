@@ -21,14 +21,14 @@ module List =
         | [] -> None
         | _ -> list |> fore |> Some
 
-    let countWith (predicate: 'T -> bool) (list: 'T list) : int =
+    let count (predicate: 'T -> bool) (list: 'T list) : int =
         list |> List.filter predicate |> List.length
 
     let countBefore (index: int) (list: 'T list) : int =
-        list |> List.truncate index |> countWith ((=) (List.item index list))
+        list |> List.truncate index |> count ((=) (List.item index list))
 
     let countAfter (index: int) (list: 'T list) : int =
-        list |> List.skip (index + 1) |> countWith ((=) (List.item index list))
+        list |> List.skip (index + 1) |> count ((=) (List.item index list))
 
     let trySkip (count: int) (list: 'T list) : 'T list option =
         if count > (list |> List.length) then

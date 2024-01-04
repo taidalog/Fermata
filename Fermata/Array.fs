@@ -21,14 +21,14 @@ module Array =
         | [||] -> None
         | _ -> array |> fore |> Some
 
-    let countWith (predicate: 'T -> bool) (array: 'T[]) : int =
+    let count (predicate: 'T -> bool) (array: 'T[]) : int =
         array |> Array.filter predicate |> Array.length
 
     let countBefore (index: int) (array: 'T[]) : int =
-        array |> Array.truncate index |> countWith ((=) (Array.item index array))
+        array |> Array.truncate index |> count ((=) (Array.item index array))
 
     let countAfter (index: int) (array: 'T[]) : int =
-        array |> Array.skip (index + 1) |> countWith ((=) (Array.item index array))
+        array |> Array.skip (index + 1) |> count ((=) (Array.item index array))
 
     let trySkip (count: int) (array: 'T[]) : 'T[] option =
         if count > (array |> Array.length) then

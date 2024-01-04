@@ -82,22 +82,22 @@ module List =
     ///
     /// <returns>The number of elements of the list for which the given predicate returns true.</returns>
     ///
-    /// <example id="countwith-1">
+    /// <example id="count-1">
     /// <code lang="fsharp">
     /// let inputs = ["Laziness"; "Impatience"; "Hubris"]
-    /// inputs |> List.countWith (fun x -> String.length x > 6)
+    /// inputs |> List.count (fun x -> String.length x > 6)
     /// </code>
     /// Evaluates to <c>2</c>
     /// </example>
     ///
-    /// <example id="countwith-2">
+    /// <example id="count-2">
     /// <code lang="fsharp">
     /// let inputs = ["Laziness"; "Impatience"; "Hubris"]
-    /// inputs |> List.countWith (fun x -> String.length x < 0)
+    /// inputs |> List.count (fun x -> String.length x < 0)
     /// </code>
     /// Evaluates to <c>0</c>
     /// </example>
-    val countWith: predicate: ('T -> bool) -> list: 'T list -> int
+    val count: predicate: ('T -> bool) -> list: 'T list -> int
 
     /// <summary>Return the number of the occurrences of an item before itself in a list.</summary>
     ///

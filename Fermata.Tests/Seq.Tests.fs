@@ -87,7 +87,7 @@ let ``Seq.tryFore 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Seq.countWith 1`` () =
+let ``Seq.count 1`` () =
     let source =
         seq {
             "Laziness"
@@ -95,12 +95,12 @@ let ``Seq.countWith 1`` () =
             "Hubris"
         }
 
-    let actual = source |> Seq.countWith (fun x -> String.length x > 6)
+    let actual = source |> Seq.count (fun x -> String.length x > 6)
     let expected = 2
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Seq.countWith 2`` () =
+let ``Seq.count 2`` () =
     let source =
         seq {
             "Laziness"
@@ -108,7 +108,7 @@ let ``Seq.countWith 2`` () =
             "Hubris"
         }
 
-    let actual = source |> Seq.countWith (fun x -> String.length x < 0)
+    let actual = source |> Seq.count (fun x -> String.length x < 0)
     let expected = 0
     Assert.Equal(expected, actual)
 

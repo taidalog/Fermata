@@ -45,16 +45,16 @@ let ``List.tryFore 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``List.countWith 1`` () =
+let ``List.count 1`` () =
     let inputs = [ "Laziness"; "Impatience"; "Hubris" ]
-    let actual = inputs |> List.countWith (fun x -> String.length x > 6)
+    let actual = inputs |> List.count (fun x -> String.length x > 6)
     let expected = 2
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``List.countWith 2`` () =
+let ``List.count 2`` () =
     let inputs = [ "Laziness"; "Impatience"; "Hubris" ]
-    let actual = inputs |> List.countWith (fun x -> String.length x < 0)
+    let actual = inputs |> List.count (fun x -> String.length x < 0)
     let expected = 0
     Assert.Equal(expected, actual)
 
