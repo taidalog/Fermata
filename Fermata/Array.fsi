@@ -305,30 +305,30 @@ module Array =
     ///
     /// <returns>The result two arrays.</returns>
     ///
-    /// <example id="splitwith-1">
+    /// <example id="splitFind-1">
     /// <code lang="fsharp">
     /// let array = [|0; 2; 4; 6; 8|]
-    /// array |> Array.splitWith (fun x -> x > 5)
+    /// array |> Array.splitFind (fun x -> x > 5)
     /// </code>
     /// Evaluates to <c>([|0; 2; 4|], [|6; 8|])</c>
     /// </example>
     ///
-    /// <example id="splitwith-2">
+    /// <example id="splitFind-2">
     /// <code lang="fsharp">
     /// let array = [|0; 2; 5; 6; 8|]
-    /// array |> Array.splitWith (fun x -> x % 2 = 1)
+    /// array |> Array.splitFind (fun x -> x % 2 = 1)
     /// </code>
     /// Evaluates to <c>([|0; 2|], [|5; 6; 8|])</c>
     /// </example>
     ///
-    /// <example id="splitwith-3">
+    /// <example id="splitFind-3">
     /// <code lang="fsharp">
     /// let array = [|0; 2; 5; 6; 8|]
-    /// array |> Array.splitWith (fun x -> x % 2 = 2)
+    /// array |> Array.splitFind (fun x -> x % 2 = 2)
     /// </code>
     /// Evaluates to <c>([|0; 2; 5; 6; 8|], [||]|])</c>
     /// </example>
-    val splitWith: predicate: ('T -> bool) -> array: 'T[] -> ('T[] * 'T[])
+    val splitFind: predicate: ('T -> bool) -> array: 'T[] -> ('T[] * 'T[])
 
     /// <summary>Returns a new array to which the specified value is prepended to be of the specified length.</summary>
     ///

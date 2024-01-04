@@ -64,6 +64,6 @@ module String =
     let split (separator: char) (str: string) : string list =
         str.Split([| separator |]) |> Array.toList
 
-    let splitWith (predicate: char -> bool) (str: string) : string * string =
+    let splitFind (predicate: char -> bool) (str: string) : string * string =
         str |> Seq.takeWhile (predicate >> not) |> Seq.map string |> String.concat "",
         str |> Seq.skipWhile (predicate >> not) |> Seq.map string |> String.concat ""

@@ -305,30 +305,30 @@ module List =
     ///
     /// <returns>The result two lists.</returns>
     ///
-    /// <example id="splitwith-1">
+    /// <example id="splitFind-1">
     /// <code lang="fsharp">
     /// let list = [0; 2; 4; 6; 8]
-    /// list |> List.splitWith (fun x -> x > 5)
+    /// list |> List.splitFind (fun x -> x > 5)
     /// </code>
     /// Evaluates to <c>([0; 2; 4], [6; 8])</c>
     /// </example>
     ///
-    /// <example id="splitwith-2">
+    /// <example id="splitFind-2">
     /// <code lang="fsharp">
     /// let list = [0; 2; 5; 6; 8]
-    /// list |> List.splitWith (fun x -> x % 2 = 1)
+    /// list |> List.splitFind (fun x -> x % 2 = 1)
     /// </code>
     /// Evaluates to <c>([0; 2], [5; 6; 8])</c>
     /// </example>
     ///
-    /// <example id="splitwith-3">
+    /// <example id="splitFind-3">
     /// <code lang="fsharp">
     /// let list = [0; 2; 5; 6; 8]
-    /// list |> List.splitWith (fun x -> x % 2 = 2)
+    /// list |> List.splitFind (fun x -> x % 2 = 2)
     /// </code>
     /// Evaluates to <c>([0; 2; 5; 6; 8], [])</c>
     /// </example>
-    val splitWith: predicate: ('T -> bool) -> list: 'T list -> ('T list * 'T list)
+    val splitFind: predicate: ('T -> bool) -> list: 'T list -> ('T list * 'T list)
 
     /// <summary>Returns a new list to which the specified value is prepended to be of the specified length.</summary>
     ///

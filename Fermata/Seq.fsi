@@ -312,30 +312,30 @@ module Seq =
     ///
     /// <returns>The result two sequences.</returns>
     ///
-    /// <example id="Seq.splitWith-1">
+    /// <example id="Seq.splitFind-1">
     /// <code lang="fsharp">
     /// let source = seq {0; 2; 4; 6; 8}
-    /// let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x > 5)
+    /// let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x > 5)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>(seq {0; 2; 4}, seq {6; 8})</c>
     /// </example>
     ///
-    /// <example id="Seq.splitWith-2">
+    /// <example id="Seq.splitFind-2">
     /// <code lang="fsharp">
     /// let source = seq {0; 2; 5; 6; 8}
-    /// let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x % 2 = 1)
+    /// let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x % 2 = 1)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>(seq {0; 2}, seq {5; 6; 8})</c>
     /// </example>
     ///
-    /// <example id="Seq.splitWith-3">
+    /// <example id="Seq.splitFind-3">
     /// <code lang="fsharp">
     /// let source = seq {0; 2; 5; 6; 8}
-    /// let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x % 2 = 2)
+    /// let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x % 2 = 2)
     /// </code>
     /// Evaluates to a sequence yielding the same results as <c>(seq {0; 2; 5; 6; 8}, Seq.empty)</c>
     /// </example>
-    val splitWith: predicate: ('T -> bool) -> source: seq<'T> -> (seq<'T> * seq<'T>)
+    val splitFind: predicate: ('T -> bool) -> source: seq<'T> -> (seq<'T> * seq<'T>)
 
     /// <summary>Returns a new sequence to which the specified value is prepended to be of the specified length.</summary>
     ///

@@ -432,7 +432,7 @@ let ``Seq.intersect 3`` () =
     Assert.Equal<seq<int>>(expected, actual)
 
 [<Fact>]
-let ``Seq.splitWith 1`` () =
+let ``Seq.splitFind 1`` () =
     let source =
         seq {
             0
@@ -442,7 +442,7 @@ let ``Seq.splitWith 1`` () =
             8
         }
 
-    let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x > 5)
+    let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x > 5)
 
     let expected =
         (seq {
@@ -458,7 +458,7 @@ let ``Seq.splitWith 1`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Seq.splitWith 2`` () =
+let ``Seq.splitFind 2`` () =
     let source =
         seq {
             0
@@ -468,7 +468,7 @@ let ``Seq.splitWith 2`` () =
             8
         }
 
-    let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x % 2 = 1)
+    let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x % 2 = 1)
 
     let expected =
         (seq {
@@ -484,7 +484,7 @@ let ``Seq.splitWith 2`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Seq.splitWith 3`` () =
+let ``Seq.splitFind 3`` () =
     let source =
         seq {
             0
@@ -494,7 +494,7 @@ let ``Seq.splitWith 3`` () =
             8
         }
 
-    let actual: seq<int> * seq<int> = source |> Seq.splitWith (fun x -> x % 2 = 2)
+    let actual: seq<int> * seq<int> = source |> Seq.splitFind (fun x -> x % 2 = 2)
 
     let expected =
         (seq {

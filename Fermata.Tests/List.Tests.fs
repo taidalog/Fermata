@@ -175,23 +175,23 @@ let ``List.intersect 3`` () =
     Assert.Equal<int list>(expected, actual)
 
 [<Fact>]
-let ``List.splitWith 1`` () =
+let ``List.splitFind 1`` () =
     let list = [ 0; 2; 4; 6; 8 ]
-    let actual: int list * int list = list |> List.splitWith (fun x -> x > 5)
+    let actual: int list * int list = list |> List.splitFind (fun x -> x > 5)
     let expected = ([ 0; 2; 4 ], [ 6; 8 ])
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``List.splitWith 2`` () =
+let ``List.splitFind 2`` () =
     let list = [ 0; 2; 5; 6; 8 ]
-    let actual: int list * int list = list |> List.splitWith (fun x -> x % 2 = 1)
+    let actual: int list * int list = list |> List.splitFind (fun x -> x % 2 = 1)
     let expected = ([ 0; 2 ], [ 5; 6; 8 ])
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``List.splitWith 3`` () =
+let ``List.splitFind 3`` () =
     let list = [ 0; 2; 5; 6; 8 ]
-    let actual: int list * int list = list |> List.splitWith (fun x -> x % 2 = 2)
+    let actual: int list * int list = list |> List.splitFind (fun x -> x % 2 = 2)
     let expected = ([ 0; 2; 5; 6; 8 ], [])
     Assert.Equal(expected, actual)
 

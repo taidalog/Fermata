@@ -177,23 +177,23 @@ let ``Array.intersect 3`` () =
     Assert.Equal<int array>(expected, actual)
 
 [<Fact>]
-let ``Array.splitWith 1`` () =
+let ``Array.splitFind 1`` () =
     let array = [| 0; 2; 4; 6; 8 |]
-    let actual: int array * int array = array |> Array.splitWith (fun x -> x > 5)
+    let actual: int array * int array = array |> Array.splitFind (fun x -> x > 5)
     let expected = ([| 0; 2; 4 |], [| 6; 8 |])
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Array.splitWith 2`` () =
+let ``Array.splitFind 2`` () =
     let array = [| 0; 2; 5; 6; 8 |]
-    let actual = array |> Array.splitWith (fun x -> x % 2 = 1)
+    let actual = array |> Array.splitFind (fun x -> x % 2 = 1)
     let expected = ([| 0; 2 |], [| 5; 6; 8 |])
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``Array.splitWith 3`` () =
+let ``Array.splitFind 3`` () =
     let array = [| 0; 2; 5; 6; 8 |]
-    let actual: int array * int array = array |> Array.splitWith (fun x -> x % 2 = 2)
+    let actual: int array * int array = array |> Array.splitFind (fun x -> x % 2 = 2)
     let expected = ([| 0; 2; 5; 6; 8 |], [||])
     Assert.Equal(expected, actual)
 
