@@ -1,4 +1,4 @@
-// Fermata Version 1.0.0
+// Fermata
 // https://github.com/taidalog/Fermata
 // Copyright (c) 2022-2024 taidalog
 // This software is licensed under the MIT License.
