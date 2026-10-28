@@ -1,7 +1,0 @@
-{
-    "editor.defaultFormatter": "Ionide.Ionide-fsharp",
-    "editor.formatOnSave": true,
-    "[markdown]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
-}
